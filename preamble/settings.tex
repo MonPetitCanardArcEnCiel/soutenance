@@ -1,0 +1,26 @@
+\mode<presentation>
+{
+    \usetheme{CambridgeUS}      % or try Darmstadt, Madrid, Warsaw, CambridgeUS ...
+    \usecolortheme{seahorse} % or try albatross, beaver, crane, seahorse ...
+    \usefonttheme{default}  % or try serif, structurebold, ...
+    \setbeamertemplate{navigation symbols}{
+        \usebeamerfont{footline}%
+        \usebeamercolor[fg]{footline}%
+        \hspace{1em}%
+        \insertframenumber/\inserttotalframenumber
+    }
+    \setbeamertemplate{caption}[numbered]
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents
+        [
+            currentsection,
+            currentsubsection,
+            subsectionstyle=show/show/hide
+        ]
+  \end{frame}
+}
