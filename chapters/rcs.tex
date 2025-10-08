@@ -1,13 +1,112 @@
 \section{From the maxwell equations to the RCS}
 
+\subsection{Fundamentals}
 \begin{frame}
     \frametitle{The Maxwell Equations}
+
+
+    Let us recall the Maxwell equations in the harmonic regime :
+    \begin{subequations}
+	\begin{equation}
+		\nabla \cdot{} \D = \varrho, \label{bem-eq:divD}
+	\end{equation}
+	\begin{equation}
+		\nabla \cdot \B = 0, \label{bem-eq:divB}
+	\end{equation}
+	\begin{equation}
+		\nabla \times \E = j\omega\B - \mathbf M, \label{bem-eq:rotE}
+	\end{equation}
+	\begin{equation}
+		\nabla \times \Hh = \J -j\omega\D, \label{bem-eq:rotH}
+	\end{equation}
+        \pause
+        along with the continuity equation : 
+        \begin{equation}
+            \label{eq:cont}
+            \nabla\cdot\J + \derpartt{\rho} = 0.
+        \end{equation}
+    \end{subequations}
+    \onslide<1->
+    \small
+    \begin{equation*}
+        \begin{array}{ccc}
+            \E\text{ : electric field}&\J\text{ : current density}\\
+            \B\text{ : magnetic field}&\rho\text{ : charge density}\\
+            \D = \varepsilon_0\E&\varepsilon_0\text{ : dielectric permitivity}\\
+            \B = \mu_0\Hh&\mu_0\text{ : magnetic permeability}\\
+            k = \dfrac{2\pi f}{c}&Z_0 = \sqrt{\dfrac{\mu_0}{\varepsilon_0}}
+        \end{array}
+    \end{equation*}
 \end{frame}
 
 \begin{frame}
     \frametitle{The Vector Helmholtz Equation}
+    \begin{equation}
+    -\left(\nabla^2+k^2\right)\E = \mathbf T    
+    \label{bem-eq:Helmholtz}
+\end{equation}
+
+With : 
+\begin{equation}
+    \mathbf T = kZ_0\left(\frac1{k^2}\nabla\nabla\cdot+1\right)\J-\nabla\times\mathbf M.
+\end{equation}
+
+\begin{equation}
+    \E(x) = \int_\Omega \mathbf T(y)G(x,y)\dd\Omega(y),\quad \forall x\notin\mathrm{supp}(\mathbf T),
+    \label{bem-eq:sol-helmholtz}
+\end{equation}
 \end{frame}
+
+
+\subsection{Far field and RCS}
+
+\begin{frame}
+    \frametitle{The Far Field}
+
+    \begin{block}<1->{Hypothèse}
+        Supposons un obstacle métallique parfaitement conducteur occupant un domaine borné $\Omega$ de frontière $\Gamma$ dans le vide et plongé dans un champ plan incident $\E\inc$.
+    \end{block}
+    \onslide<2->
+    On montre qu'en l'absence de pertes, la solution de l'équation \eqref{eq:helmoltz} s'écrit :
+    \begin{equation}
+        \E(x) = j\frac{e^{ik|x|}}{|x|}\left\{\E^\infty(\tfrac x{|x|}) + \mathcal{O}\left(\frac1{|x|}\right)\right\},
+    \end{equation}
+    %
+    \onslide<2->
+    avec
+    \begin{equation}
+        \E^\infty(\tfrac\x{|\x|}) = \frac{kZ_0}{4\pi}\frac\x{|\x|}\times\left(\mathcal F(\J)(\tfrac{\x}{|\x|})\times\frac\x{|\x|}\right),
+        \label{eq:champ-lointain}
+    \end{equation}
+    %
+    \onslide<3->
+    où \begin{equation}
+        \mathcal F(\J)(\x) = \left<\J_y,e^{-jkx\cdot y}\right>_{\varepsilon'(\mathbb R^3),\varepsilon(\mathbb R^3)}.
+        \label{eq:cond-F}
+    \end{equation}
+
+\end{frame}
+\begin{frame}
+    \frametitle{The Far Field}
+    It can be shown that in the case where the support of $\mathbf T$ is compact, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as a Taylor's development as such :
+\begin{equation}
+    \E(x) = \frac{e^{jk\norm x}}{\norm x}\left\{\E^\infty\left(\frac{x}{\norm x}\right)+\mathcal O\left(\frac1{\norm x}\right)\right\},
+    \label{bem-eq:taylor}
+\end{equation}
+%
+where
+\begin{equation}
+        \E^\infty\left(\uu_s\right) = \frac{jk}{4\pi}\uu_s\times\left(Z_0\mathcal F(\J)\left(\uu_s\right)\times \uu_s - \mathcal F(\mathbf M)\left(\uu_s\right)\right),
+\end{equation}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{The Radar Cross Section (RCS)}
+    \begin{equation}
+    \label{bem-eq:RCSdef}
+    \sigma(\theta,\phi) = \lim\limits_{R\to\infty} R^2\frac{|\E_P|^2}{|\E_i|^2},
+\end{equation}
+%
+ $$\sigma_{\mathrm {dB}} = 10\log(\sigma).$$
 \end{frame}
