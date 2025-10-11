@@ -1,20 +1,21 @@
 \mode<presentation>
 {
     \usetheme{CambridgeUS}      % or try Darmstadt, Madrid, Warsaw, CambridgeUS ...
+    % \usetheme{Darmstadt}      % or try Darmstadt, Madrid, Warsaw, CambridgeUS ...
     \usecolortheme{seahorse} % or try albatross, beaver, crane, seahorse ...
     \usefonttheme{default}  % or try serif, structurebold, ...
     \setbeamertemplate{navigation symbols}{
         \usebeamerfont{footline}%
         \usebeamercolor[fg]{footline}%
         \hspace{1em}%
-        \insertframenumber/\inserttotalframenumber
+        % \insertframenumber/\inserttotalframenumber
     }
     \setbeamertemplate{caption}[numbered]
 }
 
 \AtBeginSection[]
 {
-    \subsection{Content}
+    \subsection*{Outline}
   \begin{frame}
     \frametitle{Table of Contents}
     \tableofcontents
