@@ -1,3 +1,5 @@
 auxdir/
 thoulon_phd_defense_2025.pdf
-thoulon_phd_defense_2025.synctex.gz
+*.synctex.gz
+
+chapters/resources/bem/def-RWG.pdf
