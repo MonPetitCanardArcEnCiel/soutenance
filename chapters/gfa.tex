@@ -1,0 +1,89 @@
+
+\section[Baseline]{Présentation de la géométrie de base}
+\subsection{Géométrie}
+\begin{frame}
+    \frametitle{Le \textit{Generic Fighter Aircraft}}
+	Pas d'entrée d'air, d'empenage ou de canard. Arêtier à l'avant du fuselage.
+
+
+    \begin{figure}[htb]
+		\centering
+		\captionsetup[subfigure]{justification=centering}
+		\begin{subfigure}[c]{0.66\textwidth}
+			\includegraphics[width=.9\textwidth]{images/gfa/baseline-view.jpg}
+			% \includegraphics[width=.9\textwidth,center]{images/gfa/baseline-view.jpg}
+			\caption*{3D-view.}
+		\end{subfigure}
+		\begin{subfigure}[c]{0.33\textwidth}
+			\centering
+			\includegraphics[width=.9\textwidth]{images/gfa/base-shape.png}
+			% \includegraphics[width=.9\textwidth,center]{images/gfa/base-shape.png}
+			\caption*{Bottom view with the leading and trailing edge sweep angles.}
+		\end{subfigure}
+		\caption*{The Generic Fighter Aircraft.}
+		\label{fig:baseline-model}
+	\end{figure}
+\end{frame}
+
+\subsection{Analyse SER}
+\begin{frame}
+    \frametitle{Analyse SER}
+
+    \begin{figure}[htb]
+		\centering
+		\captionsetup[subfigure]{justification=centering}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PV.pdf}
+			\caption*{\tiny Purely PO simulation with horizontal polarization.}
+			\label{fig:RCS-baseline-PO-PV}
+		\end{subfigure}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PH.pdf}
+			\caption*{\tiny Purely PO simulation with vertical polarization.}
+			\label{fig:RCS-baseline-PO-PH}
+		\end{subfigure}
+        \onslide<2->
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PH-PTD.pdf}
+			\caption*{\tiny PO simulation with PTD extension with horizontal polarization.}
+			\label{fig:RCS-baseline-PTD-PV}
+		\end{subfigure}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PV-PTD.pdf}
+			\caption*{\tiny PO simulation with PTD extension with vertical polarization.}
+			\label{fig:RCS-baseline-PTD-PH}
+		\end{subfigure}
+		\caption*{Profile of RCS with respect to the bearing angle on the GFA (elevation : $\phi = -20^\circ$).}
+		\label{fig:RCS-baseline}
+	\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Paramétrisation}
+
+    \begin{figure}[htb]
+		\centering
+		\includegraphics[trim=5mm 45mm 20mm 55mm,clip,width=\textwidth,height=.4\textheight,keepaspectratio]{images/gfa/control_sections-h.pdf}
+		% \frame{\includegraphics[trim=100mm 0 115mm 0mm,clip,width=.75\textwidth]{control_sections-v.pdf}}
+		% \caption*{The wing parametrized with the control sections and control points.}
+		\label{fig:parametrized-shape}
+	\end{figure}%
+    \only<1>{%
+    L'aile du GFA est paramétrée avec 6 sections de contrôle, 15 points de contrôles le long de chaque section.
+    }%
+    \onslide<2->
+    La géométrie est paramétrée avec 13 variables globales :
+	\begin{itemize}[label=\ding{227}]
+		\item<3-> l'angle de flèche de bord d'attaque des sections 2 et 4,
+		\item<4-> la corde des sections 2, 4 et 6,
+		\item<5-> la distance entre les sections 2 et 6,
+		\item<6->l'angle de vrillage des sections 2, 3 ,5 et 6,
+		\item<7-> la cambrure de bord d'attaque des sections 3, 5 et 6.
+	\end{itemize}
+    \onslide<8->
+	L'angle d'incidence aérodynamique est le \nth{14} paramètre d'optimisation (utile uniquement pour l'optimisation aéro).
+
+
+\end{frame}
