@@ -3,19 +3,171 @@
 \subsection{The Boundary Element Method}
 \begin{frame}
     \frametitle{The Electric Field Integral Equation}
+    On montre\footnote<1->{Bendali, A.~, 2013, \textit{\'Equations Intégrales en \'Electromagnétisme}.} que, sous l'hypothèse de la slide \ref{hyp}, la solution de l'équation \eqref{eq:helmoltz} admet la représentation intégrale suivante :
+    \begin{equation}
+        \E(x) = E\inc(x) + jkZ_0\left(\frac1{k^2}\nabla_\Gamma\nabla_\Gamma\cdot+1\right)\int_\Gamma G(x,y)\J(y)\dd\Gamma(y)
+    \end{equation}
+    où $$G(x,y) = \frac{e^{-jk|x-y|}}{|x-y|}$$ est la fonction de Green homogène en dimension 3.
+\end{frame}
+\begin{frame}
+    \frametitle{The Electric Field Integral Equation}
+    La formule précédente est plus pratique à formuler sous forme intégrale. On introduit donc l'espace : $$\Hdiv(\Gamma) := \left\{\J\in L^2(\Gamma;\mathbb C^3),\J\text{ tangent à }\Gamma, \nabla_\Gamma\cdot\J\in L^2(\Gamma)\right\}.$$
+    \onslide<2->
+    Il vient le problème variationnel suivant\footnote<2->{Bendali, A.~, 2013, \textit{\'Equations Intégrales en \'Electromagnétisme}.} :
+
+    \begin{equation}
+    \boxed{\boxed{
+    \left\{\begin{aligned}
+        &\text{Trouver }\J\in\Hdiv(\Gamma), \forall\J'\in\Hdiv(\Gamma),& \\
+        \int_\Gamma\int_\Gamma G(\rr,\rr') & \left(-\frac1{k^2}\nabla_\Gamma\cdot\J(\rr')\nabla_\Gamma\cdot\J'(\rr)+\J(\rr')\cdot\J'(\rr)\right)\dd\rr'\dd\rr &\\&=-\frac1{j\omega\mu_0}\int_\Gamma\E\inc\cdot\J'\dd\rr&
+        \end{aligned}\right.
+        \label{eq:efie}
+    }}.
+    \end{equation}
 \end{frame}
 
 \begin{frame}
     \frametitle{Discretization}
+    Le courant de surface induit $\J$ peut être étendue en une somme pondérée de $N$ fonctions de base $\fn{\rr}$, avec une famille de poids $(I_n)_{1\leq n\leq N}\in\mathbb C^N$ :
+    \begin{equation*}
+        \J\approx\sum_{n=1}^N I_n\fn{\rr}.
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Discretization}
+    Nous utilisons des fonctions de base de Rao-Wilson-Glisson (RWG) définies comme suit :
+    \begin{equation*}
+        \fn{\rr} = \left\{\begin{array}{cl}
+            \frac{l_n}{2S_n^+}\left(\rr-\rr_n^+\right)&\rr\in T_n^+,\\
+            \frac{l_n}{2S_n^-}\left(\rr_n^--\rr\right)&\rr\in T_n^-,\\
+            0&\text{autrement}.
+        \end{array}\right.
+    \end{equation*}
+    $\rr_n^\pm$, $l_n$ et $T_n^\pm$ sont définis dans la figure ci-dessous. $S_n^\pm$ est l'aire du triangle $T_n^\pm$.
+
+    \begin{figure}[ht]
+        \centering
+        \scalebox{.6}{\subimport{resources/bem}{def-RWG.tex}}
+        \caption{Schéma des éléments finis de Rao-Wilson-Glisson.}
+        \label{fig:rwg}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Discretization}
+    Cela permet d'exprimer le problème EFIE \eqref{eq:efie} sous la forme d'un système linéaire :
+    \begin{equation}
+        A\J = \bb.
+        \label{eq:syslin}
+    \end{equation}
 \end{frame}
 
 \subsection{The BEM adjoint}
 \begin{frame}
-    \frametitle{The BEM adjoint}
 
-    
+    \frametitle{Continuous adjoint formulation}
+
+    Réécrivons le système linéaire d'inconnue $\J$ défini par l'équation \eqref{eq:syslin} sous la forme suivante :
+    \begin{equation}
+        \mathcal R(\X(x),\J(x)) = 0,
+        \label{eq:system-cont}
+    \end{equation}
+    et considérons la fonction d'observation $\sigma(\X(x),\J(x))$.
+    La dérivée droite de $\sigma$ par rapport à $x$ s'écrit :
+    \begin{equation}
+        \dd{\sigma} = \left(\derpart{\sigma}{\X}\derpart{\X}{x} + \derpart{\sigma}{\J}\derpart{\J}{x}\right)\dd x.
+        \label{eq:dsigmadx}
+    \end{equation}
+
+    \only<1>{
+        $\X$ : coordonnées du maillage
+
+        $\x$ : variables d'optimisation
+        }
+
+    \onslide<2->
+    Le terme $\derpart{\J}{x}$ est très coûteux à calculer. On peut cependant l'exprimer de manière plus astucieuse car $\dd\RR = 0$ :
+
+    \begin{equation}
+        \dd\RR = \left(\derpart\RR\X\derpart\X x + \derpart\RR\J\derpart\J x\right)\dd x = 0.
+    \end{equation}
+    \onslide<3->
+    On en déduit :
+    \begin{equation}
+        \derpart\J x = \left(\derpart\RR\J\right)^{-1}\derpart\RR\X\derpart\X x.
+        \label{eq:djdx}
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Continuous adjoint formulation II}
+    En injectant le système \eqref{eq:djdx} dans l'expression \eqref{eq:dsigmadx}, on obtient :
+
+    \begin{equation}
+        \boxed{
+        \der{\sigma}{x} = \derpart{\sigma}{\X}\derpart{\X}{x} - \Psi^*\left(\derpart{\mathcal R}{\X}\derpart{\X}{x}\right).
+        }
+        \label{eq:dsigmadx-adj}
+    \end{equation}
+
+    Où $\Psi$ est la solution au système adjoint :
+    \begin{equation}
+        \left(\derpart{\mathcal R}{\J}\right)^* \Psi = \left(\derpart{\sigma}{\J}\right)^*.
+        \label{eq:adjoint-cont}
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Discrete adjoint formulation}
+
+    En formulation discrète, $$\mathcal R(\X,\J) = A(X)\J - \bb(X).$$
+
+    \onslide<2->
+    La dérivée de sigma devient :
+    \begin{equation}
+        \der{\sigma}{x} = \derpart{\sigma}{\X}\derpart{\X}{\x} - \Psi^*\left({\color<3->{lightgray}\derpart{A}\X }- \derpart{b}\X\right)\derpart\X\x
+    \end{equation}
+
+    \only<3>{
+    Les variation de géométrie étant petites, on suppose que $\derpart{A}{\X}$ est négligeable devant les autres termes.}
+
+    \onslide<4->
+    \only<5->{Dans la formulation EFIE, $A$ est symmétrique non hermicienne i.e.~ $A^* = \overline{A}$.}
+
+    Le système adjoint devient :
+    \only<4>{
+    \begin{equation}
+        A^*\Psi = \left(\derpart{\sigma}{\J}\right)^*
+    \end{equation}}
+    \onslide<5->
+    \begin{equation}
+        \overline{A}\Psi = \left(\derpart{\sigma}{\J}\right)^*
+    \end{equation}
 
 \end{frame}
+
+\begin{frame}[label=smembre]
+    \frametitle{Computation of the right-hand side}
+    On cherche à montrer que $\left(\derpart{\sigma}{\J}\right)^* = \eta\overline{\bb}$ et à déterminer $\eta \in \mathbb C$.
+
+    On rappelle la définition de la SER
+    \begin{equation}
+        \sigma = 4\pi\frac{|\E^\infty|^2}{|\E\inc|^2}
+    \end{equation}
+
+    \onslide<2->
+    \begin{equation}
+        \begin{aligned}
+            \delta\sigma &= 8\pi\frac{\E^\infty}{|\E\inc|^2}\cdot\delta\E^\infty\\
+            &= \frac{8\pi kZ_0}{|\E\inc|^2}\E^\infty\cdot\left[\uu_s\times\int_\Gamma\delta\J(y)e^{-jk\uu_i\cdot y}\dd\Gamma(y)\times \uu_s\right].
+        \end{aligned}
+    \end{equation}
+\end{frame}
+
+    
 
 \subsection{The optimization}
 \begin{frame}
