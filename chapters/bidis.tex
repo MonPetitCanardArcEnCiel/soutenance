@@ -3,7 +3,67 @@
 \subsection{The Physical Optics}
 \begin{frame}
     \frametitle{The Physical Optics}
+    
+
+    On écrit la condition \eqref{eq:cond-F} ainsi :
+    \begin{equation}
+        \mathcal F(\J)(\x) = \int_\Gamma\J(y)e^{-jk\x\cdot y}\dd\Gamma(y).
+    \end{equation}
+    \onslide<2->
+    Sous l'hypothèse de l'optique physique, la distribution de courant $\J$ induit par une onde plane $\E\inc$ se propageant selon la direction $\uu_i$ est la suivante\footnote<2->{Chatzigeorgiadis, F.~, 2004, \textit{Development of Code for a Physical Optics RADAR Cross Section Prediction and Analysis Application}.} :
+    \begin{equation}
+        \J(y) = \left\{\begin{array}{cr}
+            \left(\dfrac2{Z_0}\mathbf n\times\mathbf \uu_i\times\E\inc\right)e^{jk\uu_i\cdot y}&\text{in the illumated zone,}\\
+            \mathbf 0&\text{in the shadow zone,}
+        \end{array}\right.
+    \end{equation}
+    \onslide<3->
+    L'expression du champs lointain s'écrit donc finalement :
+    \begin{equation}
+        \E^\infty(\uu_s) = \frac{2k}{4\pi}\int_\Gamma\uu_s\times\left(\n\times \uu_i\times\E\inc\right)\times\uu_s e^{jk(\uu_i-\uu_s)\cdot y}\dd\Gamma(y)
+    \end{equation}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Optique Physique discrétisée}
+    On approxime la surface gauche $\Gamma$ par un ensemble de triangles $(T_n)_{1\leq n\leq N}$. Sur chaque triangle, le vecteur $\n_n$ est constant. Enfin on se place dans le cas d'une observation monostatique i.e.~$\uu_s = -\uu_i$.
+    \begin{equation}
+        \boxed{
+        \E^{\infty}(\uu_s) = \frac{2k}{4\pi}\sum_n\left[ \uu_s\times\left(\n_n\times \uu_s\times\E\inc\right)\times \uu_s\right]\int_{T_n}e^{-2jk \uu_s\cdot y}\dd T_n(y)
+        }
+    \end{equation}
+    \only<2>{
+    Posons : $$\mathcal I_n = \int_{T_n}e^{-2jk\uu_s\cdot y}\dd T_n(y).$$
+    }
+    \only<3->{
+    Posons : $\mathcal I_n = \int_{T_n}e^{-2jk\uu_s\cdot y}\dd T_n(y).$
+    }
+    \onslide<3->
+    La formule de Gordon\footnote<3->{Laval, D.~, 2006, \textit{Application de Méthodes Asymptotiques à la Simulation de la Diffraction \'Electromagnétique par un Corps Régulier}.} donne :%
+    \begin{equation}
+        \mathcal I_n=\frac{j}{2kQ_n}\sum_{m=1}^{3}(q_n\cdot a_{n,m})e^{-2jk(x_{n,m}-x_{n,0})\cdot l_s}\sin_c\left(\frac{2k l_s\cdot a_{n,m}}{2}\right),
+    \end{equation}%
+    \small
+    avec $l_s = -2 \uu_s$, $Q_n = |n_n\times l_s|$ et $q_n = \frac{\n_n\times l_s}{Q_n}$. $a_{n,m}$ est le vecteur de l'arête numéro $m$ de $T_n$, et $x_{n,0}$ est le vecteur unitaire vers le barycentre de $T_n$ et $x_{n,m}$ vers le $m^{\text{ième}}$ sommet de $T_n$. $\sin_c(x) = \frac{\sin(x)}{x}$.
+    % \normalsize
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{COPOLA}
+
+    \begin{itemize}[label=$\bullet$]
+        \item<1-> L'optique physique ne permet pas de prendre en compte la diffraction.
+
+        \item<2-> Une extension, la théorie physique de la diffraction\footnote<2->{Michaeli, A.~, 1986, \textit{Elimination of infinities in equivalent edge currents, Part I : Fringe Current Components}.} (PTD), permet de prendre en compte la diffraction d'arêtes.
+
+        \item<3-> Le code d'optique physique et l'extension PTD ont été différenciés à l'aide du logiciel TAPENADE\footnote<3->{Hascoët, L.~et V.~Pascual, 2013, \textit{The TAPENADE Automatic Differentiation tool : Principles, Model and Specification}.}
+
+        \item<4-> Le code calculant la SER à partir de l'optique physique et de son extension PTD, ainsi que son gradient s'appelle COPOLA.
+    \end{itemize}
+
+\end{frame}
+
 
 \begin{frame}
     \frametitle{The PTD extension}
@@ -18,6 +78,7 @@
 \begin{frame}
     \frametitle{The aerodynamic adjoint}
 \end{frame}
+
 
 \subsection{The optimization}
 \begin{frame}
