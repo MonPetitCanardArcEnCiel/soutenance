@@ -69,6 +69,81 @@
     \frametitle{The PTD extension}
 \end{frame}
 
+\subsection{Validation}
+
+\begin{frame}
+    \frametitle{Validation of the PO+PTD solver}
+
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Calcul d'un cas canonique}
+
+    \begin{figure}[htb]
+		\centering
+		\captionsetup[subfigure]{justification=centering}
+		\begin{subfigure}[c]{0.49\textwidth}
+			\includegraphics[width=1.4\textwidth,center]{images/bidis/RCS-sphere-bearing.pdf}
+			\caption*{RCS funtion of the bearing angle.\newline$f = 5\unit{\giga\hertz}$}
+			\label{fig:RCS-sphere-bearing}
+		\end{subfigure}
+		\begin{subfigure}[c]{0.49\textwidth}
+			\centering
+			\includegraphics[width=1.4\textwidth,center]{images/bidis/RCS-sphere-frq.pdf}
+			\caption*{Dimensionless RCS function of the radius-to-wavelength ratio.}
+			\label{fig:RCS-sphere-freq}
+		\end{subfigure}
+		\caption*{RCS of the sphere of radius $R = 1 \unit{\metre}$.}
+		\label{fig:RCS-sphere}
+	\end{figure}
+
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Comparaison à la BEM}
+
+    \begin{figure}[htb]
+		\centering
+		\includegraphics[width=.75\textwidth]{images/bidis/comp_BEM_PO.png}
+		\caption*{Comparison of the RCS function of the bearing angle predicted by COPOLA and BEM code on a GFA geometry (see figure \ref{fig:baseline-model}).}
+		\label{fig:RCS-comparison}
+	\end{figure}
+
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Validation of the gradient}
+    Soit $f$ une fonction réelle, au moins 3 fois dérivable, $f'$ sa dérivée et $\Delta_\epsilon f$ et $\delta_\epsilon f$ les approximations de sa dérivée par DF avec un schéma respectivement à droite et centré avec un pas $\epsilon$.
+    \onslide<2->
+    \begin{align*}
+        \Delta_\epsilon f - f' = o(\epsilon) &\quad\text{as } \epsilon\to0,\\
+        \delta_\epsilon f - f' = o\left(\epsilon^2\right) &\quad\text{as } \epsilon\to0.
+        \label{eq:fd}
+    \end{align*}
+
+    \begin{itemize}[label=\ding{227}]
+        \item<3-> L'erreur entre les DF et le gradient exact devrait diminuer jusqu'à un $\epsilon$ critique, où les erreurs numériques deviennent prédominantes
+        \item<4-> la pente du log de l'erreur devrait être de 1 pour les DF décentrée et de 2 pour les DF centrée (au voisinage du $\epsilon$ critique)
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Comparaison du gradient aux différences finies II}
+
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[trim=20mm 0mm 40mm 25mm,clip,width=.75\textwidth]{images/bidis/grad-13var.pdf}
+        \caption*{Error between the gradient of the stealth cost function and the same computed by FD (both forward and central) function of the FD step size ($\epsilon$).}
+        \label{fig:formag-po}
+    \end{figure}
+
+\end{frame}
 
 \subsection{Aerodynamics}
 \begin{frame}
@@ -83,6 +158,57 @@
 \subsection{The optimization}
 \begin{frame}
     \frametitle{The objective and constraints}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Coûts et contraintes}
+    Coût :
+    \begin{center}
+        $F = wF_a + (1-w)F_e,$	with $0\leq w\leq1$.
+    \end{center}
+
+    \begin{columns}
+        \begin{column}<2->{.5\textwidth}
+            \begin{center}Critère de furtivité\end{center}
+            \begin{equation*}
+                F_e = \frac{\tilde\sigma}{{\tilde\sigma}^{ref}},
+                \label{eq:Fe}
+            \end{equation*}
+            \onslide<3->
+            \begin{equation*}
+                \tilde\sigma = \int_{\theta_0}^{\theta_1}\int_{\phi_0}^{\phi_1} \Gamma_d(\theta)\delta_s(\sigma_\db)\sin(\phi)\dd\theta\dd\phi.
+                \label{eq:sigma-tilde}
+            \end{equation*}
+            \onslide<4->
+            \begin{equation*}
+                \delta_s(x) = \frac{x-s}{1+e^{-\tau(x-s)}},
+                \label{eq:delta}
+            \end{equation*}
+            \onslide<5->
+            \small
+             \begin{equation*}
+                \Gamma_d(\theta) = 1-\frac12\sum_{i=0}^{4}\frac{6-i}{10}\exp\left({-\left(\frac{\theta-d}{10^i\tau}\right)^2}\right)
+                \label{eq:gamma}
+            \end{equation*}
+            \normalsize
+        \end{column}
+
+        \begin{column}<6->{.5\textwidth}
+            \begin{center}Critère aéro\end{center}
+                \begin{equation*}
+                    F_a = \frac{C_D}{{C_D}^{ref}}.
+                    \label{eq:Fa}
+                \end{equation*}
+                \onslide<7->
+            \begin{center}Contraintes aéro\end{center}
+            \begin{itemize}[label=$\bullet$]
+                \item \sref{} constante
+                \item \cl{} constant
+            \end{itemize}
+
+        \end{column}
+    \end{columns}
+
 \end{frame}
 
 \begin{frame}
