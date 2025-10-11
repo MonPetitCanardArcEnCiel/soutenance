@@ -103,10 +103,19 @@ where
 
 \begin{frame}
     \frametitle{The Radar Cross Section (RCS)}
+    The Radar Cross Section (RCS) is defined as :
     \begin{equation}
     \label{bem-eq:RCSdef}
-    \sigma(\theta,\phi) = \lim\limits_{R\to\infty} R^2\frac{|\E_P|^2}{|\E_i|^2},
+    \sigma= \lim\limits_{R\to\infty} R^2\frac{||\E||^2}{||\E_i||^2},
 \end{equation}
 %
- $$\sigma_{\mathrm {dB}} = 10\log(\sigma).$$
+\pause
+
+From the development \eqref{eq:champ-lointain}, the limit in \eqref{bem-eq:RCSdef} is finite and the RCS is well defined and can be expressed as :
+
+    
+\begin{equation}
+    \sigma(\uu_s) =  4\pi\norm{\E^\infty(\uu_s)}^2.
+\end{equation}
+
 \end{frame}
