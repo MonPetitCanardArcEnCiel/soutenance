@@ -1,15 +1,9 @@
 
 % Tikz
+% CUSTOM LENGTHS
+
+
 \usetikzlibrary{backgrounds,external,shapes.geometric, arrows,calc,positioning,decorations.pathmorphing, scopes}
 
 % PGFPLOTS
-% \pgfplotsset{width=.75\linewidth,compat=1.18}
 
-
-\tikzstyle{startstop} = [rectangle,rounded corners, minimum width=.5\ndv, minimum height=.5\nd,text centered,draw=black,fill=red!30]
-\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=.5\ndv,  minimum height=.5\nd,  text centered, draw=black, fill=blue!20,execute at begin node={\begin{varwidth}{\ndv}\centering},execute at end node={\end{varwidth}}]
-\tikzstyle{process} = [rectangle, minimum width=.5\ndv,  minimum height=.5\nd, text centered, draw=black, fill=orange!30,execute at begin node={\begin{varwidth}{\ndv}\centering},execute at end node={\end{varwidth}}]
-\tikzstyle{decision} = [diamond, minimum width=.5\ndv, minimum height=.5\nd,aspect=2,  text centered,   draw=black, fill=green!30,execute at begin node={\begin{varwidth}{\ndv}\centering},execute at end node={\end{varwidth}}]
-\tikzstyle{dummy} = [rectangle,draw=none,fill=none,minimum height=.5\nd,minimum width=.5\ndv]
-\tikzstyle{line} = [thick]
-\tikzstyle{arrow} = [line,->,>=stealth]
