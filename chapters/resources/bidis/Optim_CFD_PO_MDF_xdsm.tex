@@ -1,0 +1,195 @@
+\documentclass{standalone}
+%%% Preamble Requirements %%%
+\usepackage{geometry}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+% Optional packages such as sfmath set through python interface
+\usepackage{sfmath}
+
+\usetikzlibrary{arrows,chains,positioning,scopes,shapes.geometric,shapes.misc,shadows}
+
+%%% End Preamble Requirements %%%
+
+\input{preamble/subpreambles/diagram_styles.tex}
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[MatrixSetup]{
+%Row 0
+&
+\node [DataIO] (output_Opt) {$DV^{(0)},  AoA^{(0)}$};&
+&
+&
+&
+&
+&
+&
+\\
+%Row 1
+\node [DataIO] (left_output_Opt) {$obj^*,  Cl^*..., (3)$};&
+\node [Optimization] (Opt) {$\text{1,8-2:Optimizer}$};&
+\node [DataInter] (Opt-Dis1) {$DV$};&
+&
+\node [DataInter] (Opt-Dis3) {$DV$};&
+\node [DataInter] (Opt-Dis4) {$AoA$};&
+&
+&
+\\
+%Row 2
+\node [DataIO] (left_output_Dis1) {$Aero2DGrid^*$};&
+\node [DataInter] (Dis1-Opt) {$Sref$};&
+\node [Function] (Dis1) {$\text{2:GANIMEDE\_Aero}$};&
+\node [DataInter] (Dis1-Dis2) {$Aero2DGrid$};&
+&
+&
+&
+&
+\\
+%Row 3
+\node [DataIO] (left_output_Dis2) {$Aero3DMesh^*$};&
+&
+&
+\node [Function] (Dis2) {$\text{3:MeshDeformer}$};&
+&
+\node [DataInter] (Dis2-Dis4) {$Aero3DMesh$};&
+&
+&
+\\
+%Row 4
+\node [DataIO] (left_output_Dis3) {$Stealth2DGrid^*$};&
+&
+&
+&
+\node [Function] (Dis3) {$\text{4:GANIMEDE\_Stealth}$};&
+&
+\node [DataInter] (Dis3-Dis5) {$Stealth2DGrid$};&
+&
+\\
+%Row 5
+\node [DataIO] (left_output_Dis4) {$Cd^*$};&
+\node [DataInter] (Dis4-Opt) {$Cl$};&
+&
+&
+&
+\node [Function] (Dis4) {$\text{5:AeTHER}$};&
+&
+\node [DataInter] (Dis4-Dis6) {$Cd$};&
+\\
+%Row 6
+\node [DataIO] (left_output_Dis5) {$RCS^*$};&
+&
+&
+&
+&
+&
+\node [Function] (Dis5) {$\text{6:COPOLA}$};&
+\node [DataInter] (Dis5-Dis6) {$RCS$};&
+\\
+%Row 7
+&
+\node [DataInter] (Dis6-Opt) {$obj$};&
+&
+&
+&
+&
+&
+\node [Function] (Dis6) {$\text{7:CostGather}$};&
+\\
+%Row 8
+&
+&
+&
+&
+&
+&
+&
+&
+\\
+};
+
+% XDSM process chains
+{ [start chain=process]
+ \begin{pgfonlayer}{process} 
+\chainin (Opt);
+\chainin (Dis1) [join=by ProcessHVA];
+\end{pgfonlayer}
+}{ [start chain=process]
+ \begin{pgfonlayer}{process} 
+\chainin (Dis1);
+\chainin (Dis2) [join=by ProcessHVA];
+\end{pgfonlayer}
+}{ [start chain=process]
+ \begin{pgfonlayer}{process} 
+\chainin (Dis2);
+\chainin (Dis3) [join=by ProcessHVA];
+\end{pgfonlayer}
+}{ [start chain=process]
+ \begin{pgfonlayer}{process} 
+\chainin (Dis3);
+\chainin (Dis4) [join=by ProcessHVA];
+\end{pgfonlayer}
+}{ [start chain=process]
+ \begin{pgfonlayer}{process} 
+\chainin (Dis4);
+\chainin (Dis5) [join=by ProcessHVA];
+\end{pgfonlayer}
+}{ [start chain=process]
+ \begin{pgfonlayer}{process} 
+\chainin (Dis5);
+\chainin (Dis6) [join=by ProcessHVA];
+\end{pgfonlayer}
+}{ [start chain=process]
+ \begin{pgfonlayer}{process} 
+\chainin (Dis6);
+\chainin (Opt) [join=by ProcessHVA];
+\end{pgfonlayer}
+}
+
+\begin{pgfonlayer}{data}
+\path
+% Horizontal edges
+(Opt) edge [DataLine] (Opt-Dis1)
+(Dis1) edge [DataLine] (Dis1-Opt)
+(Opt) edge [DataLine] (Opt-Dis3)
+(Opt) edge [DataLine] (Opt-Dis4)
+(Dis4) edge [DataLine] (Dis4-Opt)
+(Dis6) edge [DataLine] (Dis6-Opt)
+(Dis1) edge [DataLine] (Dis1-Opt)
+(Dis4) edge [DataLine] (Dis4-Opt)
+(Dis6) edge [DataLine] (Dis6-Opt)
+(Dis1) edge [DataLine] (Dis1-Dis2)
+(Dis2) edge [DataLine] (Dis2-Dis4)
+(Dis3) edge [DataLine] (Dis3-Dis5)
+(Dis4) edge [DataLine] (Dis4-Dis6)
+(Dis5) edge [DataLine] (Dis5-Dis6)
+(Opt) edge [DataLine] (left_output_Opt)
+(Dis1) edge [DataLine] (left_output_Dis1)
+(Dis2) edge [DataLine] (left_output_Dis2)
+(Dis3) edge [DataLine] (left_output_Dis3)
+(Dis4) edge [DataLine] (left_output_Dis4)
+(Dis5) edge [DataLine] (left_output_Dis5)
+% Vertical edges
+(Opt-Dis1) edge [DataLine] (Dis1)
+(Dis1-Opt) edge [DataLine] (Opt)
+(Opt-Dis3) edge [DataLine] (Dis3)
+(Opt-Dis4) edge [DataLine] (Dis4)
+(Dis4-Opt) edge [DataLine] (Opt)
+(Dis6-Opt) edge [DataLine] (Opt)
+(Dis1-Opt) edge [DataLine] (Opt)
+(Dis4-Opt) edge [DataLine] (Opt)
+(Dis6-Opt) edge [DataLine] (Opt)
+(Dis1-Dis2) edge [DataLine] (Dis2)
+(Dis2-Dis4) edge [DataLine] (Dis4)
+(Dis3-Dis5) edge [DataLine] (Dis5)
+(Dis4-Dis6) edge [DataLine] (Dis6)
+(Dis5-Dis6) edge [DataLine] (Dis6)
+(Opt) edge [DataLine] (output_Opt);
+\end{pgfonlayer}
+
+\end{tikzpicture}
+
+\end{document}
