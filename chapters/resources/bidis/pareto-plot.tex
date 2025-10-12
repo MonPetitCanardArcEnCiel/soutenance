@@ -1,0 +1,29 @@
+\documentclass{standalone}
+
+\usepackage{pgfplots}
+
+
+\input{preamble/subpreambles/tikz_packages.tex}
+% \input{preamble/subpreambles/tikz_settings.tex}
+
+\pgfplotsset{width=.75\linewidth,compat=1.18}
+
+
+\begin{document}
+\begin{tikzpicture}[scale=0.9]
+    \begin{axis}[
+        xlabel={\cd},
+        ylabel={$F_{RCS}$},
+        legend pos=north east,
+        legend entries = {Pareto front, baseline},
+        grid = major,
+        ]
+        \addplot[mark=o,point meta=explicit symbolic,nodes near  coords*] table [x=CD,y=fRCS,meta=weights,col sep=comma] {chapters/resources/bidis/tables/Pareto.csv};
+        \node [above] at (430,0.011) {\includegraphics[scale=0.03]{chapters/resources/bidis/images/shape_OP_for_pareto.png}};
+        \node [above right] at (350,0.18) {\includegraphics[scale=0.03]{chapters/resources/bidis/images/shape_CFD_for_pareto.png}};
+        \addplot[only marks,color=orange] table [x=CD,y=fRCS, meta=weights,col sep=comma] {chapters/resources/bidis/tables/baseline.csv};
+        \node [above]  at (387,0.09) {\includegraphics[scale=0.03]{chapters/resources/bidis/images/shape_base_for_pareto.png}};
+        % \node [right] at (rel axis cs:0.4,0.5) {\includegraphics[scale=0.05]{shape_base_for_pareto.png}};
+    \end{axis}
+\end{tikzpicture}
+\end{document}
