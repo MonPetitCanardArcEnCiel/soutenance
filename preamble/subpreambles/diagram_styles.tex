@@ -18,17 +18,17 @@
 
 \tikzstyle{every node}=[font=\sffamily,align=center]
 
-\newcommand{\fillOpacity}{80}
+\newcommand{\fillOpacity}{80}%
 
 % Component shapes
-\newcommand{\compShape}{rectangle}
-\newcommand{\groupShape}{chamfered rectangle}
-\newcommand{\procShape}{rounded rectangle}
+\newcommand{\compShape}{rectangle}%
+\newcommand{\groupShape}{chamfered rectangle}%
+\newcommand{\procShape}{rounded rectangle}%
 
 % Colors
-\newcommand{\explicitColor}{green}
-\newcommand{\implicitColor}{salmon}
-\newcommand{\optimizationColor}{red} % also used by DOE
+\newcommand{\explicitColor}{green}%
+\newcommand{\implicitColor}{salmon}%
+\newcommand{\optimizationColor}{red}% also used by DOE
 
 % Component types
 \tikzstyle{Optimization} = [\procShape,draw,fill=\optimizationColor!\fillOpacity,inner sep=6pt,minimum height=1cm,text badly centered]
@@ -51,8 +51,8 @@
 \tikzstyle{fadedprocess} = [color=black!50]
 
 % Data types
-\newcommand{\dataRightAngle}{105}
-\newcommand{\dataLeftAngle}{75}
+\newcommand{\dataRightAngle}{105}%
+\newcommand{\dataLeftAngle}{75}%
 
 \tikzstyle{DataInter} = [trapezium,trapezium left angle=\dataLeftAngle,trapezium right angle=\dataRightAngle,draw,fill=black!10]
 \tikzstyle{DataIO} = [trapezium,trapezium left angle=\dataLeftAngle,trapezium right angle=\dataRightAngle,draw,fill=white]
@@ -125,4 +125,4 @@
 	\end{minipage}
 }
 
-\def\arraystretch{1.3}
+\def\arraystretch{1.3}%

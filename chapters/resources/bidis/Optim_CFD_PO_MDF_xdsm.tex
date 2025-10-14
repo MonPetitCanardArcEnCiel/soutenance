@@ -1,3 +1,6 @@
+% !TeX root = ../../../thoulon_phd_defense_2025.tex
+
+
 \documentclass{standalone}
 %%% Preamble Requirements %%%
 \usepackage{geometry}
@@ -9,15 +12,14 @@
 % Optional packages such as sfmath set through python interface
 \usepackage{sfmath}
 
-\usetikzlibrary{arrows,chains,positioning,scopes,shapes.geometric,shapes.misc,shadows}
+\usetikzlibrary{arrows,chains,positioning,scopes,shapes.geometric,shapes.misc,shadows,matrix}
 
 %%% End Preamble Requirements %%%
 
-\input{preamble/subpreambles/diagram_styles.tex}
-
 \begin{document}
-\begin{tikzpicture}
 
+\begin{tikzpicture}
+\input{preamble/subpreambles/diagram_styles.tex}%
 \matrix[MatrixSetup]{
 %Row 0
 &
@@ -113,7 +115,7 @@
 
 % XDSM process chains
 { [start chain=process]
- \begin{pgfonlayer}{process} 
+\begin{pgfonlayer}{process} 
 \chainin (Opt);
 \chainin (Dis1) [join=by ProcessHVA];
 \end{pgfonlayer}
