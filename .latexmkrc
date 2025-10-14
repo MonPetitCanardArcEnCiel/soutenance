@@ -1,0 +1,1 @@
+@default_files=('thoulon_phd_defense_2025.tex')
