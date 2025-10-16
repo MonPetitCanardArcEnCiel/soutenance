@@ -1,0 +1,70 @@
+\documentclass{standalone}
+
+
+\input{preamble/subpreambles/tikz_packages.tex}
+\input{preamble/subpreambles/tikz_settings.tex}
+
+
+\newlength{\nd}
+\setlength{\nd}{1.3cm}
+\newlength{\ndv}
+\setlength{\ndv}{3.5cm}
+
+
+\tikzstyle{startstop} = [rectangle,rounded corners, minimum width=.5\ndv, minimum height=.5\nd,text centered,draw=black,fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=.5\ndv,  minimum height=.5\nd,  text centered, draw=black, fill=blue!20,execute at begin node={\begin{varwidth}{\ndv}\centering},execute at end node={\end{varwidth}}]
+\tikzstyle{process} = [rectangle, minimum width=.5\ndv,  minimum height=.5\nd, text centered, draw=black, fill=orange!30,execute at begin node={\begin{varwidth}{\ndv}\centering},execute at end node={\end{varwidth}}]
+\tikzstyle{decision} = [diamond, minimum width=.5\ndv, minimum height=.5\nd,aspect=2,  text centered,   draw=black, fill=green!30,execute at begin node={\begin{varwidth}{\ndv}\centering},execute at end node={\end{varwidth}}]
+\tikzstyle{dummy} = [rectangle,draw=none,fill=none,minimum height=.5\nd,minimum width=.5\ndv]
+\tikzstyle{line} = [thick]
+\tikzstyle{arrow} = [line,->,>=stealth]
+
+
+\begin{document}
+\begin{tikzpicture}[node distance=\nd,scale=0.7,every node/.style={transform shape}]
+    \node (start) [startstop] {Start};
+    \node (init) [io,below of=start] {Initial state};
+    \node (optim) [process, below of=init] {Optimizer};
+    \node (cvg) [decision, below of=optim,yshift=-.5\nd]{convergence};
+    \node (DV) [io,below of=cvg,yshift=-1\nd] {Design Variable};
+    \node (cad) [process,below of=DV,yshift=-.5\nd] {CAD modeler};
+    \node (in2d) [io,left of=cad,xshift=-1.5\ndv]{Initial geometry\newline Initial 2D grid};
+    \coordinate [below of=cad,yshift=.5\nd] (aux0);
+
+    \node (POgrid) [io,below of=cad] {2D grid};
+    \node (SPECTRE) [process,below of=POgrid] {CEM solver};
+    \node (RCS) [io,below left of=SPECTRE,yshift=-0.5\nd,xshift=-.5\ndv] {RCS};
+    \node (dRCS) [io,below right of=SPECTRE,yshift=-0.5\nd,xshift=.5\ndv] {%
+    RCS\newline gradient};
+
+
+    \node (costgather) [process,below of=cad,yshift=-4.\nd] {Cost Gather};
+    
+    \coordinate[above of=costgather] (aux);
+
+    \node (obs) [io,right of=optim,xshift=1\ndv] {Cost, constraints, gradients};
+    
+    \node (end) [startstop,left of=cvg,xshift=-1.5\ndv] {Stop};
+
+    \draw[arrow] (start) -- (init);
+    \draw[arrow] (init) -- (optim);
+    \draw[arrow] (optim) -- (cvg);
+    \draw [arrow] (cvg) -- node[anchor=east] {no} (DV);
+    \draw[arrow] (DV) -- (cad);
+    \draw[arrow] (cad) -- (POgrid);
+    \draw[arrow] (POgrid) -- (SPECTRE);
+    \draw[arrow] (SPECTRE) -| (RCS);
+    \draw[arrow] (SPECTRE) -| (dRCS);
+
+    \draw[arrow] (in2d) -- (cad);
+    
+    \draw[line] (RCS) |- (aux) ;
+    \draw[line] (dRCS) |- (aux) ;
+    \draw[arrow] (aux) -- (costgather);
+
+    \draw [arrow] (costgather) -- ++ (2.1\ndv,0) |- (obs);
+    \draw [arrow] (obs) -- (optim);
+
+    \draw [arrow] (cvg) -- node[anchor=south] {yes} (end);
+\end{tikzpicture}
+\end{document}
