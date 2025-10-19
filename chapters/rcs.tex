@@ -62,14 +62,16 @@ With :
 
 \begin{frame}
     \frametitle{The Far Field}
+    \label{fra:hyp}
 
-    \begin{block}<1->{Hypothèse}
-        Supposons un obstacle métallique parfaitement conducteur occupant un domaine borné $\Omega$ de frontière $\Gamma$ dans le vide et plongé dans un champ plan incident $\E\inc$.
+    \begin{block}<1->{Assumption}
+        Assume an ideal perfectly conducting obstacle occupying a bounded domain $\Omega$ with boundary $\Gamma$ in free space and illuminated by an incident plane wave $\E\inc$.
     \end{block}
     \onslide<2->
-    On montre qu'en l'absence de pertes, la solution de l'équation \eqref{eq:helmoltz} s'écrit :
+    It can be shown that, in the absence of losses, the solution of equation \eqref{bem-eq:helmholtz} can be expressed as :
     \begin{equation}
         \E(x) = j\frac{e^{ik|x|}}{|x|}\left\{\E^\infty(\tfrac x{|x|}) + \mathcal{O}\left(\frac1{|x|}\right)\right\},
+        \label{eq:helmholtz}
     \end{equation}
     %
     \onslide<2->

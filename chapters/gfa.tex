@@ -3,20 +3,20 @@
 \subsection{Géométrie}
 \begin{frame}
     \frametitle{Generic Fighter Aircraft}
-	Pas d'entrée d'air, d'empenage ou de canard. Arêtier à l'avant du fuselage.
+	No air intake, canard or empenage. Ledge at the front of the fuselage.
 
 
     \begin{figure}[htb]
 		\centering
 		\captionsetup[subfigure]{justification=centering}
 		\begin{subfigure}[c]{0.66\textwidth}
-			\includegraphics[width=.9\textwidth]{images/gfa/baseline-view.jpg}
+			\includegraphics[width=.8\textwidth]{images/gfa/baseline-view.jpg}
 			% \includegraphics[width=.9\textwidth,center]{images/gfa/baseline-view.jpg}
 			\caption*{3D-view.}
 		\end{subfigure}
 		\begin{subfigure}[c]{0.33\textwidth}
 			\centering
-			\includegraphics[width=.9\textwidth]{images/gfa/base-shape.png}
+			\includegraphics[width=.8\textwidth]{images/gfa/base-shape.png}
 			% \includegraphics[width=.9\textwidth,center]{images/gfa/base-shape.png}
 			\caption*{Bottom view with the leading and trailing edge sweep angles.}
 		\end{subfigure}
@@ -56,7 +56,6 @@
 		\caption*{Profile of RCS with respect to the bearing angle on the GFA (elevation : $\phi = -20^\circ$).}
 		\label{fig:RCS-baseline}
 	\end{figure}
-
 \end{frame}
 
 \subsection{Aerodynamic analysis}
@@ -91,19 +90,17 @@
 		\label{fig:parametrized-shape}
 	\end{figure}%
     \only<1>{%
-    L'aile du GFA est paramétrée avec 6 sections de contrôle, 15 points de contrôles le long de chaque section.
+	The GFA wing is parameterized with 6 control sections, 15 control points along each section.
     }%
     \onslide<2->
-    La géométrie est paramétrée avec 13 variables globales :
+	The geometry is parameterized with 13 global variables :
 	\begin{itemize}[label=\ding{227}]
-		\item<3-> l'angle de flèche de bord d'attaque des sections 2 et 4,
-		\item<4-> la corde des sections 2, 4 et 6,
-		\item<5-> la distance entre les sections 2 et 6,
-		\item<6->l'angle de vrillage des sections 2, 3 ,5 et 6,
-		\item<7-> la cambrure de bord d'attaque des sections 3, 5 et 6.
+		\item<3-> leading edge sweep angle at sections 2 and 4,
+		\item<4-> chord length of sections 2, 4 and 6,
+		\item<5-> distance between sections 2 and 6 (span),
+		\item<6-> twist angle at sections 2, 3 ,5 and 6,
+		\item<7-> leading edge camber at sections 3, 5 and 6.
 	\end{itemize}
     \onslide<8->
-	L'angle d'incidence aérodynamique est le \nth{14} paramètre d'optimisation (utile uniquement pour l'optimisation aéro).
-
-
+	The aerodynamic angle of attack is the \nth{14} optimization parameter (useful only for aerodynamic optimization).
 \end{frame}
