@@ -1,11 +1,19 @@
+% !TeX root = ../thoulon_phd_defense_2025.tex
+\documentclass[../thoulon_phd_defense_2025.tex]{subfiles}
+
+\graphicspath{{\subfix{../chapters/}}}
+
+\begin{document}
+
+
 \section{The aero-stealth optimzation}
 
 \subsection{The Physical Optics}
 \begin{frame}
     \frametitle{The Physical Optics}
     
-
-    On écrit la condition \eqref{eq:cond-F} ainsi :
+    
+    The condition \eqref{eq:cond-F} is written thus :
     \begin{equation}
         \mathcal F(\J)(\x) = \int_\Gamma\J(y)e^{-jk\x\cdot y}\dd\Gamma(y).
     \end{equation}
@@ -53,14 +61,14 @@
 
     \begin{itemize}[label=$\bullet$]
         \item<1-> PO does not take diffraction into account.
-
+ 
         \item<2-> An extension, Physical Theory of Diffraction\footnote<2->{Michaeli, A.~, 1986, \textit{Elimination of infinities in equivalent edge currents, Part I : Fringe Current Components}.} (PTD), allows to take edge diffraction into account.
 
         \item<3-> The OP+PTD solver has been differenciated with the help of TAPENADE\footnote<3->{Hascoët, L.~et V.~Pascual, 2013, \textit{The TAPENADE Automatic Differentiation tool : Principles, Model and Specification}.}
 
         \item<4-> The solver has been implemented in a code called COPOLA.
     \end{itemize}
-
+    
 \end{frame}
 
 
@@ -195,7 +203,7 @@
 
         \end{column}
     \end{columns}
-
+    
 \end{frame}
 
 \begin{frame}
@@ -205,7 +213,7 @@
         \centering
         % \boxed{\resizebox{!}{.75\textheight}{\subimport{resources/bidis/}{graph-optim.tex}}}
         % \boxed{\scalebox{1}{\subimport{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}}
-        \resizebox{\textwidth}{!}{\subimport{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}
+        % \resizebox{\textwidth}{!}{\import{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}
         \caption*{The aero-stealth optimization process.}
         \label{fig:optim-process}
     \end{figure}
@@ -214,7 +222,7 @@
 \subsection{Results}
 \begin{frame}
     \frametitle{The stealth optimization - Shape}
-
+    
     \begin{figure}[htb]
 		\centering
 		\includegraphics[trim=30mm 55mm 40mm 70mm,clip,width=\textwidth,center]{images/bidis/Optim_PO/shape.pdf}
@@ -237,11 +245,11 @@
 
 \begin{frame}
     \frametitle{The stealth optimization - Aerodynamic analysis}
-
+    
     \begin{figure}[htp]
 		\centering
-        		\captionsetup{justification=centering}
-
+        \captionsetup{justification=centering}
+        
 		\includegraphics[width=0.75\textwidth,center]{images/bidis/Optim_PO/MALO_5_RCS.pdf}
 		\caption*{Comparison of the distributions of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the stealth-optimal shape (bottom).}
 		\label{bidis-fig:optim-PO-MALO-5}
@@ -252,7 +260,7 @@
 
 \begin{frame}
     \frametitle{The aerodynamic optimization - Shape}
-
+    
     \begin{figure}[htb]
 		\centering
 		\includegraphics[trim=30mm 55mm 40mm 70mm,clip,width=\textwidth,center]{images/bidis/Optim_CFD/shape.pdf}
@@ -263,7 +271,7 @@
 
 \begin{frame}
     \frametitle{The aerodynamic optimization - RCS analysis}
-
+    
     \begin{figure}[htb]
         \centering
         \includegraphics[trim=15mm 0mm 25mm 5mm,clip,width=\textwidth,height=.8\textheight,keepaspectratio,center]{images/bidis/Optim_CFD/RCS_RCS.pdf}
@@ -313,7 +321,7 @@
 
 \begin{frame}
     \frametitle{Optimization histories}
-
+    
     	\begin{figure}[htp]
 		\captionsetup[subfigure]{justification=centering}
 		\captionsetup{justification=centering}
@@ -349,17 +357,17 @@
 
     \begin{figure}
         \centering
-        \subimport{resources/bidis/}{pareto-plot.tex}
+        % \subimport{resources/bidis/}{pareto-plot.tex}
         \caption*{Pareto front of the aero-stealth optimization.}
         \label{fig:pareto-front}
     \end{figure}
-
+    
 \end{frame}
 
 \begin{frame}
     \frametitle{Optimization histories}
-
-    	\begin{figure}[htp]
+    
+    \begin{figure}[htp]
 		\captionsetup[subfigure]{justification=centering}
 		\captionsetup{justification=centering}
 		\centering
@@ -388,3 +396,4 @@
 		\label{bidis-fig:optim-hist-2}
 	\end{figure}
 \end{frame}
+\end{document}
