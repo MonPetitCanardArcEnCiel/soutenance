@@ -1,11 +1,10 @@
 % !TeX root = ../thoulon_phd_defense_2025.tex
-\documentclass[../thoulon_phd_defense_2025.tex]{subfiles}
+\documentclass[beamer]{standalone}
+% \documentclass[../thoulon_phd_defense_2025.tex]{subfiles}
 
-\graphicspath{{\subfix{../chapters/}}}
+% \graphicspath{{\subfix{../chapters/}}}
 
 \begin{document}
-
-
 \section{The aero-stealth optimzation}
 
 \subsection{The Physical Optics}
@@ -211,9 +210,7 @@
 
     \begin{figure}
         \centering
-        % \boxed{\resizebox{!}{.75\textheight}{\subimport{resources/bidis/}{graph-optim.tex}}}
-        % \boxed{\scalebox{1}{\subimport{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}}
-        % \resizebox{\textwidth}{!}{\import{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}
+        \resizebox{\textwidth}{!}{\import{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}
         \caption*{The aero-stealth optimization process.}
         \label{fig:optim-process}
     \end{figure}
@@ -357,7 +354,7 @@
 
     \begin{figure}
         \centering
-        % \subimport{resources/bidis/}{pareto-plot.tex}
+        \subimport{resources/bidis/}{pareto-plot.tex}
         \caption*{Pareto front of the aero-stealth optimization.}
         \label{fig:pareto-front}
     \end{figure}
