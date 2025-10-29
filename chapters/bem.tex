@@ -250,26 +250,33 @@
 \begin{frame}
     \frametitle{Histories}
 \begin{figure}[htp]
+    \label{fra:history-bem}
 	\captionsetup[subfigure]{justification=centering}
 	\captionsetup{justification=centering}
 	\centering
 	\begin{subfigure}{0.49\textwidth}
 		\centering
-		\includegraphics[trim=0 1cm 0 2.5cm, clip, width=1.3\textwidth, right]{images/bem/iter_adj_62.pdf}
+        \hyperlink{fra:iter_adj_62}{
+		\includegraphics[trim=0 1cm 0 2.5cm, clip, width=1.\textwidth, right]{images/bem/iter_adj_62.pdf}%
+        }
 		\caption*{BEM with adjoint gradient.}
 		\label{bem-fig:gfa-iter-adj}
 	\end{subfigure}
 	\begin{subfigure}{0.49\textwidth}
 		\centering
-		\includegraphics[trim=0 1cm 0 2.5cm, clip, width=1.3\textwidth, left]{images/bem/iter_DF2_61.pdf}
+        \hyperlink{fra:iter_DF2_61}{
+		\includegraphics[trim=0 1cm 0 2.5cm, clip, width=1.\textwidth, left]{images/bem/iter_DF2_61.pdf}%
+        }
 		\caption*{BEM with centered FD gradient.}
 		\label{bem-fig:gfa-iter-fd}
 	\end{subfigure}\\
-	\vspace{2ex}
+	% \vspace{2ex}
 
 	\begin{subfigure}{0.49\textwidth}
 		\centering
-		\includegraphics[trim=0 1cm 0 2.5cm, clip, clip, width=1.3\textwidth, center]{images/bem/iter_PTD_exact_100.pdf}
+        \hyperlink{fra:iter_PTD_exact_100}{
+		\includegraphics[trim=0 1cm 0 2.5cm, clip, clip, width=1.\textwidth, center]{images/bem/iter_PTD_exact_100.pdf}%
+        }
 		\caption*{PTD with exact gradient.}
 		\label{bem-fig:gfa-iter-ptd}
 	\end{subfigure}
@@ -289,20 +296,20 @@
 	\centering
 	\begin{subfigure}[T]{0.3\textwidth}
 		\centering
-		\includegraphics[width=1.2\textwidth, right]{images/bem/shape_adj_62.pdf}
+		\includegraphics[width=1.3\textwidth, right]{images/bem/shape_adj_62.pdf}
 		\caption*{Adjoint BEM.}
 		\vskip 0pt
 		\label{bem-fig:gfa-shape-adj}
 	\end{subfigure}\
 	\begin{subfigure}[T]{0.3\textwidth}
 		\centering
-		\includegraphics[width=1.2\textwidth, center]{images/bem/shape_DF2_61.pdf}
+		\includegraphics[width=1.3\textwidth, center]{images/bem/shape_DF2_61.pdf}
 		\caption*{FD BEM.}
 		\label{bem-fig:gfa-shape-fd}
 	\end{subfigure}\\
 	\begin{subfigure}[T]{0.3\textwidth}
 		\centering
-		\includegraphics[width=1.2\textwidth,left]{images/bem/shape_PTD_exact_100.pdf}
+		\includegraphics[width=1.3\textwidth,left]{images/bem/shape_PTD_exact_100.pdf}
 		\vskip 0pt
 		\caption*{PTD with exact gradient.}
 		\label{bem-fig:gfa-shape-ptd}
@@ -315,7 +322,7 @@
 
 \begin{frame}
     \frametitle{RCS}
-
+    \label{fra:rcs-result-bem}
     
 \begin{figure}
 	\captionsetup[subfigure]{justification=centering}
@@ -323,20 +330,26 @@
 	\centering
 	\begin{subfigure}{.49\textwidth}
 		\centering
-		\includegraphics[trim=0 .8cm 0 2.5cm, clip, width=1.3\textwidth,right]{images/bem/RCS_adj_62.pdf}
+        \hyperlink{fra:RCS_adj_62}{
+		\includegraphics[trim=0 .8cm 0 2.5cm, clip, width=1.\textwidth,right]{images/bem/RCS_adj_62.pdf}%
+        }
 		\caption*{Adjoint BEM.}
 		\label{bem-fig:gfa-rcs-adj}
 	\end{subfigure}
 	\begin{subfigure}{.49\textwidth}
 		\centering
-		\includegraphics[trim=0 .8cm 0 2.5cm, clip, width=1.3\textwidth,left]{images/bem/RCS_DF2_61.pdf}
+        \hyperlink{fra:RCS_DF2_61}{
+		\includegraphics[trim=0 .8cm 0 2.5cm, clip, width=1.\textwidth,left]{images/bem/RCS_DF2_61.pdf}%
+        }
 		\caption*{FD BEM.}
 		\label{bem-fig:gfa-rcs-fd}
 	\end{subfigure}\\
-	\vspace{2ex}
+	% \vspace{2ex}
 	\begin{subfigure}{.49\textwidth}
 			\centering
-			\includegraphics[trim=0 .8cm 0 2.5cm, clip,width=1.3\textwidth,center]{images/bem/RCS_PTD_exact_100.pdf}
+            \hyperlink{fra:RCS_PTD_exact_100}{
+			\includegraphics[trim=0 .8cm 0 2.5cm, clip,width=1.\textwidth,center]{images/bem/RCS_PTD_exact_100.pdf}%
+            }
 			\caption*{PTD with exact gradient.}
 			\label{bem-fig:gfa-rcs-ptd}
 	\end{subfigure}
@@ -345,4 +358,5 @@
 \end{figure}
 
 \end{frame}
+
 \end{document}
