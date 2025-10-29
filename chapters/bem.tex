@@ -2,7 +2,7 @@
 \documentclass[beamer]{standalone}
 % \documentclass[../thoulon_phd_defense_2025.tex]{subfiles}
 
-\graphicspath{{\subfix{../chapters/}}}
+% \graphicspath{{\subfix{../chapters/}}}
 
 \begin{document}
 \section{The BEM optimization}
@@ -56,7 +56,7 @@
 
     \begin{figure}[ht]
         \centering
-        % \scalebox{.6}{\subimport{resources/bem}{def-RWG.tex}}
+        \scalebox{.6}{\subimport{resources/bem}{def-RWG.tex}}
         \caption*{Sketch of the Rao-Wilson-Glisson finite elements.}
         \label{fig:rwg}
     \end{figure}
@@ -78,32 +78,32 @@
     \frametitle{Continuous adjoint formulation}
     Let us rewrite the linear system of unknowns $\J$ defined by equation \eqref{eq:syslin} under the following form :
     \begin{equation}
-        \mathcal R(\X(x),\J(x)) = 0,
+        \mathcal R(\X(\eta),\J(\eta)) = 0,
         \label{eq:system-cont}
     \end{equation}
-    and consider the observation function $\sigma(\X(x),\J(x))$.
-    The right derivative of $\sigma$ with respect to $x$ writes :
+    and consider the observation function $\zeta(\X(\eta),\J(\eta))$.
+    The right derivative of $\zeta$ with respect to $\eta$ writes :
     \begin{equation}
-        \dd{\sigma} = \left(\derpart{\sigma}{\X}\derpart{\X}{x} + \derpart{\sigma}{\J}\derpart{\J}{x}\right)\dd x.
+        \dd{\zeta} = \left(\derpart{\zeta}{\X}\derpart{\X}{\eta} + \derpart{\zeta}{\J}\derpart{\J}{\eta}\right)\dd \eta.
         \label{eq:dsigmadx}
     \end{equation}
 
     \only<1>{
         $\X$ : mesh coordinates
 
-        $\x$ : optimization parameters
+        $\eta$ : optimization parameters
         }
 
     \onslide<2->
-    The term $\derpart{\J}{x}$ is very costly to compute. However, it can be expressed in a more clever way since $\dd\RR = 0$ :
+    The term $\derpart{\J}{\eta}$ is very costly to compute. However, it can be expressed in a more clever way since $\dd\RR = 0$ :
 
     \begin{equation}
-        \dd\RR = \left(\derpart\RR\X\derpart\X x + \derpart\RR\J\derpart\J x\right)\dd x = 0.
+        \dd\RR = \left(\derpart\RR\X\derpart\X \eta + \derpart\RR\J\derpart\J \eta\right)\dd \eta = 0.
     \end{equation}
     \onslide<3->
     Then :
     \begin{equation}
-        \derpart\J x = \left(\derpart\RR\J\right)^{-1}\derpart\RR\X\derpart\X x.
+        \derpart\J \eta = \left(\derpart\RR\J\right)^{-1}\derpart\RR\X\derpart\X \eta.
         \label{eq:djdx}
     \end{equation}
 \end{frame}
@@ -114,14 +114,14 @@
 
     \begin{equation}
         \boxed{
-        \der{\sigma}{x} = \derpart{\sigma}{\X}\derpart{\X}{x} - \Psi^*\left(\derpart{\mathcal R}{\X}\derpart{\X}{x}\right).
+        \dd{\zeta} = \left(\derpart{\zeta}{\X}\derpart{\X}{\eta} - \Psi^*\derpart{\mathcal R}{\X}\derpart{\X}{\eta}\right)\dd\eta.
         }
         \label{eq:dsigmadx-adj}
     \end{equation}
 
     Where $\Psi$ is the solution to the adjoint system: 
     \begin{equation}
-        \left(\derpart{\mathcal R}{\J}\right)^* \Psi = \left(\derpart{\sigma}{\J}\right)^*.
+        \left(\derpart{\mathcal R}{\J}\right)^* \Psi = \left(\derpart{\zeta}{\J}\right)^*.
         \label{eq:adjoint-cont}
     \end{equation}
 \end{frame}
@@ -132,9 +132,9 @@
     With a discrete formulation, $$\mathcal R(\X,\J) = A(X)\J - \bb(X).$$
 
     \onslide<2->
-    The derivative of $\sigma$ with respect to $x$ writes :
+    The derivative of $\zeta$ with respect to $\eta$ writes :
     \begin{equation}
-        \der{\sigma}{x} = \derpart{\sigma}{\X}\derpart{\X}{\x} - \Psi^*\left({\color<3->{lightgray}\derpart{A}\X }- \derpart{b}\X\right)\derpart\X\x
+        \dd{\zeta} = \derpart{\zeta}{\X}\dd{X} - \Psi^*\left({\color<3->{lightgray}\derpart{A}\X }- \derpart{b}\X\right)\dd{\X}
     \end{equation}
 
     \only<3>{
@@ -147,11 +147,11 @@
     the adjoint system thus writes :
     \only<4>{
     \begin{equation}
-        A^*\Psi = \left(\derpart{\sigma}{\J}\right)^*
+        A^*\Psi = \left(\derpart{\zeta}{\J}\right)^*
     \end{equation}}
     \onslide<5->
     \begin{equation}
-        \overline{A}\Psi = \left(\derpart{\sigma}{\J}\right)^*
+        \overline{A}\Psi = \left(\derpart{\zeta}{\J}\right)^*
     \end{equation}
 
 \end{frame}
@@ -159,20 +159,38 @@
 \begin{frame}
     \label{fra:smembre}
     \frametitle{Computation of the right-hand side}
-    We want to show that $\left(\derpart{\sigma}{\J}\right)^* = \eta\overline{\bb}$ and find $\eta \in \mathbb C$.
 
-    Let us recall that the RCS is defined as :
+    Let %\revised{us define an observable $\zeta$} 
     \begin{equation}
-        \sigma = 4\pi\frac{|\E^\infty|^2}{|\E\inc|^2}
+        \zeta = 2\sqrt{\pi}\left(\E^\infty\cdot\Einc\right),
     \end{equation}
 
-    \onslide<2->
+    so that, the RCS can be written as $\sigma = 4\pi\frac{|\E^\infty|^2}{|\E\inc|^2} = |\zeta|^2$.
+
+    \pause
+    If $\uu_s$ is a unit vector and $\uu_s = \uu_i$, then
     \begin{equation}
-        \begin{aligned}
-            \delta\sigma &= 8\pi\frac{\E^\infty}{|\E\inc|^2}\cdot\delta\E^\infty\\
-            &= \frac{8\pi kZ_0}{|\E\inc|^2}\E^\infty\cdot\left[\uu_s\times\int_\Gamma\delta\J(y)e^{-jk\uu_i\cdot y}\dd\Gamma(y)\times \uu_s\right].
-        \end{aligned}
+        \E^\infty\cdot\Einc = \frac{kZ_0^2}{2\sqrt{\pi}}\ell(\J).
     \end{equation}
+
+    \pause
+    Therefore, the differential of $\zeta$ is :
+    \begin{equation}
+        \dd\zeta = \frac{kZ_0^2}{2\sqrt{\pi}}\ell(\dd\J).
+    \end{equation}
+
+    \pause
+    Hence, the right-hand side of the discrete adjoint system can be written as :
+    \begin{equation}
+        \derpart{\zeta}{I} = \frac{kZ_0^2}{2\sqrt{\pi}}b.
+    \end{equation}
+
+    \pause
+    From this, there is no need to actually solve the adjoint system and $\Psi$ is :
+    \begin{equation}
+        \Psi^* = \frac{kZ_0^2}{2\sqrt{\pi}}I.
+    \end{equation}
+
 \end{frame}
 
     
@@ -221,7 +239,7 @@
     \captionsetup{justification=centering}
 
     \centering
-    % \resizebox{!}{.8\textheight}{\import{resources/bem}{graph-optim.tex}}
+    \resizebox{!}{.8\textheight}{\import{resources/bem}{graph-optim.tex}}
     \caption*{Flowchart of the automatic optimization process chain}
     \label{bem-fig:optim-process}
 \end{figure}
@@ -275,7 +293,7 @@
 		\caption*{Adjoint BEM.}
 		\vskip 0pt
 		\label{bem-fig:gfa-shape-adj}
-	\end{subfigure}\\
+	\end{subfigure}\
 	\begin{subfigure}[T]{0.3\textwidth}
 		\centering
 		\includegraphics[width=1.2\textwidth, center]{images/bem/shape_DF2_61.pdf}
