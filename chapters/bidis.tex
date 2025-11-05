@@ -10,29 +10,46 @@
 \subsection{The Physical Optics}
 \begin{frame}
     \frametitle{The Physical Optics}
+    Let us recall the far field expression \eqref{eq:champ-lointain} :
     
+    \begin{equation}
+        \E^\infty(\tfrac\x{|\x|}) = \frac{kZ_0}{4\pi}\frac\x{|\x|}\times\left(\mathcal F(\J)(\tfrac{\x}{|\x|})\times\frac\x{|\x|}\right).
+        \label{eq:champ-lointain-2}
+    \end{equation}
     
-    The condition \eqref{eq:cond-F} is written thus :
+    where :
     \begin{equation}
         \mathcal F(\J)(\x) = \int_\Gamma\J(y)e^{-jk\x\cdot y}\dd\Gamma(y).
     \end{equation}
-    \onslide<2->
-    Under the assumptions of physical optics, the current distribution $\J$ induced by a plane wave $\E\inc$ propagating along the direction $\uu_i$ is given by\footnote<2->{Chatzigeorgiadis, F.~, 2004, \textit{Development of Code for a Physical Optics RADAR Cross Section Prediction and Analysis Application}.} :
+\end{frame}
+\begin{frame}
+    \frametitle{The Physical Optics}
+    % \pause
+    The Physical Optics approximation, the current distribution $\J$ induced by a plane wave $\E\inc$ propagating along the direction $\uu_i$ is given by\footnote<2->{Chatzigeorgiadis, F.~, 2004, \textit{Development of Code for a Physical Optics RADAR Cross Section Prediction and Analysis Application}.} :
     \begin{equation}
         \J(y) = \left\{\begin{array}{cr}
             \left(\dfrac2{Z_0}\mathbf n\times\mathbf \uu_i\times\E\inc\right)e^{jk\uu_i\cdot y}&\text{in the illumated zone,}\\
             \mathbf 0&\text{in the shadow zone,}
         \end{array}\right.
     \end{equation}
-    \onslide<3->
+    % \onslide<3->
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Physical Optics Far Field}
     Finally, the far field scattered electric field writes :
     \begin{equation}
         \E^\infty(\uu_s) = \frac{2k}{4\pi}\int_\Gamma\uu_s\times\left(\n\times \uu_i\times\E\inc\right)\times\uu_s e^{jk(\uu_i-\uu_s)\cdot y}\dd\Gamma(y)
     \end{equation}
 \end{frame}
+
 \begin{frame}
     \frametitle{Discrete Pysical Optics}
+    \label{fra:discrete-physical-optics}
     The skew surface $\Gamma$ is approximated by a set of triangles $(T_n)_{1\leq n\leq N}$. On each triangle, the vector $\n_n$ is constant. Finally, let us consider the monostatic observation case i.e.~$\uu_s = -\uu_i$.
+
+    The total far field is the superposition of the contribution of each triangle :
+    
     \begin{equation}
         \boxed{
         \E^{\infty}(\uu_s) = \frac{2k}{4\pi}\sum_n\left[ \uu_s\times\left(\n_n\times \uu_s\times\E\inc\right)\times \uu_s\right]\int_{T_n}e^{-2jk \uu_s\cdot y}\dd T_n(y)

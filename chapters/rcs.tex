@@ -58,6 +58,9 @@ With :
     \mathbf T = kZ_0\left(\frac1{k^2}\nabla\nabla\cdot+1\right)\J-\nabla\times\mathbf M.
 \end{equation}
 
+\pause
+The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as :
+
 \begin{equation}
     \E(x) = \int_\Omega \mathbf T(y)G(x,y)\dd\Omega(y),\quad \forall x\notin\mathrm{supp}(\mathbf T),
     \label{bem-eq:sol-helmholtz}
@@ -75,21 +78,22 @@ With :
         Assume an ideal perfectly conducting obstacle occupying a bounded domain $\Omega$ with boundary $\Gamma$ in free space and illuminated by an incident plane wave $\E\inc$.
     \end{block}
     \onslide<2->
-    It can be shown that, in the absence of losses, the solution of equation \eqref{bem-eq:Helmholtz} can be expressed as :
+    It can be shown that, in the absence of losses, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as :
     \begin{equation}
         \E(x) = j\frac{e^{ik|x|}}{|x|}\left\{\E^\infty(\tfrac x{|x|}) + \mathcal{O}\left(\frac1{|x|}\right)\right\},
         \label{eq:helmholtz}
     \end{equation}
     %
     \onslide<2->
-    avec
+    with
     \begin{equation}
         \E^\infty(\tfrac\x{|\x|}) = \frac{kZ_0}{4\pi}\frac\x{|\x|}\times\left(\mathcal F(\J)(\tfrac{\x}{|\x|})\times\frac\x{|\x|}\right),
         \label{eq:champ-lointain}
     \end{equation}
     %
     \onslide<3->
-    où \begin{equation}
+    where
+    \begin{equation}
         \mathcal F(\J)(\x) = \left<\J_y,e^{-jkx\cdot y}\right>_{\varepsilon'(\mathbb R^3),\varepsilon(\mathbb R^3)}.
         \label{eq:cond-F}
     \end{equation}
@@ -99,7 +103,7 @@ With :
     \frametitle{The Far Field}
     It can be shown that in the case where the support of $\mathbf T$ is compact, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as a Taylor's development as such :
 \begin{equation}
-    \E(x) = \frac{e^{jk\norm x}}{\norm x}\left\{\E^\infty\left(\frac{x}{\norm x}\right)+\mathcal O\left(\frac1{\norm x}\right)\right\},
+    \E(\x) = \frac{e^{jk\norm \x}}{\norm \x}\left\{\E^\infty\left(\frac{\x}{\norm \x}\right)+\mathcal O\left(\frac1{\norm \x}\right)\right\},
     \label{bem-eq:taylor}
 \end{equation}
 %
