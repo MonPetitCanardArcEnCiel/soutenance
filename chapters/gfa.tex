@@ -39,26 +39,28 @@
 		\centering
 		\captionsetup[subfigure]{justification=centering}
 		\begin{subfigure}{.49\textwidth}
-			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PV.pdf}
-			\caption*{\tiny Purely PO simulation with horizontal polarization.}
-			\label{fig:RCS-baseline-PO-PV}
-		\end{subfigure}
-		\begin{subfigure}{.49\textwidth}
 			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PH.pdf}
-			\caption*{\tiny Purely PO simulation with vertical polarization.}
+			\caption*{\tiny PO only simulation with horizontal polarization.}
 			\label{fig:RCS-baseline-PO-PH}
 		\end{subfigure}
-        \onslide<2->
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PV.pdf}
+			\caption*{\tiny PO only simulation with vertical polarization.}
+			\label{fig:RCS-baseline-PO-PV}
+		\end{subfigure}
+		
+		\onslide<2->
 		\begin{subfigure}{.49\textwidth}
 			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PH-PTD.pdf}
-			\caption*{\tiny PO simulation with PTD extension with horizontal polarization.}
+			\caption*{\tiny PO+PTD simulation with horizontal polarization.}
 			\label{fig:RCS-baseline-PTD-PV}
 		\end{subfigure}
 		\begin{subfigure}{.49\textwidth}
 			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PV-PTD.pdf}
-			\caption*{\tiny PO simulation with PTD extension with vertical polarization.}
+			\caption*{\tiny PO+PTD simulation with vertical polarization.}
 			\label{fig:RCS-baseline-PTD-PH}
 		\end{subfigure}
+		\onslide<1->
 		\caption*{Profile of RCS with respect to the bearing angle on the GFA (elevation : $\phi = -20^\circ$).}
 		\label{fig:RCS-baseline}
 	\end{figure}
