@@ -5,7 +5,7 @@
 % \graphicspath{{\subfix{../chapters/}}}
 
 \begin{document}
-\section{The aero-stealth optimzation}
+\section{The aero-stealth optimization}
 
 \subsection{The Physical Optics}
 \begin{frame}
@@ -214,15 +214,62 @@
 \end{frame}
 
 \subsection{Results}
+
+
+\begin{frame}
+    \frametitle{Pareto front}
+    
+    \begin{figure}
+        \centering
+        \subimport{resources/bidis/}{pareto-plot.tex}
+        \caption*{Pareto front of the aero-stealth optimization.}
+        \label{fig:pareto-front}
+    \end{figure}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Optimization histories}
+    
+    \begin{figure}[htp]
+        \captionsetup[subfigure]{justification=centering}
+        \captionsetup{justification=centering}
+        \centering
+        \begin{subfigure}{0.49\linewidth}
+            \includegraphics[width=1.\textwidth,center]{images/bidis/Histor_100.pdf}
+            \caption*{Aerodynamic optimization history}
+            \label{bidis-fig:optim-hist-aero}			
+        \end{subfigure}
+        \begin{subfigure}{0.49\linewidth}
+            \includegraphics[width=1.\textwidth,center]{images/bidis/Histor_000.pdf}
+            \caption*{Stealth optimization history}
+            \label{bidis-fig:optim-hist-RCS}			
+        \end{subfigure}
+        % \vspace{5pt}
+        % \begin{subfigure}{0.49\linewidth}
+        % 	\includegraphics[width=1.\textwidth,center]{images/bidis/Histor_080.pdf}
+        % 	\caption*{$w = 0.8$ shape optimization history}
+        % 	\label{bidis-fig:optim-hist-80}			
+        % \end{subfigure}
+        % \begin{subfigure}{0.49\linewidth}
+        % 	\includegraphics[width=1.\textwidth,center]{images/bidis/Histor_075.pdf}
+        % 	\caption*{$w = 0.75$ shape optimization history}
+        % 	\label{bidis-fig:optim-hist-75}			
+        % \end{subfigure}
+        \caption*{Optimization history. The cost is read on the left axis. The normalized constraints are read on the right axis. The tolerance for the constraints is $10^{-4}$.}
+        \label{bidis-fig:optim-hist}
+    \end{figure}
+\end{frame}
+
 \begin{frame}
     \frametitle{The stealth optimization - Shape}
     
     \begin{figure}[htb]
-		\centering
-		\includegraphics[trim=30mm 55mm 40mm 70mm,clip,width=\textwidth,center]{images/bidis/Optim_PO/shape.pdf}
-		\caption*{Optimal shape from a purely low-observability stand point.}
-		\label{fig:optim-PO-shape}
-	\end{figure}
+        \centering
+        \includegraphics[trim=30mm 55mm 40mm 70mm,clip,width=\textwidth,center]{images/bidis/Optim_PO/shape.pdf}
+        \caption*{Optimal shape from a purely low-observability stand point.}
+        \label{fig:optim-PO-shape}
+    \end{figure}
 \end{frame}
 
 
@@ -241,13 +288,13 @@
     \frametitle{The stealth optimization - Aerodynamic analysis}
     
     \begin{figure}[htp]
-		\centering
+        \centering
         \captionsetup{justification=centering}
         
-		\includegraphics[width=0.75\textwidth,center]{images/bidis/Optim_PO/MALO_5_RCS.pdf}
-		\caption*{Comparison of the distributions of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the stealth-optimal shape (bottom).}
-		\label{bidis-fig:optim-PO-MALO-5}
-	\end{figure} 
+        \includegraphics[width=0.75\textwidth,center]{images/bidis/Optim_PO/MALO_5_RCS.pdf}
+        \caption*{Comparison of the distributions of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the stealth-optimal shape (bottom).}
+        \label{bidis-fig:optim-PO-MALO-5}
+    \end{figure} 
 \end{frame}
 
 
@@ -256,11 +303,11 @@
     \frametitle{The aerodynamic optimization - Shape}
     
     \begin{figure}[htb]
-		\centering
-		\includegraphics[trim=30mm 55mm 40mm 70mm,clip,width=\textwidth,center]{images/bidis/Optim_CFD/shape.pdf}
-		\caption*{Optimal shape from a purely aerodynamic stand point.}
-		\label{fig:optim-CFD-shape}
-	\end{figure}
+        \centering
+        \includegraphics[trim=30mm 55mm 40mm 70mm,clip,width=\textwidth,center]{images/bidis/Optim_CFD/shape.pdf}
+        \caption*{Optimal shape from a purely aerodynamic stand point.}
+        \label{fig:optim-CFD-shape}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -277,39 +324,37 @@
 \begin{frame}
     \frametitle{The aerodynamic optimization - Aerodynamic analysis}
 
-    	\begin{figure}[htp]
+        \begin{figure}[htp]
         \captionsetup{justification=centering}
-		\centering
-		\includegraphics[width=0.75\textwidth,center]{images/bidis/Optim_CFD/MALO_5_aero.pdf}
-		\caption*{Comparison of the distributions of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the optimized aerodynamic shape (bottom).}
-		\label{bidis-fig:optim-CFD-MALO-5}
-	\end{figure}
-
-
+        \centering
+        \includegraphics[width=0.75\textwidth,center]{images/bidis/Optim_CFD/MALO_5_aero.pdf}
+        \caption*{Comparison of the distributions of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the optimized aerodynamic shape (bottom).}
+        \label{bidis-fig:optim-CFD-MALO-5}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
     \frametitle{The aerodynamic forces}
 
     
-	\begin{figure}[htp]
-		\captionsetup[subfigure]{justification=centering}
-		\captionsetup{justification=centering}
-		\centering
-		\begin{subfigure}{.49\linewidth}
-			\centering
-			\includegraphics[width=1.2\textwidth,center]{images/bidis/Cumul_Cx_base-PO-CFD.pdf}
-			\caption*{Integration of \cd{} along the X axis.}
-			\label{bidis-fig:cumul-cd}
-		\end{subfigure}
-		\begin{subfigure}{.49\linewidth}
-			\centering
-			\includegraphics[width=1.2\textwidth,center]{images/bidis/Distrib_Cz_base-PO-CFD.pdf}
-			\caption*{Distribution of the wing \cl{}.}
-			\label{bidis-fig:distrib-cl}
-		\end{subfigure}
-		\caption*{Detailed analysis of the distribution of aerodynamic coefficients along their respective axis.}
-		\label{bidis-fig:coeff-anal}
-	\end{figure}
+    \begin{figure}[htp]
+        \captionsetup[subfigure]{justification=centering}
+        \captionsetup{justification=centering}
+        \centering
+        \begin{subfigure}{.49\linewidth}
+            \centering
+            \includegraphics[width=1.2\textwidth,center]{images/bidis/Cumul_Cx_base-PO-CFD.pdf}
+            \caption*{Integration of \cd{} along the X axis.}
+            \label{bidis-fig:cumul-cd}
+        \end{subfigure}
+        \begin{subfigure}{.49\linewidth}
+            \centering
+            \includegraphics[width=1.2\textwidth,center]{images/bidis/Distrib_Cz_base-PO-CFD.pdf}
+            \caption*{Distribution of the wing \cl{}.}
+            \label{bidis-fig:distrib-cl}
+        \end{subfigure}
+        \caption*{Detailed analysis of the distribution of aerodynamic coefficients along their respective axis.}
+        \label{bidis-fig:coeff-anal}
+    \end{figure}
 \end{frame}
 \end{document}
