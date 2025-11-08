@@ -4,26 +4,26 @@
 % \graphicspath{{\subfix{../chapters/}}}
 
 \begin{document}
-\section{Introduction}
+\section*{Introduction}
 
-\subsection{Context and objectives}
-\begin{frame}
+\subsection*{Context and objectives}
+\begin{frame}[t]
     \frametitle{Introduction}
     \begin{itemize}[label=\ding{227}]
         \item<1-> Modern fighter aircraft need aerodynamic performance and low observability.
         \item<2-> These two aspects are generally antagonistic.
-        \item<5-> This thesis proposes two multidisciplinary gradient based shape optimization frameworks to improve both aspects simultaneously.
+        \item<5-> This thesis proposes two gradient-based shape optimization frameworks to efficiently improve both aspects simultaneously in an industrial process.
         \begin{itemize}[label=$\bullet$]
-            \item<6-> A bidisciplinary gradient framework coupling aerodynamics and electomagnetism with a low fidelity radar scattering solver.
-            \only<7-9>{
+            \item<6-> A bidisciplinary gradient-based framework coupling aerodynamics and electomagnetism.
+            \only<1-9>{
             \begin{itemize}[label=\ding{229}]
                 \item<7-> RANS solver for the aerodynamics.
-                \item<7-> Physical optics (PO), a low fidelity, high frequency solver for the radar scattering.
-                \item<7-> We showcase this framework by identifying a Pareto front for aerodynamic performance and radar cross section (RCS) reduction.
+                \item<7-> Physical optics (PO), a low fidelity solver for the radar scattering.
+                \item<7-> We showcase this framework by identifying a Pareto front for aerodynamic performance and radar cross section (RCS) reduction on simplified aircraft configuration.
             \end{itemize}
             }
             \item<8-> A high fidelity optimization framework for radar scattering.
-            \only<9>{
+            \only<1-9>{
             \begin{itemize}[label=\ding{229}]
                 \item<9-> Boundary element method (BEM) solver for the radar scattering.
                 \item<9-> An adjoint formulation to the BEM solver to compute the gradient of the RCS.
