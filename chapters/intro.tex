@@ -6,9 +6,33 @@
 \begin{document}
 \section{Introduction}
 
+\subsection{Context and objectives}
 \begin{frame}
     \frametitle{Introduction}
-    Context and motivations.
+    \begin{itemize}[label=\ding{227}]
+        \item<1-> Modern fighter aircraft need aerodynamic performance and low observability.
+        \item<2-> These two aspects are generally antagonistic.
+        \item<5-> This thesis proposes two multidisciplinary gradient based shape optimization frameworks to improve both aspects simultaneously.
+        \begin{itemize}[label=$\bullet$]
+            \item<6-> A bidisciplinary gradient framework coupling aerodynamics and electomagnetism with a low fidelity radar scattering solver.
+            \begin{itemize}[label=\ding{229}]
+                \item<7-> RANS solver for the aerodynamics.
+                \item<7-> Physical optics (PO), a low fidelity, high frequency solver for the radar scattering.
+            \end{itemize}
+            \item<8-> A framework where we derived the gradient of a high fidelity radar cattering solver with an adjoint formulation for a high fidelity gradient based optimization.
+        \end{itemize}
+    \end{itemize}
+
+    \only<3-4>{
+    \begin{tikzpicture}[remember picture,overlay]
+        \setlength{\mypicwidth}{5.5cm}
+        \node (center) at (current page.center) {};
+        \node<3-4> (image1) [left of=center, xshift=-2cm] {\includegraphics[width=\mypicwidth]{chapters/images/intro/Lockheed_SR-71_Blackbird.jpg}};
+        \node<3-4> at (image1.south) [yshift=-.3cm, text width=1.2\mypicwidth, align=center] {\textit{An aircraft optimized for aerodynamic performance (SR-71)}};
+        \node<4> (image2) [right of=center, xshift=2cm] {\includegraphics[width=\mypicwidth]{chapters/images/intro/F-117_Nighthawk_Front.jpg}};
+        \node<4> at (image2.south) [yshift=-.3cm, text width=1.2\mypicwidth, align=center] {\textit{An aircraft optimized for low observability (F-117)}};
+    \end{tikzpicture}
+    }
 
 \end{frame}
 \end{document}
