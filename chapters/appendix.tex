@@ -6,20 +6,7 @@
 
 \begin{document}
 \section{Annexes}
-\begin{frame}%[label=fra:gamma]
-    \label{fra:gamma}
-    \frametitle{$\Gamma$ function}
 
-    \begin{figure}
-    \centering
-    \resizebox{!}{.7\textheight}{\subimport{resources/appendix/}{graph-gammad.tex}}
-    \caption*{Plot of the $\Gamma$ function}
-    \end{figure}
-
-    \hyperlink{eq:gamma-bidis}{\beamerbutton{Back to cost and constraints}}
-    \hyperlink{eq:gamma-bem}{\beamerbutton{Back to cost and constraints}}
-
-\end{frame}
 
 \subsection{More on the Physical Optics solver}
 
@@ -54,6 +41,7 @@
     \frametitle{The aerodynamic adjoint}
 \end{frame}
 
+
 \subsection{BEM additional results}
 \begin{frame}[plain]
     \label{fra:iter_adj_62}
@@ -67,7 +55,7 @@
 
 \begin{frame}[plain]
     \label{fra:iter_DF2_61}
-
+    
 	\begin{figure}
 		\centering
 		\includegraphics[trim=0 1cm 0 2.5cm, clip, width=1.\textwidth, right]{images/bem/iter_DF2_61.pdf}
@@ -81,7 +69,7 @@
     \label{fra:iter_PTD_exact_100}
 	\begin{figure}
 			\centering
-		\includegraphics[trim=0 1cm 0 2.5cm, clip, width=1.\textwidth, right]{images/bem/iter_PTD_exact_100.pdf}
+            \includegraphics[trim=0 1cm 0 2.5cm, clip, width=1.\textwidth, right]{images/bem/iter_PTD_exact_100.pdf}
 			\caption*{PTD with exact gradient.}
 	\end{figure}
     \hyperlink{fra:history-bem}{\beamerbutton{Back}}
@@ -106,17 +94,33 @@
 		\caption*{FD BEM.}
 	\end{figure}
     \hyperlink{fra:rcs-result-bem}{\beamerbutton{Back}}
-
+    
 \end{frame}
 
 \begin{frame}[plain]
     \label{fra:RCS_PTD_exact_100}
 	\begin{figure}
-			\centering
-			\includegraphics[trim=0 .8cm 0 2.5cm, clip,width=1.\textwidth]{images/bem/RCS_PTD_exact_100.pdf}
-			\caption*{PTD with exact gradient.}
+        \centering
+        \includegraphics[trim=0 .8cm 0 2.5cm, clip,width=1.\textwidth]{images/bem/RCS_PTD_exact_100.pdf}
+        \caption*{PTD with exact gradient.}
 	\end{figure}
     \hyperlink{fra:rcs-result-bem}{\beamerbutton{Back}}
+\end{frame}
+
+\subsection{The $\Gamma$ function}
+\begin{frame}%[label=fra:gamma]
+    \label{fra:gamma}
+    \frametitle{$\Gamma$ function}
+
+    \begin{figure}
+    \centering
+    \resizebox{!}{.7\textheight}{\subimport{resources/appendix/}{graph-gammad.tex}}
+    \caption*{Plot of the $\Gamma$ function}
+    \end{figure}
+
+    \hyperlink{eq:gamma-bidis}{\beamerbutton{Back to cost and constraints}}
+    \hyperlink{eq:gamma-bem}{\beamerbutton{Back to cost and constraints}}
+
 \end{frame}
 
 \end{document}
