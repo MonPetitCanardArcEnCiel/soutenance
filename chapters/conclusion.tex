@@ -7,7 +7,7 @@
 \begin{document}
 \section{Conclusion and perspectives}
 \subsection{Conclusion}
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Conclusion}
 
     I have presented two frameworks for the shape optimization of fighter aircraft for aerodynamic performance and low observability.
@@ -26,7 +26,8 @@
         \begin{itemize}[label=$\bullet$]
             \item I presented an adjoint formulation to the BEM solver to compute the gradient of the RCS.
             \item The gradient is not accurate because of an omitted term in the adjoint due to limited time to implement it.
-            \item The studies showcased show that the framework is able to reduce significantly the RCS of a generic fighter aircraft at high frequencies in a time fram consistent with industrial constraints.
+            \item The studies showcased show that the framework is able to reduce significantly the RCS of a generic fighter aircraft at high frequencies in a time frame consistent with industrial constraints.
+            \item The comparison to finite differences and a lower fidelity solver show that the ommitted term in the gradient alone does not explain the inaccuracy of the solution.
             \item Thus even with the incomplete adjoint, the framework is useful in an industrial framework.
         \end{itemize}
         }
