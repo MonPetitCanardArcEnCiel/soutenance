@@ -15,12 +15,23 @@
         \item<5-> This thesis proposes two multidisciplinary gradient based shape optimization frameworks to improve both aspects simultaneously.
         \begin{itemize}[label=$\bullet$]
             \item<6-> A bidisciplinary gradient framework coupling aerodynamics and electomagnetism with a low fidelity radar scattering solver.
+            \only<7-9>{
             \begin{itemize}[label=\ding{229}]
                 \item<7-> RANS solver for the aerodynamics.
                 \item<7-> Physical optics (PO), a low fidelity, high frequency solver for the radar scattering.
+                \item<7-> We showcase this framework by identifying a Pareto front for aerodynamic performance and radar cross section (RCS) reduction.
             \end{itemize}
-            \item<8-> A framework where we derived the gradient of a high fidelity radar cattering solver with an adjoint formulation for a high fidelity gradient based optimization.
+            }
+            \item<8-> A high fidelity optimization framework for radar scattering.
+            \only<9>{
+            \begin{itemize}[label=\ding{229}]
+                \item<9-> Boundary element method (BEM) solver for the radar scattering.
+                \item<9-> An adjoint formulation to the BEM solver to compute the gradient of the RCS.
+                \item<9-> We showcase this framework by minimizing the RCS of a generic fighter aircraft at high frequencies.
+            \end{itemize}
+            }
         \end{itemize}
+        \item<10-> The use of a CAD to model the geometry is an originality of this work.
     \end{itemize}
 
     \only<3-4>{
