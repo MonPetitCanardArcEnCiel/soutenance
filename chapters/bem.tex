@@ -357,6 +357,37 @@
 	\label{bem-fig:gfa-rcs}
 \end{figure}
 
+
+\begin{tikzpicture}[remember picture,overlay]
+    \node (origin) at (current page.south west)[anchor=south west,xshift=0.5cm,yshift=2cm,  align=left] {1 frequency,\\
+    $f=500\unit{\mega\hertz}$};
+\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Influence of the number of frequencies}
+    % \label{fra:rcs-result-bem}
+    \begin{figure}[htp]
+        
+        \captionsetup[subfigure]{justification=centering}
+        \captionsetup{justification=centering}
+            \centering
+            \begin{subfigure}{0.49\textwidth}
+                \centering
+                \includegraphics[width=1.\textwidth, right]{images/bem/iter_PTD_exact_100.pdf}
+                \caption{PTD with 1 frequency.}
+                \label{bem-fig:gfa-iter-1freq}
+            \end{subfigure}
+            \begin{subfigure}{0.49\textwidth}
+                \centering
+                \includegraphics[width=1.\textwidth, left]{images/bem/iter_PTD_exact_101.pdf}
+                \caption{PTD with 21 frequencies.}
+                \label{bem-fig:gfa-iter-21freq}
+            \end{subfigure}
+            \caption*{Evolution of the cost and constraint through the optimization.}
+            \label{bem-fig:gfa-iter-freq}
+    \end{figure}
 \end{frame}
 
 \end{document}
