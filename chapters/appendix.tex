@@ -31,6 +31,23 @@
     \hyperlink{fra:discrete-physical-optics}{\beamerbutton{Back}}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Gradient validation}
+    Let $f$ be a real-valued function, at least 3 times differentiable, $f'$ its derivative and $\Delta_\epsilon f$ and $\delta_\epsilon f$ the approximations of its derivative by FD with a respectively forward and centered scheme with a step size $\epsilon$.
+    \onslide<2->
+    \begin{align*}
+        \Delta_\epsilon f - f' = o(\epsilon) &\quad\text{as } \epsilon\to0,\\
+        \delta_\epsilon f - f' = o\left(\epsilon^2\right) &\quad\text{as } \epsilon\to0.
+        \label{eq:fd}
+    \end{align*}
+
+    \begin{itemize}[label=\ding{227}]
+        \item<3-> The error between FD and the exact gradient should decrease until a critical $\epsilon$, where numerical errors become predominant.
+        \item<4-> The slope of the error log should be 1 for forward FD and 2 for centered FD (near the critical $\epsilon$).
+    \end{itemize}
+
+\end{frame}
+
 
 \subsection{Aerodynamics}
 \begin{frame}
@@ -40,6 +57,72 @@
 \begin{frame}
     \frametitle{The aerodynamic adjoint}
 \end{frame}
+
+\begin{frame}
+	\frametitle{Aerodynamic analysis of the baseline - symmetry plane}
+		\begin{figure}[htp]
+		\centering
+		\includegraphics[width=0.75\textwidth]{images/gfa/MALO_0_ref.pdf}
+		\caption*{Distribution of local Mach number around the fuselage of the GFA, in the symmetry plane.}
+		\label{bidis-fig:MALO-0-baseline}
+	\end{figure}
+\end{frame}
+
+\subsection{Adjoint derivation}
+
+\begin{frame}
+
+    \frametitle{Continuous adjoint formulation}
+    Let us rewrite the linear system of unknowns $\J$ defined by equation \eqref{eq:syslin} under the following form :
+    \begin{equation}
+        \mathcal R(\X(\eta),\J(\eta)) = 0,
+        \label{eq:system-cont}
+    \end{equation}
+    and consider the observation function $\zeta(\X(\eta),\J(\eta))$.
+    The right derivative of $\zeta$ with respect to $\eta$ writes :
+    \begin{equation}
+        \dd{\zeta} = \left(\derpart{\zeta}{\X}\derpart{\X}{\eta} + \derpart{\zeta}{\J}\derpart{\J}{\eta}\right)\dd \eta.
+        \label{eq:dsigmadx}
+    \end{equation}
+
+    \only<1>{
+        $\X$ : mesh coordinates
+
+        $\eta$ : optimization parameters
+        }
+
+    \onslide<2->
+    The term $\derpart{\J}{\eta}$ is very costly to compute. However, it can be expressed in a more clever way since $\dd\RR = 0$ :
+
+    \begin{equation}
+        \dd\RR = \left(\derpart\RR\X\derpart\X \eta + \derpart\RR\J\derpart\J \eta\right)\dd \eta = 0.
+    \end{equation}
+    \onslide<3->
+    Then :
+    \begin{equation}
+        \derpart\J \eta = \left(\derpart\RR\J\right)^{-1}\derpart\RR\X\derpart\X \eta.
+        \label{eq:djdx}
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Continuous adjoint formulation II}
+    Injecting the system \eqref{eq:djdx} into the expression \eqref{eq:dsigmadx}, yields :
+
+    \begin{equation}
+        \boxed{
+        \dd{\zeta} = \left(\derpart{\zeta}{\X}\derpart{\X}{\eta} - \Psi^*\derpart{\mathcal R}{\X}\derpart{\X}{\eta}\right)\dd\eta.
+        }
+        \label{eq:dsigmadx-adj}
+    \end{equation}
+
+    Where $\Psi$ is the solution to the adjoint system: 
+    \begin{equation}
+        \left(\derpart{\mathcal R}{\J}\right)^* \Psi = \left(\derpart{\zeta}{\J}\right)^*.
+        \label{eq:adjoint-cont}
+    \end{equation}
+\end{frame}
+
 
 \subsection{bidisciplinary optimization -- additional results}
 
@@ -76,6 +159,30 @@
 	\end{figure}
 \end{frame}
 
+\begin{frame}
+    \frametitle{The aerodynamic forces}
+
+    
+    \begin{figure}[htp]
+        \captionsetup[subfigure]{justification=centering}
+        \captionsetup{justification=centering}
+        \centering
+        \begin{subfigure}{.49\linewidth}
+            \centering
+            \includegraphics[width=1.2\textwidth,center]{images/bidis/Cumul_Cx_base-PO-CFD.pdf}
+            \caption*{Integration of \cd{} along the X axis.}
+            \label{bidis-fig:cumul-cd}
+        \end{subfigure}
+        \begin{subfigure}{.49\linewidth}
+            \centering
+            \includegraphics[width=1.2\textwidth,center]{images/bidis/Distrib_Cz_base-PO-CFD.pdf}
+            \caption*{Distribution of the wing \cl{}.}
+            \label{bidis-fig:distrib-cl}
+        \end{subfigure}
+        \caption*{Detailed analysis of the distribution of aerodynamic coefficients along their respective axis.}
+        \label{bidis-fig:coeff-anal}
+    \end{figure}
+\end{frame}
 \subsection{BEM additional results}
 \begin{frame}[plain]
     \label{fra:iter_adj_62}
