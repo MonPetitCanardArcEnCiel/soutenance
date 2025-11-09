@@ -64,7 +64,7 @@
     \frametitle{Discretization}
     This allows to express the EFIE problem \eqref{eq:efie} under the form of a linear system :
     \begin{equation}
-        A\J = \bb.
+        AI = \bb.
         \label{eq:syslin}
     \end{equation}
 \end{frame}
@@ -73,29 +73,32 @@
 \begin{frame}
     \frametitle{Discrete adjoint formulation}
 
-    With a discrete formulation, $$\mathcal R(\X,\J) = A(X)\J - \bb(X).$$
+    Let $\mathcal R$ be a linear system such that, $$\mathcal R(\X(\eta),I(\eta)) = A(X(\eta))I(\eta) - \bb(X(\eta)) = 0,$$
+    where $\X$ is the vector of mesh coordinates, and $\eta$ the vector of design parameters.
+    \pause
+    Let $\zeta$ be an observable depending on $\X$ and $I$.
 
-    \onslide<2->
+    \onslide<3->
     The derivative of $\zeta$ with respect to $\eta$ writes :
     \begin{equation}
-        \dd{\zeta} = \derpart{\zeta}{\X}\dd{X} - \Psi^*\left({\color<3->{lightgray}\derpart{A}\X\J }- \derpart{b}\X\right)\dd{\X}
+        \dd{\zeta} = \derpart{\zeta}{\X}\derpart{X}{\eta}\dd\eta - \Psi^*\left({\color<3->{lightgray}\derpart{A}\X I }- \derpart{b}\X\right)\derpart{\X}{\eta}\dd\eta
     \end{equation}
 
-    \only<3>{
+    \only<4>{
     Because of time constraints, we did not have the time to implement the computation (especially memory requirements and the handling of singular cases) of the term $\derpart{A}\X\J$, and so we omit it in the following.
     }
 
-    \onslide<4->
-    \only<5->{In the EFIE formulation, $A$ is non-Hermitian symmetric i.e.~ $A^* = \overline{A}$.}
+    \onslide<5->
+    \only<6->{In the EFIE formulation, $A$ is non-Hermitian symmetric i.e.~ $A^* = \overline{A}$.}
 
     the adjoint system thus writes :
-    \only<4>{
+    \only<5>{
     \begin{equation}
-        A^*\Psi = \left(\derpart{\zeta}{\J}\right)^*
+        A^*\Psi = \left(\derpart{\zeta}{I}\right)^*
     \end{equation}}
-    \onslide<5->
+    \onslide<6->
     \begin{equation}
-        \overline{A}\Psi = \left(\derpart{\zeta}{\J}\right)^*
+        \overline{A}\Psi = \left(\derpart{\zeta}{I}\right)^*
     \end{equation}
 
 \end{frame}
@@ -114,13 +117,13 @@
     \pause
     If $\uu_s$ is a unit vector and $\uu_s = \uu_i$, then
     \begin{equation}
-        \E^\infty\cdot\Einc = \frac{kZ_0^2}{2\sqrt{\pi}}\ell(\J).
+        \E^\infty\cdot\Einc = \frac{kZ_0^2}{2\sqrt{\pi}}\bb.
     \end{equation}
 
     \pause
     Therefore, the differential of $\zeta$ is :
     \begin{equation}
-        \dd\zeta = \frac{kZ_0^2}{2\sqrt{\pi}}\ell(\dd\J).
+        \dd\zeta = \frac{kZ_0^2}{2\sqrt{\pi}}\dd\bb.
     \end{equation}
 
     \pause
@@ -171,9 +174,16 @@
     
     \onslide<5->
     Constraint :
-            \begin{itemize}[label=$\bullet$]
-                \item \sref{} constant
-            \end{itemize}
+    \begin{itemize}[label=$\bullet$]
+        \item \sref{} constant
+    \end{itemize}
+
+    \onslide<6->
+    RCS computation:
+    \begin{itemize}[label=$\bullet$]
+        \item 1 frequency, $f=500\unit{\mega\hertz}$
+    \end{itemize}
+    
 \end{frame}
 
 % \begin{frame}
