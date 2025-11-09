@@ -68,7 +68,7 @@
 		\onslide<2->
 		\begin{subfigure}{.49\textwidth}
 			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PH-PTD.pdf}
-			\caption*{\tiny PO+PTD simulation with horizontal polarization.}
+			\caption*{\tiny PO+PTD\footnote<2->{Michaeli, A.~, 1986, \textit{Elimination of infinities in equivalent edge currents, Part I : Fringe Current Components}.} (PTD) simulation with horizontal polarization.}
 			\label{fig:RCS-baseline-PTD-PV}
 		\end{subfigure}
 		\begin{subfigure}{.49\textwidth}
@@ -87,13 +87,13 @@
     \frametitle{COPOLA}
 
     \begin{itemize}[label=$\bullet$]
-        \item<1-> PO does not take diffraction into account.
+        % \item<1-> PO does not take diffraction into account.
  
-        \item<2-> An extension, Physical Theory of Diffraction\footnote<2->{Michaeli, A.~, 1986, \textit{Elimination of infinities in equivalent edge currents, Part I : Fringe Current Components}.} (PTD), allows to take edge diffraction into account.
+        % \item<2-> An extension, Physical Theory of Diffraction\footnote<2->{Michaeli, A.~, 1986, \textit{Elimination of infinities in equivalent edge currents, Part I : Fringe Current Components}.} (PTD), allows to take edge diffraction into account.
 
-        \item<3-> The OP+PTD solver has been differenciated with the help of TAPENADE\footnote<3->{Hascoët, L.~et V.~Pascual, 2013, \textit{The TAPENADE Automatic Differentiation tool : Principles, Model and Specification}.}
+        \item The OP+PTD solver has been differenciated with the help of TAPENADE\footnote<3->{Hascoët, L.~et V.~Pascual, 2013, \textit{The TAPENADE Automatic Differentiation tool : Principles, Model and Specification}.}
 
-        \item<4-> The solver has been implemented in a code called COPOLA.
+        % \item<4-> The solver has been implemented in a code called COPOLA.
     \end{itemize}
     
 \end{frame}
@@ -109,7 +109,7 @@
     \begin{figure}[htb]
 		\centering
 		\includegraphics[width=.75\textwidth]{images/bidis/comp_BEM_PO.png}
-		\caption*{Comparison of the RCS function of the bearing angle predicted by COPOLA and BEM code on a GFA geometry (see figure \ref{fig:baseline-model}).}
+		\caption*{Comparison of the RCS function of the bearing angle predicted by COPOLA and BEM code on a GFA geometry.}
 		\label{fig:RCS-comparison}
 	\end{figure}
 
