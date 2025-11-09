@@ -9,6 +9,22 @@
 
 
 \subsection{More on the Physical Optics solver}
+\begin{frame}
+    \frametitle{Discrete Pysical Optics}
+    \label{fra:discrete-physical-optics}
+    The skew surface $\Gamma$ is approximated by a set of triangles $(T_n)_{1\leq n\leq N}$. On each triangle, the vector $\n_n$ is constant. Finally, let us consider the monostatic observation case i.e.~$\uu_s = -\uu_i$.
+
+    The total far field is the superposition of the contribution of each triangle :
+    
+    \begin{equation}
+        \boxed{
+        \E^{\infty}(\uu_s) = \frac{2k}{4\pi}\sum_n\left[ \uu_s\times\left(\n_n\times \uu_s\times\E\inc\right)\times \uu_s\right]\int_{T_n}e^{-2jk \uu_s\cdot y}\dd T_n(y)
+        }
+    \end{equation}
+
+    \hyperlink{fra:integral-discretization}{\beamerbutton{More info}}
+    % \normalsize
+\end{frame}
 
 \begin{frame}
     \frametitle{The PTD extension}
@@ -47,6 +63,29 @@
     \end{itemize}
 
 \end{frame}
+
+\begin{frame}
+    \frametitle{Computation a cannonical case - RCS of a sphere}
+
+    \begin{figure}[htb]
+		\centering
+		\captionsetup[subfigure]{justification=centering}
+		\begin{subfigure}[c]{0.49\textwidth}
+			\includegraphics[width=1.4\textwidth,center]{images/bidis/RCS-sphere-bearing.pdf}
+			\caption*{RCS funtion of the bearing angle.\newline$f = 5\unit{\giga\hertz}$}
+			\label{fig:RCS-sphere-bearing}
+		\end{subfigure}
+		\begin{subfigure}[c]{0.49\textwidth}
+			\centering
+			\includegraphics[width=1.4\textwidth,center]{images/bidis/RCS-sphere-frq.pdf}
+			\caption*{Dimensionless RCS function of the radius-to-wavelength ratio.}
+			\label{fig:RCS-sphere-freq}
+		\end{subfigure}
+		\caption*{RCS of the sphere of radius $R = 1 \unit{\metre}$.}
+		\label{fig:RCS-sphere}
+	\end{figure}
+\end{frame}
+
 
 
 \subsection{Aerodynamics}
@@ -249,7 +288,7 @@
 \end{frame}
 
 \subsection{The $\Gamma$ function}
-\begin{frame}%[label=fra:gamma]
+\begin{frame}[plain]%[label=fra:gamma]
     \label{fra:gamma}
     \frametitle{$\Gamma$ function}
 
