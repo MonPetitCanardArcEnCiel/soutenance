@@ -24,6 +24,9 @@
 \end{frame}
 \begin{frame}
     \frametitle{The Physical Optics}
+    \begin{block}{hypothesis}
+        The frequency is high enough that the wavelength is small compared to the characteristic dimensions of the object.
+    \end{block}
     % \pause
     The Physical Optics approximation, the current distribution $\J$ induced by a plane wave $\E\inc$ propagating along the direction $\uu_i$ is given by\footnote<2->{Chatzigeorgiadis, F.~, 2004, \textit{Development of Code for a Physical Optics RADAR Cross Section Prediction and Analysis Application}.} :
     \begin{equation}
@@ -60,6 +63,40 @@
     % \normalsize
 \end{frame}
 
+\begin{frame}
+    \frametitle{Diffraction}
+    
+    \begin{figure}[htb]
+		\centering
+		\captionsetup[subfigure]{justification=centering}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PH.pdf}
+			\caption*{\tiny PO only simulation with horizontal polarization.}
+			\label{fig:RCS-baseline-PO-PH}
+		\end{subfigure}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PV.pdf}
+			\caption*{\tiny PO only simulation with vertical polarization.}
+			\label{fig:RCS-baseline-PO-PV}
+		\end{subfigure}
+		
+		\onslide<2->
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PH-PTD.pdf}
+			\caption*{\tiny PO+PTD simulation with horizontal polarization.}
+			\label{fig:RCS-baseline-PTD-PV}
+		\end{subfigure}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PV-PTD.pdf}
+			\caption*{\tiny PO+PTD simulation with vertical polarization.}
+			\label{fig:RCS-baseline-PTD-PH}
+		\end{subfigure}
+		\onslide<1->
+		\caption*{Profile of RCS with respect to the bearing angle on the GFA (elevation : $\phi = -20^\circ$).}
+		\label{fig:RCS-baseline}
+    \end{figure}
+
+\end{frame}
 
 \begin{frame}
     \frametitle{COPOLA}
@@ -184,16 +221,16 @@
     
 \end{frame}
 
-\begin{frame}
-    \frametitle{The process}
+% \begin{frame}
+%     \frametitle{The process}
 
-    \begin{figure}
-        \centering
-        \resizebox{\textwidth}{!}{\import{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}
-        \caption*{The aero-stealth optimization process.}
-        \label{fig:optim-process}
-    \end{figure}
-\end{frame}
+%     \begin{figure}
+%         \centering
+%         \resizebox{\textwidth}{!}{\import{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}
+%         \caption*{The aero-stealth optimization process.}
+%         \label{fig:optim-process}
+%     \end{figure}
+% \end{frame}
 
 \subsection{Results}
 
@@ -260,8 +297,10 @@
 
     \begin{figure}[htb]
         \centering
-        \includegraphics[trim=15mm 0mm 25mm 5mm,clip,width=\textwidth,height=.8\textheight,keepaspectratio,center]{images/bidis/Optim_PO/RCS_RCS.pdf}
-        \caption*{RCS of the stealth-optimal shape compared to that of the baseline.}
+        \captionsetup{justification=centering}
+        \includegraphics[trim=15mm 0mm 25mm 5mm,clip,width=.9\textwidth,height=.75\textheight,keepaspectratio,center]{images/bidis/Optim_PO/RCS_RCS.pdf}
+        \caption*{RCS of the stealth-optimal shape compared to that of the baseline.\\
+        21 frequencies $f_{mean} = 2\unit{\giga\hertz}$, $\Delta f = 10\unit{\mega\hertz}$. }
         \label{fig:optim-PO-sigma-hat}
     \end{figure}
 \end{frame}
@@ -272,7 +311,6 @@
     \begin{figure}[htp]
         \centering
         \captionsetup{justification=centering}
-        
         \includegraphics[width=0.75\textwidth,center]{images/bidis/Optim_PO/MALO_5_RCS.pdf}
         \caption*{Comparison of the distributions of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the stealth-optimal shape (bottom).}
         \label{bidis-fig:optim-PO-MALO-5}
@@ -297,8 +335,10 @@
     
     \begin{figure}[htb]
         \centering
-        \includegraphics[trim=15mm 0mm 25mm 5mm,clip,width=\textwidth,height=.8\textheight,keepaspectratio,center]{images/bidis/Optim_CFD/RCS_RCS.pdf}
-        \caption*{RCS of the aero-optimal shape compared to that of the baseline.}
+        \captionsetup{justification=centering}
+        \includegraphics[trim=15mm 0mm 25mm 5mm,clip,width=.9\textwidth,height=.75\textheight,keepaspectratio,center]{images/bidis/Optim_CFD/RCS_RCS.pdf}
+        \caption*{RCS of the aero-optimal shape compared to that of the baseline.\\
+        21 frequencies $f_{mean} = 2\unit{\giga\hertz}$, $\Delta f = 10\unit{\mega\hertz}$.}
         \label{fig:optim-CFD-sigma-hat}
     \end{figure}
 \end{frame}

@@ -21,7 +21,7 @@
 		\nabla \cdot \B = 0, \label{bem-eq:divB}
 	\end{equation}
 	\begin{equation}
-		\nabla \times \E = j\omega\B - \mathbf M, \label{bem-eq:rotE}
+		\nabla \times \E = j\omega\B, \label{bem-eq:rotE}
 	\end{equation}
 	\begin{equation}
 		\nabla \times \Hh = \J -j\omega\D, \label{bem-eq:rotH}
@@ -55,7 +55,7 @@
 
 With : 
 \begin{equation}
-    \mathbf T = kZ_0\left(\frac1{k^2}\nabla\nabla\cdot+1\right)\J-\nabla\times\mathbf M.
+    \mathbf T = kZ_0\left(\frac1{k^2}\nabla\nabla\cdot+1\right)\J.
 \end{equation}
 
 \pause
@@ -65,6 +65,9 @@ The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as :
     \E(x) = \int_\Omega \mathbf T(y)G(x,y)\dd\Omega(y),\quad \forall x\notin\mathrm{supp}(\mathbf T),
     \label{bem-eq:sol-helmholtz}
 \end{equation}
+ 
+
+    where $$G(x,y) = \frac{e^{-jk|x-y|}}{|x-y|}$$ is the three-dimension homogeneous Green function.
 \end{frame}
 
 
@@ -75,7 +78,7 @@ The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as :
     \label{fra:hyp}
 
     \begin{block}<1->{Assumption}
-        Assume an ideal perfectly conducting obstacle occupying a bounded domain $\Omega$ with boundary $\Gamma$ in free space and illuminated by an incident plane wave $\E\inc$.
+        Assume an ideal perfectly conducting obstacle occupying a bounded domain $\Omega$ with boundary $\Gamma$ in free space and illuminated by an incident plane wave $\E\inc$ propagating along the direction $\uu_i$.
     \end{block}
     \onslide<2->
     It can be shown that, in the absence of losses, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as :
@@ -98,28 +101,31 @@ The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as :
         \label{eq:cond-F}
     \end{equation}
 
+    \onslide<4->
+    The quantity $\E^\infty$ is called the far field.
+
 \end{frame}
-\begin{frame}
-    \frametitle{The Far Field}
-    It can be shown that in the case where the support of $\mathbf T$ is compact, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as a Taylor's development as such :
-\begin{equation}
-    \E(\x) = \frac{e^{jk\norm \x}}{\norm \x}\left\{\E^\infty\left(\frac{\x}{\norm \x}\right)+\mathcal O\left(\frac1{\norm \x}\right)\right\},
-    \label{bem-eq:taylor}
-\end{equation}
-%
-where
-\begin{equation}
-        \E^\infty\left(\uu_s\right) = \frac{jk}{4\pi}\uu_s\times\left(Z_0\mathcal F(\J)\left(\uu_s\right)\times \uu_s - \mathcal F(\mathbf M)\left(\uu_s\right)\right),
-\end{equation}
-\end{frame}
+% \begin{frame}
+%     \frametitle{The Far Field}
+%     It can be shown that in the case where the support of $\mathbf T$ is compact, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as a Taylor's development as such :
+% \begin{equation}
+%     \E(\x) = \frac{e^{jk\norm \x}}{\norm \x}\left\{\E^\infty\left(\frac{\x}{\norm \x}\right)+\mathcal O\left(\frac1{\norm \x}\right)\right\},
+%     \label{bem-eq:taylor}
+% \end{equation}
+% %
+% where
+% \begin{equation}
+%         \E^\infty\left(\uu_s\right) = \frac{jk}{4\pi}\uu_s\times\left(Z_0\mathcal F(\J)\left(\uu_s\right)\times \uu_s - \mathcal F(\mathbf M)\left(\uu_s\right)\right),
+% \end{equation}
+% \end{frame}
 
 
 \begin{frame}
     \frametitle{The Radar Cross Section (RCS)}
-    The Radar Cross Section (RCS) is defined as :
+    The Radar Cross Section (RCS) of an object in the direction ($\uu_s$) is defined as :
     \begin{equation}
     \label{bem-eq:RCSdef}
-    \sigma= \lim\limits_{R\to\infty} R^2\frac{||\E||^2}{||\E_i||^2},
+    \sigma(\uu_s)= \lim\limits_{R\to\infty} R^2\frac{||\E(\uu_s)||^2}{||\E_i||^2},
 \end{equation}
 %
 \pause
@@ -130,6 +136,10 @@ From the development \eqref{eq:champ-lointain}, the limit in \eqref{bem-eq:RCSde
 \begin{equation}
     \sigma(\uu_s) =  4\pi\norm{\E^\infty(\uu_s)}^2.
 \end{equation}
+
+\pause
+
+To compute $\sigma$, one needs to compute the current density $\J$ on the scatterer surface.
 
 \end{frame}
 \end{document}

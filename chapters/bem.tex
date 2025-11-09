@@ -20,7 +20,7 @@
     \frametitle{The Electric Field Integral Equation}
     The previous formula is more conveniently expressed in integral form. We thus introduce the space : $$\Hdiv(\Gamma) := \left\{\J\in L^2(\Gamma;\mathbb C^3),\J\text{ tangent to }\Gamma, \nabla_\Gamma\cdot\J\in L^2(\Gamma)\right\}.$$
     \onslide<2->
-    This yields the follozing variational problem\footnote<2->{Bendali, A.~, 2013, \textit{\'Equations Intégrales en \'Electromagnétisme}.} :
+    This yields the following variational problem\footnote<2->{Bendali, A.~, 2013, \textit{\'Equations Intégrales en \'Electromagnétisme}.} :
 
     \begin{equation}
     \boxed{\boxed{
@@ -33,17 +33,14 @@
     \end{equation}
 \end{frame}
 
+
 \begin{frame}
     \frametitle{Discretization}
-    The induced surface current $\J$ can be expanded as a weighted sum of $N$ basis functions $\fn{\rr}$, with a set of weights $(I_n)_{1\leq n\leq N}\in\mathbb C^N$ :
+        The induced surface current $\J$ can be expanded as a weighted sum of $N$ basis functions $\fn{\rr}$, with a set of weights $(I_n)_{1\leq n\leq N}\in\mathbb C^N$ :
     \begin{equation*}
         \J\approx\sum_{n=1}^N I_n\fn{\rr}.
     \end{equation*}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Discretization}
+    \pause
     We will use Rao-Wilson-Glisson (RWG) basis functions defined as follows :
     \begin{equation*}
         \fn{\rr} = \left\{\begin{array}{cl}
@@ -81,11 +78,11 @@
     \onslide<2->
     The derivative of $\zeta$ with respect to $\eta$ writes :
     \begin{equation}
-        \dd{\zeta} = \derpart{\zeta}{\X}\dd{X} - \Psi^*\left({\color<3->{lightgray}\derpart{A}\X }- \derpart{b}\X\right)\dd{\X}
+        \dd{\zeta} = \derpart{\zeta}{\X}\dd{X} - \Psi^*\left({\color<3->{lightgray}\derpart{A}\X\J }- \derpart{b}\X\right)\dd{\X}
     \end{equation}
 
     \only<3>{
-    Since the geometry variations are small, we assume that $\derpart{A}{\X}$ is negligible compared to the other terms.
+    Because of time constraints, we did not have the time to implement the computation (especially memory requirements and the handling of singular cases) of the term $\derpart{A}\X\J$, and so we omit it in the following.
     }
 
     \onslide<4->
@@ -179,19 +176,19 @@
             \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{The process}
+% \begin{frame}
+%     \frametitle{The process}
 
-    \begin{figure}[htp]
-    \captionsetup{justification=centering}
+%     \begin{figure}[htp]
+%     \captionsetup{justification=centering}
 
-    \centering
-    \resizebox{!}{.8\textheight}{\import{resources/bem}{graph-optim.tex}}
-    \caption*{Flowchart of the automatic optimization process chain}
-    \label{bem-fig:optim-process}
-\end{figure}
+%     \centering
+%     \resizebox{!}{.8\textheight}{\import{resources/bem}{graph-optim.tex}}
+%     \caption*{Flowchart of the automatic optimization process chain}
+%     \label{bem-fig:optim-process}
+% \end{figure}
 
-\end{frame}
+% \end{frame}
 
 \subsection{Results}
 \begin{frame}
