@@ -177,8 +177,9 @@
     \captionsetup{justification=centering}
     \begin{figure}[htb]
         \centering
-        \includegraphics[trim=20mm 0mm 40mm 25mm,clip,height=.75\textheight]{images/bidis/grad-13var.pdf}
-        \caption*{Error between the gradient of the stealth cost function and the same computed by FD (both forward and central) function of the FD step size ($\epsilon$).}
+        % \includegraphics[trim=20mm 0mm 40mm 25mm,clip,height=.75\textheight]{images/bidis/grad-13var.pdf}
+        \includegraphics[width=\textwidth, height=.75\textheight, keepaspectratio]{images/bidis/valid_grad_po.png}
+        \caption*{Error between the exact gradient of the stealth cost function and the gradient computed by forward ({\color{blue} in blue}) and centered ({\color{red} in red}) finite difference function of the FD step size ($\epsilon$).}
         \label{fig:formag-po}
     \end{figure}
 \end{frame}
