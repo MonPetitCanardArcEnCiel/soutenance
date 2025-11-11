@@ -24,18 +24,28 @@
 \end{frame}
 \begin{frame}
     \frametitle{The Physical Optics}
-    \begin{block}{hypothesis}
+    \begin{block}{Hypothesis}
         The frequency is high enough that the wavelength is small compared to the characteristic dimensions of the object.
     \end{block}
     % \pause
     The Physical Optics approximation, the current distribution $\J$ induced by a plane wave $\E\inc$ propagating along the direction $\uu_i$ is given by\footnote<2->{Chatzigeorgiadis, F.~, 2004, \textit{Development of Code for a Physical Optics RADAR Cross Section Prediction and Analysis Application}.} :
-    \begin{equation}
-        \J(y) = \left\{\begin{array}{cr}
-            \left(\dfrac2{Z_0}\mathbf n\times\mathbf \uu_i\times\E\inc\right)e^{jk\uu_i\cdot y}&\text{in the illumated zone,}\\
-            \mathbf 0&\text{in the shadow zone,}
-        \end{array}\right.
-    \end{equation}
-    % \onslide<3->
+    \begin{columns}
+        \begin{column}{0.75\textwidth}
+            \begin{equation}
+                \J(y) = \left\{\begin{array}{cr}
+                    \left(\dfrac2{Z_0}\mathbf n\times\mathbf \uu_i\times\E\inc\right)e^{jk\uu_i\cdot y}&\text{in the illumated zone,}\\
+                    \mathbf 0&\text{in the shadow zone,}
+                \end{array}\right.
+            \end{equation}
+        \end{column}
+        \begin{column}{0.25\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth]{images/bidis/sketch_shadowzone.png}
+                % \caption*{Illustration of the illuminated and shadow zones.}
+            \end{figure}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -213,13 +223,13 @@
             \end{itemize}
         \end{column}
 
-        \begin{column}<6->{.5\textwidth}
+        \begin{column}<5->{.5\textwidth}
             \begin{center}Aerodynamic criterion\end{center}
                 \begin{equation*}
                     F_a = \frac{C_D}{{C_D}^{ref}}.
                     \label{eq:Fa}
                 \end{equation*}
-                \onslide<7->
+                \onslide<6->
                 \begin{center}Aerodynamic constraints\end{center}
             \begin{itemize}[label=$\bullet$]
                 \item \sref{} constant
