@@ -207,19 +207,10 @@
                 \label{eq:sigma-tilde}
             \end{equation*}
             \onslide<4->
-            \begin{equation*}
-                \delta_s(x) = \frac{x-s}{1+e^{-\tau(x-s)}},
-                \label{eq:delta}
-            \end{equation*}
-            \onslide<5->
-            \small
-            \hyperlink{fra:gamma}{
-             \begin{equation*}
-                \Gamma_d(\theta) = 1-\frac12\sum_{i=0}^{4}\frac{6-i}{10}\exp\left({-\left(\frac{\theta-d}{10^i\tau}\right)^2}\right)
-                \label{eq:gamma-bidis}
-            \end{equation*}
-            }
-            \normalsize
+            \begin{itemize}[label=$\bullet$]
+                \item $\delta_s$ : threshold function on RCS, to cut oscillations in low RCS zones.
+                \item \hyperlink<4->{fra:gamma}{$\Gamma_d$} : directivity function, to focus on critical directions.
+            \end{itemize}
         \end{column}
 
         \begin{column}<6->{.5\textwidth}
