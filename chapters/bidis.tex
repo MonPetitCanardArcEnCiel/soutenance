@@ -139,7 +139,41 @@
 
 
 \begin{frame}
-    \frametitle{Comparison to finite differences}
+    \frametitle{Gradient validation}
+    \only<1>{
+    Consider $f$, a real-valued function, at least 3 times differentiable and $f'$ its derivative. Let $h>0$. Then $\forall x$ :
+    \begin{align*}
+        \frac{f(x+h)-f(x)}{h} = f'(x) +  o(h)\quad\text{as }h\to0,\\
+        \frac{f(x+h)-f(x-h)}{2h} = f'(x) +  o(h^2)\quad\text{as }h\to0.
+    \end{align*}
+    }
+    \onslide<2->
+    {
+    \begin{figure}
+        \centering
+        \captionsetup{justification=centering}
+        \begin{subfigure}
+            {0.49\linewidth}
+            \includegraphics[width=\textwidth, height=.75\textheight, keepaspectratio]{images/bidis/valid_grad_ex2.png}
+            % \caption*{Finite differences}
+        \end{subfigure}
+        \begin{subfigure}
+            {0.49\linewidth}
+            \includegraphics[width=\textwidth, height=.75\textheight, keepaspectratio]{images/bidis/valid_grad_ex.png}
+            % \caption*{Finite differences}
+        \end{subfigure}
+        \caption*{Exemple of error between the exact gradient and the finite differences (Rosenbrock function)}
+    \end{figure}
+    }
+
+    \begin{itemize}[label=\ding{227}]
+        \item The error between FD and the exact gradient should decrease until a critical $\epsilon$, where numerical errors become predominant.
+        \item The slope of the error log should be 1 for forward FD and 2 for centered FD (near the critical $\epsilon$).
+    \end{itemize}
+
+\end{frame}
+\begin{frame}
+    \frametitle{Gradient validation -- Comparison to finite differences}
     \captionsetup{justification=centering}
     \begin{figure}[htb]
         \centering

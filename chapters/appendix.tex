@@ -47,22 +47,6 @@
     \hyperlink{fra:discrete-physical-optics}{\beamerbutton{Back}}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Gradient validation}
-    Let $f$ be a real-valued function, at least 3 times differentiable, $f'$ its derivative and $\Delta_\epsilon f$ and $\delta_\epsilon f$ the approximations of its derivative by FD with a respectively forward and centered scheme with a step size $\epsilon$.
-    \onslide<2->
-    \begin{align*}
-        \Delta_\epsilon f - f' = o(\epsilon) &\quad\text{as } \epsilon\to0,\\
-        \delta_\epsilon f - f' = o\left(\epsilon^2\right) &\quad\text{as } \epsilon\to0.
-        \label{eq:fd}
-    \end{align*}
-
-    \begin{itemize}[label=\ding{227}]
-        \item<3-> The error between FD and the exact gradient should decrease until a critical $\epsilon$, where numerical errors become predominant.
-        \item<4-> The slope of the error log should be 1 for forward FD and 2 for centered FD (near the critical $\epsilon$).
-    \end{itemize}
-
-\end{frame}
 
 
 
