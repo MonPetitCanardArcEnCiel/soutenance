@@ -114,18 +114,18 @@
 
 \begin{frame}
     \frametitle{Computation a cannonical case - RCS of a sphere}
-
+    Validated with less than $5\%$ of error.
     \begin{figure}[htb]
 		\centering
 		\captionsetup[subfigure]{justification=centering}
 		\begin{subfigure}[c]{0.49\textwidth}
-			\includegraphics[width=1.4\textwidth,center]{images/bidis/RCS-sphere-bearing.pdf}
+			\includegraphics[trim=0 0 0 2.5cm, clip, width=1.4\textwidth, height=.7\textheight,center, keepaspectratio]{images/bidis/RCS-sphere-bearing.pdf}
 			\caption*{RCS funtion of the bearing angle.\newline$f = 5\unit{\giga\hertz}$}
 			\label{fig:RCS-sphere-bearing}
 		\end{subfigure}
 		\begin{subfigure}[c]{0.49\textwidth}
 			\centering
-			\includegraphics[width=1.4\textwidth,center]{images/bidis/RCS-sphere-frq.pdf}
+			\includegraphics[trim=0 0 0 2.5cm, clip,width=1.4\textwidth,height=.7\textheight,center, keepaspectratio]{images/bidis/RCS-sphere-frq.pdf}
 			\caption*{Dimensionless RCS function of the radius-to-wavelength ratio.}
 			\label{fig:RCS-sphere-freq}
 		\end{subfigure}
@@ -136,7 +136,7 @@
 
 \begin{frame}
     \frametitle{Comparison to BEM}
-
+    \captionsetup{justification=centering}
     \begin{figure}[htb]
 		\centering
 		\includegraphics[width=.75\textwidth]{images/bidis/comp_BEM_PO.png}
@@ -184,11 +184,12 @@
 \end{frame}
 \begin{frame}
     \frametitle{Gradient validation -- Comparison to finite differences}
+    The gradient is validated.
     \captionsetup{justification=centering}
     \begin{figure}[htb]
         \centering
         % \includegraphics[trim=20mm 0mm 40mm 25mm,clip,height=.75\textheight]{images/bidis/grad-13var.pdf}
-        \includegraphics[width=\textwidth, height=.75\textheight, keepaspectratio]{images/bidis/valid_grad_po.png}
+        \includegraphics[width=\textwidth, height=.7\textheight, keepaspectratio]{images/bidis/valid_grad_po.png}
         \caption*{Error between the exact gradient of the stealth cost function and the gradient computed by forward ({\color{blue} in blue}) and centered ({\color{red} in red}) finite difference function of the FD step size ($\epsilon$).}
         \label{fig:formag-po}
     \end{figure}
