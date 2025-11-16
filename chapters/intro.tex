@@ -20,42 +20,24 @@
 
 \subsection*{Context and objectives}
 \begin{frame}[t]
-    \frametitle{Introduction}
+    \frametitle{Motivations}
     \begin{itemize}[label=\ding{227}]
         \item<1-> Modern fighter aircraft need aerodynamic performance and low observability.
         \item<2-> These two aspects are generally antagonistic.
-        \item<5-> This thesis proposes two gradient-based shape optimization frameworks to efficiently improve both aspects simultaneously in an industrial process.
-        \begin{itemize}[label=$\bullet$]
-            \item<6-> A bidisciplinary gradient-based framework coupling aerodynamics and electomagnetism.
-            \only<1-9>{
-            \begin{itemize}[label=\ding{229}]
-                \item<7-> RANS solver for the aerodynamics.
-                \item<7-> Physical optics (PO), a low fidelity solver for the radar scattering.
-                \item<7-> We showcase this framework by identifying a Pareto front for aerodynamic performance and radar cross section (RCS) reduction on simplified aircraft configuration.
-            \end{itemize}
-            }
-            \item<8-> A high fidelity optimization framework for radar scattering.
-            \only<1-9>{
-            \begin{itemize}[label=\ding{229}]
-                \item<9-> Boundary element method (BEM) solver for the radar scattering.
-                \item<9-> An adjoint formulation to the BEM solver to compute the gradient of the RCS.
-                \item<9-> We showcase this framework by minimizing the RCS of a generic fighter aircraft at high frequencies.
-            \end{itemize}
-            }
-        \end{itemize}
     \end{itemize}
-
-    \only<3-4>{
-    \begin{tikzpicture}[remember picture,overlay]
-        \setlength{\mypicwidth}{5.5cm}
-        \node (center) at (current page.center) {};
-        \node<3-4> (image1) [left of=center, xshift=-2cm] {\includegraphics[width=\mypicwidth]{chapters/images/intro/Lockheed_SR-71_Blackbird.jpg}};
-        \node<3-4> at (image1.south) [yshift=-.3cm, text width=1.2\mypicwidth, align=center] {\textit{An aircraft optimized for aerodynamic performance (SR-71)}};
-        \node<4> (image2) [right of=center, xshift=2cm] {\includegraphics[width=\mypicwidth]{chapters/images/intro/F-117_Nighthawk_Front.jpg}};
-        \node<4> at (image2.south) [yshift=-.3cm, text width=1.2\mypicwidth, align=center] {\textit{An aircraft optimized for low observability (F-117)}};
-    \end{tikzpicture}
-    }
-
+    \onslide<3->
+    \begin{figure}
+        \captionsetup{justification=centering}
+        \centering
+        \begin{subfigure}{0.49\textwidth}
+            \includegraphics[width=\textwidth]{chapters/images/intro/Lockheed_SR-71_Blackbird.jpg}
+            \caption*{An aircraft designed with more emphasis on aerodynamic performance (SR-71)}
+        \end{subfigure}
+        \begin{subfigure}{0.49\textwidth}
+            \includegraphics[width=\textwidth]{chapters/images/intro/F-117_Nighthawk_Front.jpg}
+            \caption*{An aircraft designed with emphasis on low observability (F-117)}
+        \end{subfigure}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -64,6 +46,108 @@
         \centering
         \subimport{resources/intro/}{ex_pareto.tex}
     \end{figure}
-
 \end{frame}
+
+\begin{frame}
+    \frametitle{The industrial process}
+    \begin{table}
+        \centering
+        \resizebox{\textwidth}{!}{
+        \begin{tabular}{m{.25\textwidth}m{.3\textwidth}m{.3\textwidth}m{.3\textwidth}}
+            Conceptual design&Identification of impact of different design concepts, technologies\dots&Simple geometries&Quick iterations, at the cost of accuracy
+            \\
+            \onslide<2->\centering$\Downarrow\Uparrow$&&&
+            % \\
+            \\
+            Preliminary design&Exploration of a limited number of concepts&More detailed geometry, still simplified&Need more accuracy
+            \\
+            \onslide<3->\centering$\Downarrow$&&&
+            \\
+            Detailed design&Very detailed modelling of a chosen design.\newline Experiments.&Digital mock-up&Very high accuracy needed. The simulations are very costly.
+        \end{tabular}
+        }
+    \end{table}
+    \only<4->{
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[color=red, line width=3pt] ($ (current page.center) + (0.,-0.3) $) circle [x radius=.5\linewidth, y radius=4ex];
+    \end{tikzpicture}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{The methods in CFD}
+    \vspace{-2ex}
+    \begin{table}
+        \renewcommand{\arraystretch}{1.2}
+        \centering
+        \small
+        \resizebox{\textwidth}{!}{
+            \begin{tabular}{m{.1\textwidth}m{.2\textwidth}m{.7\textwidth}}
+                Euler&&Inviscid equations. Much cheaper than Navier-Stokes, but inaccurate, especially in turbulent flows.\\
+                \pause
+                RANS&Reynolds-Averaged Navier Stokes&Navier-Stokes equation are time-averaged before resolution. Subgrid models are used to model turbulence. Cheapest method for Navier-Stokes equations.\\
+                \pause
+                uRANS&unsteady RANS&Modified RANS method with a phase average instead of a time average. Allow for computation of slow transitory or oscillating phenomenon, but more expensive than RANS.\\
+                \pause
+                DES&Detached Eddy Simulation&Modified RANS method that switches to LES formulation in zones where the grid is fine enough (with respect the turbulence scale). More accurate than RANS, but necessitate a coarser grid than LES (cheaper).\\
+                \pause
+                LES&Large Eddy Simulation&Solve low-passed filtered NS equations that ignore smallest scales of turbulence, that are modeled. Much more accurate, especially for complex flows, but very expensive.\\
+                \pause
+                DNS&Direct Numerical Simulation&Solve the NS equations without any modeling. Prohibitively expensive outside of some simple academic problems.\\
+                \pause
+                LBM&Lattice-Boltzman Method&Solve a discrete Boltzmann equation instead of NS. Good for flows width different scales, and easily parallelisable. Inefficient for compressible flows. Not widely used for industrial aeronautical applciations.
+            \end{tabular}
+        }
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The methods in CEM}
+    \begin{table}
+        \renewcommand{\arraystretch}{1.5}
+        \centering
+        \small
+        \resizebox{\textwidth}{!}{
+            \begin{tabular}{m{.25\textwidth}m{.75\textwidth}}
+                Geometric Optics&Ray tracing. Completly ignores any wave behavior. Not differentiable.Very cheap.\\
+                Physical Optics&High frequency approximation. Intermediate between GO and full waves methods. Can be extended to take into account diffraction. Cheap.Widely use for industrial scattering problems.\\
+                Boundary Element Methods&Full wave method. Use a Green formula to transform a PDE problem in a volume into a variational problem on its boundary. Very efficient for computing unbounded scattering problems in a homogeneous domain. Expensive, but acceleration methods exist. Widely used for industrial scattering problems or antenna computations.\\
+                Finite Differences Time Domain&Solve the Maxwell equations using finite differences. Very simple to implement. Unefficient for unbounded problems in a homogeneous domain. Expensive.\\
+                Finite Element Method&Solve de Maxwell equations with a finite element method. More efficient for complex or highly heterogeneous domains, but inefficient for unbounded domains.\\
+            \end{tabular}
+        }
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Optimization}
+    
+    \begin{columns}
+        \column<1->{.5\textwidth}
+            \textbf{Gradient-less algorithms}
+            \begin{itemize}[label=\ding{227}]
+                \item Require a lot of function evaluations
+                \item Computation cost rises quickly with number of parameters.
+                \item No gradient
+                \item Some algorithms are global
+            \end{itemize}
+        \column<2->{.5\textwidth}
+            \textbf{Gradient-based algorithms}
+            \begin{itemize}[label=\ding{227}]
+                \item Require less function evaluations
+                \item Computation cost less dependant on number of parameters.
+                \item Need a way to compute the gradient
+                \item Local
+            \end{itemize}
+    \end{columns}
+    \only<3->{
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[color=red, line width=3pt] ($ (current page.center) + (3.,0.) $) circle [x radius=.3\linewidth, y radius=.2\linewidth];
+    \end{tikzpicture}
+    }
+    \onslide<4->
+    Two algorithms are widely used : L-BFGS-B for unconstrained problems and SLSQP for constrained problems.
+\end{frame}
+
+
 \end{document}
