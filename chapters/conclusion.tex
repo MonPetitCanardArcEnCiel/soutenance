@@ -45,7 +45,7 @@
         \only<3>{
         \begin{itemize}[label=$\bullet$]
             % \item The use of a CAD solver is relevant for an industrial framework.
-            \item I presented and validated a PO+PTD solver for the RCS computation.
+            \item I implemented and validated a PO+PTD solver for the RCS computation.
             \item The PO+PTD solver is relevant for low fidelity RCS optimization at high frequencies.
             \item The studies showcased show that the framework is able explore efficiently the parameter space and to identify relevant trade-offs between aerodynamic performance and RCS reduction.
         \end{itemize}
@@ -53,7 +53,7 @@
         \item<2-> A high fidelity gradient based optimization framework relying on an adjoint formulation of a high fidelity BEM solver.
         \only<4>{
         \begin{itemize}[label=$\bullet$]
-            \item I presented an adjoint formulation to the BEM solver to compute the gradient of the RCS.
+            \item I presented and implemented an adjoint formulation to the BEM solver to compute the gradient of the RCS.
             \item The gradient is not accurate because of an omitted term in the adjoint due to limited time to implement it.
             \item The studies showcased show that the framework is able to reduce significantly the RCS of a generic fighter aircraft at high frequencies in a time frame consistent with industrial constraints.
             \item The comparison to finite differences and a lower fidelity solver show that the ommitted term in the gradient alone does not explain the inaccuracy of the solution.
@@ -61,14 +61,26 @@
         \end{itemize}
         }
     \end{itemize}
+\end{frame}
 
+\subsection{Contributions}
+\begin{frame}
+    \frametitle{Summary of my contributions}
+    \begin{itemize}[leftmargin=5mm,label=$\rightarrow$]
+        \item I implemented and differenciated the PO+PTD solver from scratch
+        \item The differenciated aerodynamic solver already existed
+        \item The CAD modeler already existed
+        \item The BEM solver already existed
+        \item I differenciated the BEM solver
+        \item I implemented the BEM adjoint formulation
+    \end{itemize}
 \end{frame}
 
 \subsection{Perspectives}
 \begin{frame}
     \frametitle{Perspectives}
 
-    \begin{itemize}[label=$\bullet$]
+    \begin{itemize}[leftmargin=5mm,label=$\bullet$]
         \item Complete the adjoint formulation to the BEM solver to have an accurate gradient of the RCS should be the first priority.
         \item Optimize and industrialize the BEM adjoint solver.
         \item Use the high fidelity BEM framework in a bidisciplinary optimization framework coupling aerodynamics and electromagnetism.
