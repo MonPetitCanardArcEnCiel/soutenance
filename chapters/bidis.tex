@@ -242,16 +242,17 @@
     
 \end{frame}
 
-% \begin{frame}
-%     \frametitle{The process}
+\begin{frame}
+    \frametitle{The process}
 
-%     \begin{figure}
-%         \centering
-%         \resizebox{\textwidth}{!}{\import{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}
-%         \caption*{The aero-stealth optimization process.}
-%         \label{fig:optim-process}
-%     \end{figure}
-% \end{frame}
+    \begin{figure}
+        \centering
+        % \resizebox{\textwidth}{!}{\import{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}
+        \resizebox{!}{.8\textheight}{\subimport{resources/bidis/}{graph-optim.tex}}
+        \caption*{The aero-stealth optimization process.}
+        \label{fig:optim-process}
+    \end{figure}
+\end{frame}
 
 \subsection{Results}
 
@@ -261,7 +262,9 @@
     
     \begin{figure}
         \centering
+        % \resizebox{!}{.5\textheight}{
         \subimport{resources/bidis/}{pareto-plot.tex}
+        % }
         \caption*{Pareto front of the aero-stealth optimization.}
         \label{fig:pareto-front}
     \end{figure}
@@ -270,18 +273,18 @@
 
 \begin{frame}
     \frametitle{Optimization histories}
-    
+    The optimization converged and the constraints are satisfied.
     \begin{figure}[htp]
         \captionsetup[subfigure]{justification=centering}
         \captionsetup{justification=centering}
         \centering
         \begin{subfigure}{0.49\linewidth}
-            \includegraphics[width=1.\textwidth,center]{images/bidis/Histor_100.pdf}
+            \includegraphics[width=1.\textwidth, height=.7\textheight, keepaspectratio,center]{images/bidis/Histor_100.pdf}
             \caption*{Aerodynamic optimization history}
             \label{bidis-fig:optim-hist-aero}			
         \end{subfigure}
         \begin{subfigure}{0.49\linewidth}
-            \includegraphics[width=1.\textwidth,center]{images/bidis/Histor_000.pdf}
+            \includegraphics[width=1.\textwidth, height=.7\textheight, keepaspectratio,center]{images/bidis/Histor_000.pdf}
             \caption*{Stealth optimization history}
             \label{bidis-fig:optim-hist-RCS}			
         \end{subfigure}
@@ -303,7 +306,7 @@
 
 \begin{frame}
     \frametitle{The stealth optimization - Shape}
-    
+    The leading and trailing edge have a $30^\circ$ sweep angle, which is the expected outcome.
     \begin{figure}[htb]
         \centering
         \includegraphics[trim=30mm 55mm 40mm 70mm,clip,width=\textwidth,center]{images/bidis/Optim_PO/shape.pdf}
