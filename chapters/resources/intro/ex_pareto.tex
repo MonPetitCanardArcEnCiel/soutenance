@@ -1,26 +1,30 @@
 % !TeX root = ../../../thoulon_phd_defense_2025.tex
-\documentclass{standalone}
-\usepackage{tikz}
+\documentclass[class=beamer,crop=true,tikz=true]{standalone}
+% \usepackage{tikz}
 \usepackage{pgfplots}
-
-
+\usetikzlibrary{backgrounds,external,shapes.geometric, arrows,calc,positioning,decorations.pathmorphing, scopes}
 % \usetikzlibrary{patterns}
-\pgfplotsset{width=0.75\linetwidth ,compat=1.18}
+\pgfplotsset{compat=1.18, width=10cm}
 
 \begin{document}
-\begin{tikzpicture}[scale=0.9]
+\begin{tikzpicture}[
+    % scale=.5,
+    % every node/.style={transform shape}
+    ]
     \begin{axis}[
         axis lines = left,
         xlabel=Aerodynamic performance,
+        xlabel style={node={transform shape}},
         ylabel=Radar visibility,
         xmin=-1.05, ymin=-0.05,
         xtick style={draw=none},
-        xtick={-0.9, -0.1},
+        xtick={-0.85, -0.1},
         xticklabels={More performant, Less performant},
         ytick style={draw=none},
         ytick={0.1, 0.9},
         yticklabels={Less visible, More visible},
         y tick label style={rotate=90},
+        compat=newest,
     ]
         \addplot[
             domain=-1:0,
@@ -28,8 +32,8 @@
             color=blue
         ]{-1*sqrt(1 - x*x)+1};
         \addlegendentry{Pareto front}
-        \node[below right, anchor=north west] at (-0.97,0.9) {\includegraphics[scale=0.01]{images/intro/Lockheed_SR-71_Blackbird_detoure.png}};
-        \node[above left, anchor=south east] at (-0.1,0.05) {\includegraphics[scale=0.01]{images/intro/F-117_Nighthawk_Front_detoure.png}};
+        \node[below right, anchor=north west] at (-1.,1) {\includegraphics[scale=0.01]{images/intro/Lockheed_SR-71_Blackbird_detoure.png}};
+        \node[above left, anchor=south east] at (-0.2,0.07) {\includegraphics[scale=0.01]{images/intro/F-117_Nighthawk_Front_detoure.png}};
     \end{axis}
 \end{tikzpicture}
 \end{document}
