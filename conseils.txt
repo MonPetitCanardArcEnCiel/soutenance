@@ -1,0 +1,67 @@
+
+
+Slide 3 : discours un peu trop tranché, les 2 sont designés pour l’aéro et la SER, mais la pondération des 2 n’était pas la même
+
+-        Slide 3 Un peu rapide sur la solution, c’st plus l’introduction ce sont les contributions et l’approche => Faire un autre slide
+
+-        le gradient based, pourquoi l’optim, pourquoi le gradient ?
+
+ 
+
+Intro : quelle est la problématique scientifique ? Quel est l’état de l’art et le verrou restant que tu vas lever ? (important pour le jury)
+
+A mon avis il faut pas mal revoir l’intro
+
+Ca pose la question de réorganiser un peu dans le plan classique : problématique, hypothèses, méthodes, résultats, discussion
+
+ 
+
+Slide 8 : commenter l’hypothèse « perfectly conducting » => L’objectif n’est il pas justment que ça ne soit pas très conducteur / coating ?
+
+Slide 12 : commenter le choix de 12Ghz, vis-à-vis des technos radar
+
+Aspect multi fréquence ? Optim multi points en fréquence ? Quelles sont les bandes de fréqunces des radar actuelles ? (on lit entre 0.1 et 40 GHz sur internet) Tu le menstionnes après mais on ne voit pas bien arriver la gestion du multi fréquence au début (calcul de la SER)
+
+ 
+
+Slide 12 : Les artefacts a 30deg de bearing sont ils physiques ?
+
+ 
+
+Slide 17 : discuter l’hypothèse vis-à-vis de la physique réelle
+
+Slide 19 : soucis de figure
+
+Slide 20 : qu’est ce que tapenade, qu’est ce l’autodiff ? pourquoi source code transformation  (lié à Fortran j’imagine)?
+
+Slide 21 : quid de la validation expé ?
+
+ 
+
+Slide 22 : simplifier la courbe montrer juste les courbes continues je pense err = f (eps) pour les 2 schéma. C’est pas assez lisible
+
+Slide 23 : pourquoi toutes ces équations ? quel est le message principal  ? Peut etre seulement garder l’équation pondérée de l’objectif, sigma et L/D , retirer delta et en dessous. Peut être ajouter quelques bullet de texte le décrivant
+
+Slide 24 : mentionner qu’on utilise la pondération d’objectifs comme un algo multi objectif parmis d’autres, qu’il permet de paralléliser et d’utiliser l’optim par gradient. Il y a aussi un découplage physique qui permet de calculer les 2 objctifs séparément (pas de simu couplée EM / RANS)
+
+Slide 24 : on se dit qu’il va y avoir un problème de qualités de vol aussi quand on change la flèche, a mentionner aussi en intro je pense
+
+Slide 31 : on voit que le choc se détache du bord d’attaque, ça serait intéressant d’analyser un peu plus physiquement ce qui se passe
+
+Slide 42 : essayer d’expliquer ce qui se passe physiquement. Expliquer les courbes
+
+ 
+
+Lister les contributions clairement : ce que tu as utilisé qui existait (l optim aéro adjointe) ce que tu as développé (tout le code EM ?) et les conclusions en terme de design (important pour le jury)
+
+ 
+
+Slide sur les papiers réalisés, soumis, acceptés, les conf
+
+ 
+
+Conclusion : tu insistes trop sur ce qui ne marche pas, insiste sur ce que tu as appris/découvert
+
+ 
+
+Rq global : il faut répéter pas mal de fois (au moins 4 ou 5 fois complètes avec les slides finaux) pour que le discours soit totalement fluide et ne pas chercher ses mots, c’est normal, ça va venir au fur et à mesure quand la date va se rapprocher
