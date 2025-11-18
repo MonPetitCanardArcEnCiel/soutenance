@@ -9,11 +9,13 @@
     \begin{itemize}[label=\ding{227}]
         \item Motivations (comparaison)%
         \item Trade-offs (Front de Pareto)%
-        \item Industrial design process
-        \item Optimization gradient-based%
+        \item Mission Specifications%
+        \item Industrial design process%
         \item Fidelity%
         \item Stealth design strategies%
         \item Aerodynamic design strategies% 
+        \item Optimization gradient-based%
+        \item State of the art%
     \end{itemize}
     Industrial constraints and stage of development $\rightarrow$ Fidelity needed $\rightarrow$ Model used $\rightarrow$ Optimization algorithm
 \end{frame}
@@ -42,10 +44,129 @@
 
 \begin{frame}
     \frametitle{Trade-offs}
+    We need a way to efficiently explore tradeoffs.
     \begin{figure}
         \centering
-        \subimport{resources/intro/}{ex_pareto.tex}
+        \resizebox{!}{.8\textheight}{
+            \subimport{resources/intro/}{ex_pareto.tex}
+        }
     \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Mission Specifications -- Low Obervability}
+    \begin{table}[!htb]
+    \adjustbox{max width=\textwidth}{
+        \centering
+        \begin{tabular}{c|c|c|m{.75\textwidth}}
+            Name & Frequencies & Wavelength & Use  \\
+            \hline
+            \hline
+            HF \& VHF & < 300 MHz  & > 1m    & Very long range,  transhorizon surveillance, telecom,\newline negligible attenuation  \\
+            \hline
+            UHF & 300 - 1 000 MHz & 0.3 - 1 m    & Very long range detection, ground penetration, satelite tracking \\
+            \hline
+            L   & 1 - 2 GHz       & 15 - 30 cm   & Long range detection ($ < 400\unit{\kilo\meter}$ ), air surveillance, meteo,\newline weak attenuation             \tikzmark{start}\\
+            \hline
+            S   & 2 - 4 GHz       & 7.5 - 15 cm  & Local radars, midrange detection ($ < 100 \unit{\kilo\meter}$), meteo,\newline perceptible attenuation                      \\
+            \hline
+            C & 4 - 8 GHz & 3.5 - 7.5 cm & Meteo, targetting systems, high resolution air surveillance
+            \\
+            \hline
+            X   & 8 - 12 GHz      & 2.5 - 3.5 cm & Missile homing system, ground surveillance,  mapping, pollution measuring, high attenuation
+        \end{tabular}
+    }
+    \end{table}
+    \only<2->{
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[color=red, line width=2pt, yshift=5ex] let 
+            \p1 = (pic cs:start),
+            \p2 = (current page.center)
+        in 
+            ($(\x2, \y1) + (0.0, -.5ex)$) circle[x radius=.55\textwidth,y radius=2\baselineskip];
+    \end{tikzpicture}
+    }
+
+    \onslide<2->
+    \begin{itemize}[label=$\bullet$]
+        \item Target frequency : 2 GHz.
+        \item Considered high frequencies $\implies$ geometry details have a great impact on RCS
+        \item Relevant for long range detection
+        \item Atmospheric attenuation not considered (worst case scenario)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mission Specifications -- Low observability II}
+
+    \begin{columns}
+        \begin{column}<1->{.5\textwidth}
+            \begin{figure}
+                \centering
+                \captionsetup{justification=centering}
+                \includegraphics[width=\textwidth,height=.5\textheight, keepaspectratio]{chapters/images/intro/IllustrationSER.png}
+                \caption*{Illustration of the RCS of multirole fighter (F-35) (for a depression angle of $-20^\circ$).}
+            \end{figure}
+            \begin{itemize}
+                \item Some directions are more critical than others
+            \end{itemize}
+        \end{column}
+        \begin{column}<2->{.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.5\textheight, keepaspectratio]{chapters/images/intro/B-2_radar_reflection.jpg}
+                \caption*{Illustration of the concept of peak directions.}
+            \end{figure}
+            \begin{itemize}
+                \item One solution is to focus the RCS in a limited number of non-critical directions.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mission Specifications -- Low observability III}
+    \begin{itemize}[label=\ding{227}]
+        \item<1-> Active stealth (jamming\dots) are out of scope
+        \item<2-> Won't take coating into account (assumed to be Perfectly Electric Conductor)
+        \item<3-> Cavity radiation is important too (air intakes) but out of scope (for now) 
+    \end{itemize}
+    
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mission specification -- Aerodynamics}
+    \begin{columns}
+        \begin{column}{.6\textwidth}
+            \small
+            \begin{itemize}[label=\ding{227}]
+                \item<1-> Optimize cruise performance (reduce operating cost)
+                \item<2-> Only one point (to simplify). Altitude = 40,000 ft
+                \item<3-> Supercruise capability (Mach number = 1.8)
+                \begin{itemize}[label=\ding{229}]
+                    \item<3-> \textbf{Compressible flow}
+                \end{itemize}
+                \item<4-> No maneuvre, landing or take-off
+                \begin{itemize}[label=\ding{229}]
+                    \item<5-> Flow can be considered \textbf{stationary}
+                \end{itemize}
+            \end{itemize}
+        \end{column}
+        \begin{column}{.4\textwidth}
+            \only<1-2>{
+            \begin{figure}
+                \captionsetup{justification=centering,font=footnotesize}
+                \centering
+                \includegraphics[width=\textwidth]{chapters/images/intro/Typical-mission-profile-of-military-aircraft.png}
+                \caption*{Typical mission profile of a military aircraft\footnotemark[1].}
+            \end{figure}}
+        \end{column}
+    \end{columns}
+    \only<1-2>{
+    \footnotetext[1]{Chen, Yujin \& Xu, Jihui \& Kan, Lijuan \& Shi, Jiahui \& Tian, Wenjie. (2021). Equipment Mission Safety Evaluation Method Based on Function-Structure. IEEE Access. PP. 1-1. 10.1109/ACCESS.2021.3078813. }
+    }
 \end{frame}
 
 \begin{frame}
@@ -136,18 +257,37 @@
             \begin{itemize}[label=\ding{227}]
                 \item Require less function evaluations
                 \item Computation cost less dependant on number of parameters.
-                \item Need a way to compute the gradient
+                \item Require an efficient way to compute the gradient
                 \item Local
             \end{itemize}
     \end{columns}
-    \only<3->{
+    \only<3>{
+        \begin{tikzpicture}[remember picture, overlay]
+            \node (pic) at (current page.center) {\includegraphics[width=.5\textwidth,height=.7\textheight, keepaspectratio]{chapters/images/intro/lyu2014.png}};
+            \node[yshift=-.5\baselineskip] at (pic.south) {\textit{Evolution of the number of function iteration for various algorithm with the dimension\footnote{LYU, Zhoujie, XU, Zelu, et MARTINS, J. R. R. A. Benchmarking optimization algorithms for wing aerodynamic design optimization. In : Proceedings of the 8th International Conference on Computational Fluid Dynamics, Chengdu, Sichuan, China. Citeseer, 2014. p. 585.}}};
+        \end{tikzpicture}
+    }
+    \only<4->{
     \begin{tikzpicture}[remember picture, overlay]
-        \draw[color=red, line width=3pt] ($ (current page.center) + (3.,0.) $) circle [x radius=.3\linewidth, y radius=.2\linewidth];
+        \draw[color=red, line width=3pt] ($ (current page.center) + (3.,2\baselineskip) $) circle [x radius=.3\linewidth, y radius=.2\linewidth];
     \end{tikzpicture}
     }
-    \onslide<4->
+
+
+    \onslide<5->
+
+    \vspace{3\baselineskip}
+
     Two algorithms are widely used : L-BFGS-B for unconstrained problems and SLSQP for constrained problems.
 \end{frame}
+
+\begin{frame}
+    \frametitle{State of the art}
+
+    
+
+\end{frame}
+
 
 
 \end{document}
