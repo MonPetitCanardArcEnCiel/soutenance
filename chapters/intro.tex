@@ -203,23 +203,26 @@
         \centering
         \small
         \resizebox{\textwidth}{!}{
-            \begin{tabular}{m{.1\textwidth}m{.2\textwidth}m{.7\textwidth}}
-                Euler&&Inviscid equations. Much cheaper than Navier-Stokes, but inaccurate, especially in turbulent flows.\\
+            \begin{tabular}{ccccc}
+                Euler&&Inviscid&Unsteady&Very cheap.\\
                 \pause
-                RANS&Reynolds-Averaged Navier Stokes&Navier-Stokes equation are time-averaged before resolution. Subgrid models are used to model turbulence. Cheapest method for Navier-Stokes equations.\\
+                RANS&Reynolds-Averaged Navier Stokes&Viscid&Steady&Cheap\\
                 \pause
-                uRANS&unsteady RANS&Modified RANS method with a phase average instead of a time average. Allow for computation of slow transitory or oscillating phenomenon, but more expensive than RANS.\\
+                uRANS&unsteady RANS&Viscid&Unsteady&Reasonably cheap\\
                 \pause
-                DES&Detached Eddy Simulation&Modified RANS method that switches to LES formulation in zones where the grid is fine enough (with respect the turbulence scale). More accurate than RANS, but necessitate a coarser grid than LES (cheaper).\\
+                DES&Detached Eddy Simulation&Viscid&Unsteady&Expensive\\
                 \pause
-                LES&Large Eddy Simulation&Solve low-passed filtered NS equations that ignore smallest scales of turbulence, that are modeled. Much more accurate, especially for complex flows, but very expensive.\\
+                LES&Large Eddy Simulation&Viscid&Unsteady&Very Expensive\\
                 \pause
-                DNS&Direct Numerical Simulation&Solve the NS equations without any modeling. Prohibitively expensive outside of some simple academic problems.\\
-                \pause
-                LBM&Lattice-Boltzman Method&Solve a discrete Boltzmann equation instead of NS. Good for flows width different scales, and easily parallelisable. Inefficient for compressible flows. Not widely used for industrial aeronautical applciations.
+                DNS&Direct Numerical Simulation&Viscid&Unsteady&Prohibitively expensive.
             \end{tabular}
         }
     \end{table}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{chapters/images/intro/sketch-cfd.png}
+        \caption*{Sketch of the different CFD modelisations.}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
