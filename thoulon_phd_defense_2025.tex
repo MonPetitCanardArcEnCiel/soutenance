@@ -10,7 +10,13 @@
 
 \begin{document}
 
-\frame{\titlepage}
+\frame{
+    \titlepage
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=south west, yshift=2ex] at (current page.south west) {\includegraphics[width=.3\textwidth]{images/ljll_logo_550x310.png}};
+        \node[anchor=south east, yshift=2ex] at (current page.south east) {\includegraphics[width=.3\textwidth]{images/logo-dassault-aviation.jpg}};
+    \end{tikzpicture}
+}
 
 \input{preamble/jury.tex}
 \import{chapters}{intro}

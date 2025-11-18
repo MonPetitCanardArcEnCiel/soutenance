@@ -5,7 +5,8 @@
     \renewcommand{\arraystretch}{0.7}
     % \begin{table}
     \small
-    \begin{tabular}{lr}
+    \resizebox{\textwidth}{!}{
+    \begin{tabularx}{\textwidth}{lr}
         \\
         \textbf{Mr Kyriakos Giannakoglou} &Referee\\
         Professor, National Technical University of Athens&\\
@@ -17,7 +18,7 @@
         Professor, LJLL, Sorbonne Université&\\
         \\
         \textbf{Mr Joël Brézillon} &Examiner\\
-        Doctor, Airbus &\\
+        MDAO Expert, Airbus &\\
         \\
         \textbf{Mr Quentin Carayol} &Examiner\\
         Doctor, DASSAULT-AVIATION &\\
@@ -29,7 +30,17 @@
         Professor, LJLL, Sorbonne Université&\\
         % Examinateur & Prénom NOM & Titre, Institution \\
         % Examinateur & Prénom NOM & Titre, Institution \\
-    \end{tabular}
+    \end{tabularx}
+    }
     % \end{table}
     \renewcommand{\arraystretch}{1}
+    
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=south west, yshift=2ex] at (current page.south west) {
+            % \transparent{40}{
+                \includegraphics[width=.1\textwidth]{images/ljll_logo_550x310.png}
+            % }
+            };
+        \node[anchor=south east, yshift=2ex] at (current page.south east) {\includegraphics[width=.1\textwidth]{images/logo-dassault-aviation.jpg}};
+    \end{tikzpicture}
 \end{frame}
