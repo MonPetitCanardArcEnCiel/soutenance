@@ -105,8 +105,8 @@
             \begin{figure}
                 \centering
                 \captionsetup{justification=centering}
-                \includegraphics[width=\textwidth,height=.5\textheight, keepaspectratio]{chapters/images/intro/IllustrationSER.png}
-                \caption*{Illustration of the RCS of multirole fighter (F-35) (for a depression angle of $-20^\circ$).}
+                \includegraphics[width=\textwidth,height=.45\textheight, keepaspectratio]{chapters/images/intro/IllustrationSER.png}
+                \caption*{Illustration of the RCS of multirole fighter (F-35) (for a depression angle of $-20^\circ$)\footnotemark[1].}
             \end{figure}
             \begin{itemize}
                 \item Some directions are more critical than others
@@ -115,14 +115,16 @@
         \begin{column}<2->{.5\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.5\textheight, keepaspectratio]{chapters/images/intro/B-2_radar_reflection.jpg}
-                \caption*{Illustration of the concept of peak directions.}
+                \includegraphics[width=\textwidth,height=.45\textheight, keepaspectratio]{chapters/images/intro/B-2_radar_reflection.jpg}
+                \caption*{Illustration of the concept of peak directions.\footnotemark[2]}
             \end{figure}
             \begin{itemize}
                 \item One solution is to focus the RCS in a limited number of non-critical directions.
             \end{itemize}
         \end{column}
     \end{columns}
+    \footnotetext[1]{\cite{Zikidis2014}}
+    \footnotetext[2]{\cite{poubelle}}
 \end{frame}
 
 \begin{frame}
@@ -165,7 +167,7 @@
         \end{column}
     \end{columns}
     \only<1-2>{
-    \footnotetext[1]{Chen, Yujin \& Xu, Jihui \& Kan, Lijuan \& Shi, Jiahui \& Tian, Wenjie. (2021). Equipment Mission Safety Evaluation Method Based on Function-Structure. IEEE Access. PP. 1-1. 10.1109/ACCESS.2021.3078813. }
+    \footnotetext[1]{\footcite{Chen2021}.}
     }
 \end{frame}
 
@@ -241,13 +243,15 @@
         }
         \onslide<2->
         {
+            % \caption*{Sketch of the different CFD modelisations\footcite{perron2013}.}
             \caption*{Sketch of the different CFD modelisations\footnotemark[1].}
         }
     \end{figure}
     \begin{tikzpicture}[remember picture, overlay]
         \node[anchor=west] (current page.south west) (a1) {
             \footnotesize
-            \footnotemark[1] C.~Perron et al.~ \textit{La turbulence en CFD : Modélisation et Simulation}.};
+            \footnotemark[1] \cite{perron2013}.};
+            % \footnotemark[1] C.~Perron et al.~ \textit{La turbulence en CFD : Modélisation et Simulation}.};
             \draw (a1.north west) -- +(0:.33\linewidth);
     \end{tikzpicture}
     }
@@ -265,20 +269,28 @@
 
 \begin{frame}
     \frametitle{The methods in CEM}
+    \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
     \begin{table}
         \renewcommand{\arraystretch}{1.5}
         \centering
         \small
-        \resizebox{\textwidth}{!}{
-            \begin{tabular}{m{.25\textwidth}m{.75\textwidth}}
-                Geometric Optics&Ray tracing. Completly ignores any wave behavior. Not differentiable.Very cheap.\\
-                Physical Optics&High frequency approximation. Intermediate between GO and full waves methods. Can be extended to take into account diffraction. Cheap.Widely use for industrial scattering problems.\\
-                Boundary Element Methods&Full wave method. Use a Green formula to transform a PDE problem in a volume into a variational problem on its boundary. Very efficient for computing unbounded scattering problems in a homogeneous domain. Expensive, but acceleration methods exist. Widely used for industrial scattering problems or antenna computations.\\
-                Finite Differences Time Domain&Solve the Maxwell equations using finite differences. Very simple to implement. Unefficient for unbounded problems in a homogeneous domain. Expensive.\\
-                Finite Element Method&Solve de Maxwell equations with a finite element method. More efficient for complex or highly heterogeneous domains, but inefficient for unbounded domains.\\
+        % \resizebox{\textwidth}{!}{
+            \begin{tabular}{ll}
+                Geometric Optics\newline (Ray tracing)&High frequency approximation.\\
+                Physical Optics&High frequency approximation.\\
+                Boundary Element Methods&Full wave method\footnotemark[1].\\
+                Finite Differences Time Domain&Full wave method\footnotemark[1].\\
+                Finite Element Method&Full wave method\footnotemark[1].\\
             \end{tabular}
-        }
+        % }
     \end{table}
+    \vfill
+    \begin{itemize}[label=\ding{227}]
+        \item Geometric optics completely ignores wave physics
+        \item Geometric optics is not differentiable
+        \item Boundary Element Method is the full wave method most adapted to scattering problem in homogeneous domain
+    \end{itemize}
+    \footnotetext[1]{Methods that relie on numerically solving the Maxwell equations.}
 \end{frame}
 
 \begin{frame}
@@ -305,7 +317,8 @@
     \only<3>{
         \begin{tikzpicture}[remember picture, overlay]
             \node (pic) at (current page.center) {\includegraphics[width=.5\textwidth,height=.7\textheight, keepaspectratio]{chapters/images/intro/lyu2014.png}};
-            \node[yshift=-.5\baselineskip] at (pic.south) {\textit{Evolution of the number of function iteration for various algorithm with the dimension\footnote{LYU, Zhoujie, XU, Zelu, et MARTINS, J. R. R. A. Benchmarking optimization algorithms for wing aerodynamic design optimization. In : Proceedings of the 8th International Conference on Computational Fluid Dynamics, Chengdu, Sichuan, China. Citeseer, 2014. p. 585.}}};
+            \node[yshift=-.5\baselineskip] at (pic.south) {\textit{Evolution of the number of function iteration for various algorithm with the dimension\footcite{lyu2014}}};
+            % \node[yshift=-.5\baselineskip] at (pic.south) {\textit{Evolution of the number of function iteration for various algorithm with the dimension\footnote{LYU, Zhoujie, XU, Zelu, et MARTINS, J. R. R. A. Benchmarking optimization algorithms for wing aerodynamic design optimization. In : Proceedings of the 8th International Conference on Computational Fluid Dynamics, Chengdu, Sichuan, China. Citeseer, 2014. p. 585.}}};
         \end{tikzpicture}
     }
     \only<4->{
