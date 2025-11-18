@@ -27,7 +27,12 @@
     \begin{block}{Hypothesis}
         The frequency is high enough that the wavelength is small compared to the characteristic dimensions of the object.
     \end{block}
+    \only<2>
+    {
+        At high frequencies ($\sim1\unit{\giga\hertz}$ and more), this hypothesis is reasonable : for $f = 2\unit{\giga\hertz}$, $\lambda = 15\unit{\centi\meter}$ where a fighter aircraft's characteristic lenghts $\sim10\unit{meter}$.
+    }
     % \pause
+    \onslide<3->
     The Physical Optics approximation, the current distribution $\J$ induced by a plane wave $\E\inc$ propagating along the direction $\uu_i$ is given by\footnote<2->{Chatzigeorgiadis, F.~, 2004, \textit{Development of Code for a Physical Optics RADAR Cross Section Prediction and Analysis Application}.} :
     \begin{columns}
         \begin{column}{0.75\textwidth}
@@ -150,14 +155,17 @@
 
 \begin{frame}
     \frametitle{Gradient validation}
-    \only<1>{
+    \only<1-2>{
     Consider $f$, a real-valued function, at least 3 times differentiable and $f'$ its derivative. Let $h>0$. Then $\forall x$ :
     \begin{align*}
-        \frac{f(x+h)-f(x)}{h} = f'(x) +  o(h)\quad\text{as }h\to0,\\
-        \frac{f(x+h)-f(x-h)}{2h} = f'(x) +  o(h^2)\quad\text{as }h\to0.
+        \frac{f(x+h)-f(x)}{h} = f'(x) +  \textcolor<2>{red}{o(h)}\quad\text{as }h\to0,\\
+        \frac{f(x+h)-f(x-h)}{2h} = f'(x) +  \textcolor<2>{red}{o(h^2)}\quad\text{as }h\to0.
     \end{align*}
+    \onslide<2>
+    \vspace{\baselineskip}
+    \textcolor{red}{Truncation error}
     }
-    \onslide<2->
+    \onslide<3->
     {
     \begin{figure}
         \centering
