@@ -205,24 +205,62 @@
         \resizebox{\textwidth}{!}{
             \begin{tabular}{ccccc}
                 Euler&&Inviscid&Unsteady&Very cheap.\\
-                \pause
+                \onslide<2->
                 RANS&Reynolds-Averaged Navier Stokes&Viscid&Steady&Cheap\\
-                \pause
+                \onslide<3->
                 uRANS&unsteady RANS&Viscid&Unsteady&Reasonably cheap\\
-                \pause
+                \onslide<4->
                 DES&Detached Eddy Simulation&Viscid&Unsteady&Expensive\\
-                \pause
+                \onslide<5->
                 LES&Large Eddy Simulation&Viscid&Unsteady&Very Expensive\\
-                \pause
+                \onslide<6->
                 DNS&Direct Numerical Simulation&Viscid&Unsteady&Prohibitively expensive.
             \end{tabular}
         }
     \end{table}
+    \only<2-6>{
     \begin{figure}
         \centering
-        \includegraphics[width=\textwidth]{chapters/images/intro/sketch-cfd.png}
-        \caption*{Sketch of the different CFD modelisations.}
+        \onslide<2->
+        {
+        \begin{subfigure}{.3\textwidth}
+            \includegraphics[width=\textwidth]{chapters/images/intro/sketch-rans.png}
+        \end{subfigure}
+        }
+        \onslide<5->
+        {
+        \begin{subfigure}{.3\textwidth}
+            \includegraphics[width=\textwidth]{chapters/images/intro/sketch-les.png}
+        \end{subfigure}
+        }
+        \onslide<6->
+        {
+        \begin{subfigure}{.3\textwidth}
+            \includegraphics[width=\textwidth]{chapters/images/intro/sketch-dns.png}
+        \end{subfigure}
+        }
+        \onslide<2->
+        {
+            \caption*{Sketch of the different CFD modelisations\footnotemark[1].}
+        }
     \end{figure}
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=west] (current page.south west) (a1) {
+            \footnotesize
+            \footnotemark[1] C.~Perron et al.~ \textit{La turbulence en CFD : Modélisation et Simulation}.};
+            \draw (a1.north west) -- +(0:.33\linewidth);
+    \end{tikzpicture}
+    }
+    \onslide<7->
+    {
+    \begin{minipage}[t][.5\textheight][c]{\textwidth}        
+        \begin{itemize}[label=\ding{227}]
+            \item Flow is considered stationary $\implies$ unsteadiness not required
+            \item Unsteady adjoint is very expensive because of the need to compute backward in time
+        \end{itemize}
+    \end{minipage}
+    % }
+    }
 \end{frame}
 
 \begin{frame}
