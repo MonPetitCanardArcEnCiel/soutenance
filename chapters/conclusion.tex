@@ -14,16 +14,19 @@
     \begin{column}{.8\textwidth}
         \onslide<1->
         Preliminary results for the aero-stealth framework have been presented at CANUM 2022 and EUROGEN 2023.
+
         \vspace{\baselineskip}
         \onslide<2->
         The aero-stealth framework has been described and results presented in a published article in \textit{Fluids} (MDPI) in 2024, which was chosen as cover for that month's issue :
         \begin{itemize}[label=$\bullet$]
-            \item THOULON, Charles, ROGE, Gilbert, et PIRONNEAU, Olivier. \textit{Gradient-based aero-stealth optimization of a simplified aircraft.} \textit{Fluids}, 2024, vol. 9, no 8, p. 174.
+            % \item THOULON, Charles, ROGE, Gilbert, et PIRONNEAU, Olivier. \textit{Gradient-based aero-stealth optimization of a simplified aircraft.} \textit{Fluids}, 2024, vol. 9, no 8, p. 174.
+            \item \fullcite{Thoulon2024}
         \end{itemize}
         \onslide<3->
         The BEM framework has been described and its results presented in a published article in \textit{Eng} (MDPI) in 2025, which was chosen as cover for that month's issue :
         \begin{itemize}[label=$\bullet$]
-            \item THOULON, Charles, ROGE, Gilbert, et PIRONNEAU, Olivier. \textit{A BEM Adjoint-Based Differentiable Shape Optimization of a Stealth Aircraft.} \textit{Eng}, 2025, vol. 6, no 7, p. 147.
+            % \item THOULON, Charles, ROGE, Gilbert, et PIRONNEAU, Olivier. \textit{A BEM Adjoint-Based Differentiable Shape Optimization of a Stealth Aircraft.} \textit{Eng}, 2025, vol. 6, no 7, p. 147.
+            \item \fullcite{Thoulon2025}
         \end{itemize}
     \end{column}
     \begin{column}{.2\textwidth}
@@ -83,6 +86,12 @@
     \begin{itemize}[leftmargin=5mm,label=$\bullet$]
         \item Complete the adjoint formulation to the BEM solver to have an accurate gradient of the RCS should be the first priority.
         \item Optimize and industrialize the BEM adjoint solver.
+        \item Use the BEM framework to perform a cavity optimization (simulate air intake)
+        \item Use the current bidisciplinary framework to perform an optimization for a more realistic mission
+        \begin{itemize}[label=\ding{227}]
+            \item Multifrequency RCS computation
+            \item Multi-point aerodynamic simulation
+        \end{itemize}
         \item Use the high fidelity BEM framework in a bidisciplinary optimization framework coupling aerodynamics and electromagnetism.
         \item Explore multifidelity techniques to couple the low fidelity PO solver and the high fidelity BEM solver in a single optimization framework.
         \item Implement more efficient methods to identify the Pareto front.
