@@ -4,28 +4,28 @@
 % \graphicspath{{\subfix{../chapters/}}}
 \begin{document}
 \section*{Introduction}
-\begin{frame}
-    \frametitle{To remove}
-    \begin{itemize}[label=\ding{227}]
-        \item Motivations (comparaison)%
-        \item Trade-offs (Front de Pareto)%
-        \item Mission Specifications%
-        \item Industrial design process%
-        \item Fidelity%
-        \item Stealth design strategies%
-        \item Aerodynamic design strategies% 
-        \item Optimization gradient-based%
-        \item State of the art%
-    \end{itemize}
-    Industrial constraints and stage of development $\rightarrow$ Fidelity needed $\rightarrow$ Model used $\rightarrow$ Optimization algorithm
-\end{frame}
+% \begin{frame}
+%     \frametitle{To remove}
+%     \begin{itemize}[label=\ding{227}]
+%         \item Motivations (comparaison)%
+%         \item Trade-offs (Front de Pareto)%
+%         \item Mission Specifications%
+%         \item Industrial design process%
+%         \item Fidelity%
+%         \item Stealth design strategies%
+%         \item Aerodynamic design strategies% 
+%         \item Optimization gradient-based%
+%         \item State of the art%
+%     \end{itemize}
+%     Industrial constraints and stage of development $\rightarrow$ Fidelity needed $\rightarrow$ Model used $\rightarrow$ Optimization algorithm
+% \end{frame}
 
-\subsection*{Context and objectives}
+\subsection{Context and objectives}
 \begin{frame}[t]
     \frametitle{Motivations}
     \begin{itemize}[label=\ding{227}]
         \item<1-> Modern fighter aircraft need aerodynamic performance and low observability.
-        \item<2-> These two aspects are generally antagonistic.
+        \item<2-> These two aspects are generally antagonistic\footcite{Aliaga2022}.
     \end{itemize}
     \onslide<3->
     \begin{figure}
@@ -53,9 +53,51 @@
     \end{figure}
 \end{frame}
 
+\subsection{Mission Specifications}
 
 \begin{frame}
-    \frametitle{Mission Specifications -- Low Obervability}
+    \frametitle{Mission Specifications -- Low observability}
+
+    \begin{columns}
+        \begin{column}{.5\textwidth}
+            \begin{figure}
+                \centering
+                \captionsetup{justification=centering}
+                \includegraphics[width=\textwidth,height=.45\textheight, keepaspectratio]{chapters/images/intro/IllustrationSER.png}
+                \caption*{Illustration of the RCS of multirole fighter (F-35) (for a depression angle of $-20^\circ$)\footnotemark[1].}
+            \end{figure}
+            \vspace*{-1.\baselineskip}
+            \begin{itemize}
+                \small
+                \item RCS depends on frequency
+                \item Some directions are more critical than others
+            \end{itemize}
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \only<1>{
+                Radar Cross Section (RCS) is a measure of radar visibility
+            }
+            \only<2->{
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.45\textheight, keepaspectratio]{chapters/images/intro/B-2_radar_reflection.jpg}
+                \caption*{Illustration of the concept of peak directions.\footnotemark[2]}
+            \end{figure}
+            \begin{itemize}
+                \small
+                \item One solution is to focus the RCS in a limited number of non-critical directions.
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+    \footnotetext[1]{\cite{Zikidis2014}}
+    \onslide<2->{
+    \footnotetext[2]{\cite{poubelle}}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mission Specifications -- Low Obervability II}
     \begin{table}[!htb]
     \adjustbox{max width=\textwidth}{
         \centering
@@ -67,7 +109,7 @@
             \hline
             UHF & 300 - 1 000 MHz & 0.3 - 1 m    & Very long range detection, ground penetration, satelite tracking \\
             \hline
-            L   & 1 - 2 GHz       & 15 - 30 cm   & Long range detection ($ < 400\unit{\kilo\meter}$ ), air surveillance, meteo,\newline weak attenuation             \tikzmark{start}\\
+            L   & 1 - 2 GHz       & 15 - 30 cm   & Long range detection ($ < 400\unit{\kilo\meter}$ ), air surveillance, meteo,\newline weak attenuation             \tikzmark{startms}\\
             \hline
             S   & 2 - 4 GHz       & 7.5 - 15 cm  & Local radars, midrange detection ($ < 100 \unit{\kilo\meter}$), meteo,\newline perceptible attenuation                      \\
             \hline
@@ -81,7 +123,7 @@
     \only<2->{
     \begin{tikzpicture}[remember picture, overlay]
         \draw[color=red, line width=2pt, yshift=5ex] let 
-            \p1 = (pic cs:start),
+            \p1 = (pic cs:startms),
             \p2 = (current page.center)
         in 
             ($(\x2, \y1) + (0.0, -.5ex)$) circle[x radius=.55\textwidth,y radius=2\baselineskip];
@@ -95,36 +137,6 @@
         \item Relevant for long range detection
         \item Atmospheric attenuation not considered (worst case scenario)
     \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Mission Specifications -- Low observability II}
-
-    \begin{columns}
-        \begin{column}<1->{.5\textwidth}
-            \begin{figure}
-                \centering
-                \captionsetup{justification=centering}
-                \includegraphics[width=\textwidth,height=.45\textheight, keepaspectratio]{chapters/images/intro/IllustrationSER.png}
-                \caption*{Illustration of the RCS of multirole fighter (F-35) (for a depression angle of $-20^\circ$)\footnotemark[1].}
-            \end{figure}
-            \begin{itemize}
-                \item Some directions are more critical than others
-            \end{itemize}
-        \end{column}
-        \begin{column}<2->{.5\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth,height=.45\textheight, keepaspectratio]{chapters/images/intro/B-2_radar_reflection.jpg}
-                \caption*{Illustration of the concept of peak directions.\footnotemark[2]}
-            \end{figure}
-            \begin{itemize}
-                \item One solution is to focus the RCS in a limited number of non-critical directions.
-            \end{itemize}
-        \end{column}
-    \end{columns}
-    \footnotetext[1]{\cite{Zikidis2014}}
-    \footnotetext[2]{\cite{poubelle}}
 \end{frame}
 
 \begin{frame}
@@ -171,22 +183,27 @@
     }
 \end{frame}
 
+\subsection{Method overview}
 \begin{frame}
     \frametitle{The industrial process}
     \begin{table}
         \centering
         \resizebox{\textwidth}{!}{
         \begin{tabular}{m{.25\textwidth}m{.3\textwidth}m{.3\textwidth}m{.3\textwidth}}
-            Conceptual design&Identification of impact of different design concepts, technologies\dots&Simple geometries&Quick iterations, at the cost of accuracy
+            Conceptual design&Identification of impact of different design concepts, technologies\dots&Simple geometries&Quick iterations. Low accuracy
             \\
-            \onslide<2->\centering$\Downarrow\Uparrow$&&&
+            \onslide<2->{
+                \centering$\Downarrow\Uparrow$&&&
             % \\
             \\
-            Preliminary design&Exploration of a limited number of concepts&More detailed geometry, still simplified&Need more accuracy
+            Preliminary design&Exploration of a limited number of concepts&More detailed geometry, still simplified&Medium accuracy
             \\
-            \onslide<3->\centering$\Downarrow$&&&
+            }
+            \onslide<3->{
+                \centering$\Downarrow$&&&
             \\
             Detailed design&Very detailed modelling of a chosen design.\newline Experiments.&Digital mock-up&Very high accuracy needed. The simulations are very costly.
+            }
         \end{tabular}
         }
     \end{table}
@@ -198,7 +215,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{The methods in CFD}
+    \frametitle{The numerical methods in for Computational Fluid Dynamics (CFD)}
     \vspace{-2ex}
     \begin{table}
         \renewcommand{\arraystretch}{1.2}
@@ -208,19 +225,19 @@
             \begin{tabular}{ccccc}
                 Euler&&Inviscid&Unsteady&Very cheap.\\
                 \onslide<2->
-                RANS&Reynolds-Averaged Navier Stokes&Viscid&Steady&Cheap\\
-                \onslide<3->
+                RANS\tikzmark{rans}&Reynolds-Averaged Navier Stokes&Viscid&Steady&Cheap\\
+                \onslide<2->
                 uRANS&unsteady RANS&Viscid&Unsteady&Reasonably cheap\\
-                \onslide<4->
+                \onslide<3->
                 DES&Detached Eddy Simulation&Viscid&Unsteady&Expensive\\
-                \onslide<5->
+                \onslide<3->
                 LES&Large Eddy Simulation&Viscid&Unsteady&Very Expensive\\
-                \onslide<6->
+                \onslide<4->
                 DNS&Direct Numerical Simulation&Viscid&Unsteady&Prohibitively expensive.
             \end{tabular}
         }
     \end{table}
-    \only<2-6>{
+    \only<2-4>{
     \begin{figure}
         \centering
         \onslide<2->
@@ -229,13 +246,13 @@
             \includegraphics[width=\textwidth]{chapters/images/intro/sketch-rans.png}
         \end{subfigure}
         }
-        \onslide<5->
+        \onslide<3->
         {
         \begin{subfigure}{.3\textwidth}
             \includegraphics[width=\textwidth]{chapters/images/intro/sketch-les.png}
         \end{subfigure}
         }
-        \onslide<6->
+        \onslide<4->
         {
         \begin{subfigure}{.3\textwidth}
             \includegraphics[width=\textwidth]{chapters/images/intro/sketch-dns.png}
@@ -251,32 +268,46 @@
         \node[anchor=west] (current page.south west) (a1) {
             \footnotesize
             \footnotemark[1] \cite{perron2013}.};
-            % \footnotemark[1] C.~Perron et al.~ \textit{La turbulence en CFD : Modélisation et Simulation}.};
             \draw (a1.north west) -- +(0:.33\linewidth);
     \end{tikzpicture}
     }
-    \onslide<7->
+    \onslide<5->
     {
     \begin{minipage}[t][.5\textheight][c]{\textwidth}        
         \begin{itemize}[label=\ding{227}]
             \item Flow is considered stationary $\implies$ unsteadiness not required
-            \item Unsteady adjoint is very expensive because of the need to compute backward in time
+            \item Unsteady adjoint is very expensivse because of the need to compute backward in time
+            \item<6-> RANS and its adjoint have been widely used for aero performance optimization. For instance:
+            \begin{itemize}[label=$\bullet$]
+                \small
+                \item<6-> Blended wing-body configuration : \cite{Lyu2014a} (2014)
+                \item<6-> NASA Common Research Wing: \cite{Lyu2015} (2015)
+            \end{itemize}
         \end{itemize}
     \end{minipage}
     % }
     }
+    \only<6->{
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[color=red, line width=2pt] let 
+            \p1 = (pic cs:rans),
+            \p2 = (current page.center)
+        in 
+            ($(\x2, \y1) + (0.0,.6ex)$) circle[x radius=.5\textwidth,y radius=1.0\baselineskip];
+    \end{tikzpicture}
+    }
 \end{frame}
 
 \begin{frame}
-    \frametitle{The methods in CEM}
+    \frametitle{The numerical methods for Computa ElectroMagnetism (CEM)}
     \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
     \begin{table}
         \renewcommand{\arraystretch}{1.5}
         \centering
         \small
         % \resizebox{\textwidth}{!}{
-            \begin{tabular}{ll}
-                Geometric Optics\newline (Ray tracing)&High frequency approximation.\\
+            \begin{tabular}{lll}
+                Geometrical Optics\newline (Ray tracing)&High frequency approximation.\\
                 Physical Optics&High frequency approximation.\\
                 Boundary Element Methods&Full wave method\footnotemark[1].\\
                 Finite Differences Time Domain&Full wave method\footnotemark[1].\\
@@ -284,12 +315,16 @@
             \end{tabular}
         % }
     \end{table}
+    \onslide<2->
+    {
     \vfill
     \begin{itemize}[label=\ding{227}]
-        \item Geometric optics completely ignores wave physics
-        \item Geometric optics is not differentiable
+        \item Geometrical optics completely ignores wave physics
+        \item Geometrical optics is not differentiable
+        \item Physical is not able to handle multiple reflexions (though solutions exist) or cavity scattering
         \item Boundary Element Method is the full wave method most adapted to scattering problem in homogeneous domain
     \end{itemize}
+    }
     \footnotetext[1]{Methods that relie on numerically solving the Maxwell equations.}
 \end{frame}
 
@@ -298,15 +333,17 @@
     
     \begin{columns}
         \column<1->{.5\textwidth}
-            \textbf{Gradient-less algorithms}
+            \textbf{Gradient-free algorithms}
             \begin{itemize}[label=\ding{227}]
                 \item Require a lot of function evaluations
                 \item Computation cost rises quickly with number of parameters.
                 \item No gradient
                 \item Some algorithms are global
+                \item Tend to struggle with constraints\footnotemark
             \end{itemize}
         \column<2->{.5\textwidth}
             \textbf{Gradient-based algorithms}
+            \tikzmark{start}
             \begin{itemize}[label=\ding{227}]
                 \item Require less function evaluations
                 \item Computation cost less dependant on number of parameters.
@@ -314,34 +351,104 @@
                 \item Local
             \end{itemize}
     \end{columns}
+    \footnotetext{\cite{Parr2010}}
     \only<3>{
         \begin{tikzpicture}[remember picture, overlay]
             \node (pic) at (current page.center) {\includegraphics[width=.5\textwidth,height=.7\textheight, keepaspectratio]{chapters/images/intro/lyu2014.png}};
             \node[yshift=-.5\baselineskip] at (pic.south) {\textit{Evolution of the number of function iteration for various algorithm with the dimension\footcite{lyu2014}}};
-            % \node[yshift=-.5\baselineskip] at (pic.south) {\textit{Evolution of the number of function iteration for various algorithm with the dimension\footnote{LYU, Zhoujie, XU, Zelu, et MARTINS, J. R. R. A. Benchmarking optimization algorithms for wing aerodynamic design optimization. In : Proceedings of the 8th International Conference on Computational Fluid Dynamics, Chengdu, Sichuan, China. Citeseer, 2014. p. 585.}}};
         \end{tikzpicture}
     }
     \only<4->{
     \begin{tikzpicture}[remember picture, overlay]
-        \draw[color=red, line width=3pt] ($ (current page.center) + (3.,2\baselineskip) $) circle [x radius=.3\linewidth, y radius=.2\linewidth];
+        \draw[color=red, line width=3pt] ($ (pic cs:start) - (1.9,3\baselineskip) $) circle [x radius=.3\linewidth, y radius=.19\linewidth];
     \end{tikzpicture}
     }
 
 
     \onslide<5->
 
-    \vspace{3\baselineskip}
-
+    \vspace{2\baselineskip}
+    
     Two algorithms are widely used : L-BFGS-B for unconstrained problems and SLSQP for constrained problems.
+    
+    \only<6->
+    {
+    \vspace{1\baselineskip}
+    For PDE systems, the ajoint formulation allows the cost of the gradient computation to stay roughly linear with respect to the number of parameters\footcite{Mohammadi2009}
+    }
+\end{frame}
+
+\subsection{State of the art}
+\begin{frame}
+    \frametitle{State of the art -- aerostealth optimization I}
+    \small
+    Few studies have used integrated aero stealth optimization methods.
+    \begin{itemize}[label=\ding{227},leftmargin=5mm]
+        \item Until the late 2010's, most of them used gradient-free algorithms:
+        \begin{itemize}[label=\ding{229}]
+            \item<2-> 2007: Evolutionary algorithm with a potential flow solver and PO for planform and wing section optimization (very low fidelity methods) : \cite{Lee2007}
+            % \item 2014: Adaptative surrogate method with a BLISS formulation for structure, stealth and aerodynamic optimization of high aspect ratio wing \cite{Wu2014}
+            \item<3-> 2016: Surrogate-based optimization with RANS and Finite Volume Time Domain method for aerostealth optimization of a heliocpter rotor (2 parameters): \cite{Jiang2016}
+            % \item<4-> 2018: Multidisciplinary optimization of drones for radar signature, sensor performance and trajectory : \cite{Papageorgiou2018}
+            \item<4-> 2020: Multiobjective EGO\footcite{Guerra2016} to optimize the aero-stealth of a UCAV with RANS and Geometrical Optics (2 parameters) : \cite{Garnier2020}
+            % \item<8-> 2021: Hierarchic kriging for aerostealth optimization of flying wing :\pause \cite{Liu2021}
+            % \item<4-> 2023: Gaussian Process to optimize  aerostealth of a fighter aircraft : \cite{Taj2023}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{State of the art -- aerostealth optimization II}
+    \small
+    Few studies have used integrated aero stealth optimization methods.
+    \begin{itemize}[leftmargin=5mm]
+        \item Since the late 2010's, some gradient-based frameworks emerge:
+        \begin{itemize}[label=\ding{227}]
+            % \item 2017 : Gradient-based aerostealth optimization of a flying wing, with analytical gradient : \cite{Pan2017}
+            \item 2019 : Constrained gradient based aerostealth optimization of a UCAV : \cite{Li2019}
+            \item 2020 : Use of BEM adjoint and RANS for aerostealth high fidelity optimization of the wing profiles of a flying wing geometry. The adjoint terms are computed by finite differences. \cite{Zhou2020}
+        \onslide<3-> 
+            \begin{itemize}[label=\ding{229}]
+                \item<2-> Academic use-case
+                \item<2-> CAD free deformation $\implies$ difficulty to impose geometrical constraints, difficulty to communicate
+                \item<2-> Simplistic stealth criterion (average RCS)
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{State of the art}
+    \frametitle{Goals}
+    \begin{itemize}[label=$\bullet$]
+        % \item Catch up we what is done by chinese researchers
+        \item Efficiently explore aero-stealth tradeoffs on a detailed aircraft shape
+        \item High fidelity optimization with a lot of variables
+        \item Gradient-based optimization
+        \item Integrated in an industrial framework
+        \item More realistic stealth criterion
+    \end{itemize}
 
+    \onslide<2->
+    \vspace*{2\baselineskip}
+    To that end, I present two optimization frameworks:
+    \begin{itemize}[label=\ding{227}]
+        \item A bidisciplinary aerostealth framework
+        \begin{itemize}[label=\ding{229}]
+            \item CAD model for geometry
+            \item RANS simulation for CFD
+            \item PO method for RCS
+        \end{itemize}
+        \item A monodisciplinary high fidelity stealth optimization
+        \begin{itemize}[label=\ding{229}]
+            \item CAD model for geometry
+            \item BEM method for RCS
+            \item Discrete adjoint formulation for the BEM gradient
+        \end{itemize}
+    \end{itemize}
+    
     
 
 \end{frame}
-
-
 
 \end{document}

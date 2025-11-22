@@ -8,8 +8,8 @@
 \section[Baseline]{Baseline geometry}
 \subsection{Geometry}
 \begin{frame}
-    \frametitle{Generic Fighter Aircraft}
-	No air intake, canard or empenage. Ledge at the front of the fuselage.
+    \frametitle{Generic Fighter Aircraft (GFAs)}
+	No air intake, canard or empenage.% Ledge at the front of the fuselage.
 
 
     \begin{figure}[htb]
@@ -31,20 +31,34 @@
 	\end{figure}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Angle definition}
+
+	\begin{figure}
+		\centering
+		\resizebox{!}{.5\textheight}{
+		\subimport{resources/intro/}{def-angles.tex}
+		}
+		\caption*{Definition of the bearing ($\color{blue} \theta$) and elevation ($\color{red} \phi$) angles.}
+	\end{figure}
+
+\end{frame}
+
 \subsection{RCS analysis}
 \begin{frame}
     \frametitle{RCS Analysis}
+	The RCS is mainly conscentrated in two directions : 48$^\circ$ (specular reflexion on the leading edge) and 15$^\circ$ (diffraction on the trailing edge). It is very small elsewhere.
 	\begin{figure}
 		\centering
 		\includegraphics[width=1\textwidth, height=.75\textheight, keepaspectratio]{images/gfa/RCS_RCS_baseline.pdf}
-		\caption*{RCS of the baseline GFA at $f = 2 \unit{\giga\hertz}$}
+		\caption*{RCS of the baseline GFA at $f = 2 \unit{\giga\hertz}$ (vertical polarization)}
 	\end{figure}
 \end{frame}
 
 \subsection{Aerodynamic analysis}
 \begin{frame}
 	\frametitle{Aerodynamic analysis - wing cross-section}
-
+	A weak shock develops around the wing leading edge.
 	\begin{figure}[htp]
 		\centering
 		\captionsetup{justification=centering}
@@ -64,7 +78,7 @@
 		\label{fig:parametrized-shape}
 	\end{figure}%
     \only<1>{%
-	The GFA wing is parameterized with 6 control sections, 15 control points along each section.
+	The GFA wing is parameterized with 6 control sections, 15 control points along each section. The geometry is interpolated between the control sections using RBF.
     }%
     \onslide<2->
 	The geometry is parameterized with 13 global variables :

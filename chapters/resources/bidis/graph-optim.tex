@@ -21,20 +21,20 @@
 \begin{tikzpicture}[node distance=\nd,scale=0.7,every node/.style={transform shape}]
     \node (start) [startstop] {Start};
     \node (init) [io,below of=start] {Initial state};
-    \node (optim) [process, below of=init] {Optimizer};
+    \node (optim) [process, below of=init] {SLSQP};
     \node (cvg) [decision, below of=optim,yshift=-.5\nd]{convergence};
     \node (DV) [io,below of=cvg,yshift=-.5\nd] {Design Variable};
     \node (cad) [process,below of=DV] {CAD modeler};
-    \node (in2d) [io,left of=cad,xshift=-1.5\ndv]{Initial geometry\newline Initial 2D grids};
+    \node (in2d) [io,left of=cad,xshift=-1.5\ndv]{Initial geometry\newline Initial surface grids};
     \coordinate [below of=cad,yshift=.5\nd] (aux0);
 
-    \node (POgrid) [io,below of=cad,xshift=.5\ndv] {PO 2D grid};
+    \node (POgrid) [io,below of=cad,xshift=.5\ndv] {PO surface grid};
     \node (COPOLA) [process,below of=POgrid,yshift=-2\nd] {COPOLA code};
     \node (RCS) [io,below of=COPOLA,yshift=-.5\nd] {RCS};
     \node (dRCS) [io,right of=RCS,xshift=.5\ndv] {%
     RCS\newline gradient};
 
-    \node (CFDgrid) [io,below of=cad,xshift=-.5\ndv] {CFD 2D grid};
+    \node (CFDgrid) [io,below of=cad,xshift=-.5\ndv] {CFD surface grid};
     \node (3Ddef) [process,below of=CFDgrid] {elliptic operator};
     \node (in3d) [io,left of=3Ddef,xshift=-\ndv] {Initial 3D mesh};
     \node (Vmesh)[io,below of=3Ddef] {3D mesh};

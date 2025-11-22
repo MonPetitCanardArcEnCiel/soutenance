@@ -10,7 +10,7 @@
 \subsection{The Boundary Element Method}
 \begin{frame}
     \frametitle{The Electric Field Integral Equation}
-    It can be shown\footnote<1->{Bendali, A.~, 2013, \textit{Integral Equations in Electromagnetics}.} that, under the assumption of slide \ref{fra:hyp}, the solution \eqref{bem-eq:sol-helmholtz} admits the following integral representation :
+    It can be shown\footcite{Nedelec1973} that, under the assumption of slide \ref{fra:hyp}, the solution \eqref{bem-eq:sol-helmholtz} admits the following integral representation :
     \begin{equation}
         \E(x) = E\inc(x) + jkZ_0\left(\frac1{k^2}\nabla_\Gamma\nabla_\Gamma\cdot+1\right)\int_\Gamma G(x,y)\J(y)\dd\Gamma(y)
     \end{equation}
@@ -18,9 +18,8 @@
 \end{frame}
 \begin{frame}
     \frametitle{The Electric Field Integral Equation}
-    The previous formula is more conveniently expressed in integral form. We thus introduce the space : $$\Hdiv(\Gamma) := \left\{\J\in L^2(\Gamma;\mathbb C^3),\J\text{ tangent to }\Gamma, \nabla_\Gamma\cdot\J\in L^2(\Gamma)\right\}.$$
-    \onslide<2->
-    This yields the following variational problem\footnote<2->{Bendali, A.~, 2013, \textit{\'Equations Intégrales en \'Electromagnétisme}.} :
+    The previous formula is more conveniently expressed in integral form. 
+    This yields the following variational problem \footcite{Nedelec1973} :%\footnote<2->{Bendali, A.~, 2013, \textit{\'Equations Intégrales en \'Electromagnétisme}.} :
 
     \begin{equation}
     \boxed{\boxed{
@@ -31,6 +30,8 @@
         \label{eq:efie}
     }}.
     \end{equation}
+
+    Where thus introduce the space : $$\Hdiv(\Gamma) := \left\{\J\in L^2(\Gamma;\mathbb C^3),\J\text{ tangent to }\Gamma, \nabla_\Gamma\cdot\J\in L^2(\Gamma)\right\}.$$
 \end{frame}
 
 
@@ -46,10 +47,10 @@
         \fn{\rr} = \left\{\begin{array}{cl}
             \frac{l_n}{2S_n^+}\left(\rr-\rr_n^+\right)&\rr\in T_n^+,\\
             \frac{l_n}{2S_n^-}\left(\rr_n^--\rr\right)&\rr\in T_n^-,\\
-            0&\text{autrement}.
+            0&\text{otherwise}.
         \end{array}\right.
     \end{equation*}
-    $\rr_n^\pm$, $l_n$ et $T_n^\pm$ are defined on the figure bellow. $S_n^\pm$ is the area of the triangle $T_n^\pm$.
+    $\rr_n^\pm$, $l_n$ and $T_n^\pm$ are defined on the figure bellow. $S_n^\pm$ is the area of the triangle $T_n^\pm$.
 
     \begin{figure}[ht]
         \centering
@@ -74,7 +75,8 @@
     \frametitle{Discrete adjoint formulation}
 
     Let $\mathcal R$ be a linear system such that, $$\mathcal R(\X(\eta),I(\eta)) = A(X(\eta))I(\eta) - \bb(X(\eta)) = 0,$$
-    where $\X$ is the vector of mesh coordinates, and $\eta$ the vector of design parameters.
+    where $\X$ is the vector of mesh coordinates, $I$ the vector of unknown current weight, and $\eta$ the vector of design parameters.
+
     \pause
     Let $\zeta$ be an observable depending on $\X$ and $I$.
 
@@ -84,59 +86,16 @@
         \dd{\zeta} = \derpart{\zeta}{\X}\derpart{X}{\eta}\dd\eta - \Psi^*\left({\color<3->{lightgray}\derpart{A}\X I }- \derpart{b}\X\right)\derpart{\X}{\eta}\dd\eta
     \end{equation}
 
-    \only<4>{
-    Because of time constraints, we did not have the time to implement the computation (especially memory requirements and the handling of singular cases) of the term $\derpart{A}\X\J$, and so we omit it in the following.
-    }
-
+    
+    \onslide<4->
+    where $\Psi$ is the solution of the adjoint system : :
     \onslide<5->
-    \only<6->{In the EFIE formulation, $A$ is non-Hermitian symmetric i.e.~ $A^* = \overline{A}$.}
-
-    the adjoint system thus writes :
-    \only<5>{
-    \begin{equation}
-        A^*\Psi = \left(\derpart{\zeta}{I}\right)^*
-    \end{equation}}
-    \onslide<6->
     \begin{equation}
         \overline{A}\Psi = \left(\derpart{\zeta}{I}\right)^*
     \end{equation}
 
-\end{frame}
-
-\begin{frame}
-    \label{fra:smembre}
-    \frametitle{Computation of the right-hand side}
-
-    Let %\revised{us define an observable $\zeta$} 
-    \begin{equation}
-        \zeta = 2\sqrt{\pi}\left(\E^\infty\cdot\Einc\right),
-    \end{equation}
-
-    so that, the RCS can be written as $\sigma = 4\pi\frac{|\E^\infty|^2}{|\E\inc|^2} = |\zeta|^2$.
-
-    \pause
-    If $\uu_s$ is a unit vector and $\uu_s = \uu_i$, then
-    \begin{equation}
-        \E^\infty\cdot\Einc = \frac{kZ_0^2}{2\sqrt{\pi}}\bb.
-    \end{equation}
-
-    \pause
-    Therefore, the differential of $\zeta$ is :
-    \begin{equation}
-        \dd\zeta = \frac{kZ_0^2}{2\sqrt{\pi}}\dd\bb.
-    \end{equation}
-
-    \pause
-    Hence, the right-hand side of the discrete adjoint system can be written as :
-    \begin{equation}
-        \derpart{\zeta}{I} = \frac{kZ_0^2}{2\sqrt{\pi}}b.
-    \end{equation}
-
-    \pause
-    From this, there is no need to actually solve the adjoint system and $\Psi$ is :
-    \begin{equation}
-        \Psi^* = \frac{kZ_0^2}{2\sqrt{\pi}}I.
-    \end{equation}
+    \onslide<6>
+    Because of time constraints, we did not have the time to implement the computation (especially because of memory requirements and the handling of singular cases) of the term $\derpart{A}\X\J$, and so we omit it in the following.
 
 \end{frame}
 
@@ -159,22 +118,18 @@
         \tilde\sigma = \int_{\theta_0}^{\theta_1}\int_{\phi_0}^{\phi_1} \Gamma_d(\theta)\delta_s(\sigma_\db)\sin(\phi)\dd\theta\dd\phi.
     \end{equation*}
     \onslide<3->
-    \begin{equation*}
-        \delta_s(x) = \frac{x-s}{1+e^{-\tau(x-s)}},
-    \end{equation*}
-    \onslide<4->
     \begin{itemize}[label=$\bullet$]
         \item $\delta_s$ : threshold function on RCS, to cut oscillations in low RCS zones.
-        \item \hyperlink<4->{fra:gamma}{$\Gamma_d$} : directivity function, to focus on critical directions.
+        \item \hyperlink<3->{fra:gamma}{$\Gamma_d$} : \hypertarget<3->{lk:gamma-bem}{directivity function, to focus on critical directions.}
     \end{itemize}
     
-    \onslide<5->
+    \onslide<4->
     Constraint :
     \begin{itemize}[label=$\bullet$]
         \item \sref{} constant
     \end{itemize}
 
-    \onslide<6->
+    \onslide<5->
     RCS computation:
     \begin{itemize}[label=$\bullet$]
         \item 1 frequency, $f=500\unit{\mega\hertz}$

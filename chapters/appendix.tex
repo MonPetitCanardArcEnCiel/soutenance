@@ -30,7 +30,7 @@
     \frametitle{The PTD extension}
     \begin{figure}
         \centering
-        \includegraphics[width=\textwidth,height=\textheight, keepaspectratio]{chapters/images/appendix/PTD.png}
+        \includegraphics[width=\textwidth,height=.8\textheight, keepaspectratio]{chapters/images/appendix/PTD.png}
         \caption*{Sketch of the edge.}
     \end{figure}
 \end{frame}
@@ -42,28 +42,42 @@
 
     Let : $\mathcal I_n = \int_{T_n}e^{-2jk\uu_s\cdot y}\dd T_n(y).$
     \pause
-    The Gordon formula\footnote<3->{Laval, D.~, 2006, \textit{Application de Méthodes Asymptotiques à la Simulation de la Diffraction \'Electromagnétique par un Corps Régulier}.} gives :%
+    % The Gordon formula\footnote<3->{Laval, D.~, 2006, \textit{Application de Méthodes Asymptotiques à la Simulation de la Diffraction \'Electromagnétique par un Corps Régulier}.} gives :%
+    The Gordon formula\footcite{Laval2006} gives :%
     \begin{equation}
         \mathcal I_n=\frac{j}{2kQ_n}\sum_{m=1}^{3}(q_n\cdot a_{n,m})e^{-2jk(x_{n,m}-x_{n,0})\cdot l_s}\sin_c\left(\frac{2k l_s\cdot a_{n,m}}{2}\right),
     \end{equation}%
     \small
-    with $l_s = -2 \uu_s$, $Q_n = |n_n\times l_s|$ et $q_n = \frac{\n_n\times l_s}{Q_n}$. $a_{n,m}$ is the vector of the edge number $m$ of $T_n$, and $x_{n,0}$ is the unit vector towards the barycenter of $T_n$ and $x_{n,m}$ towards the $m^{\text{th}}$ vertex of $T_n$. $\sin_c(x) = \frac{\sin(x)}{x}$.    
+    with $l_s = -2 \uu_s$, $Q_n = |n_n\times l_s|$ and $q_n = \frac{\n_n\times l_s}{Q_n}$. $a_{n,m}$ is the vector of the edge number $m$ of $T_n$, and $x_{n,0}$ is the unit vector towards the barycenter of $T_n$ and $x_{n,m}$ towards the $m^{\text{th}}$ vertex of $T_n$. $\sin_c(x) = \frac{\sin(x)}{x}$.    
 
     \hyperlink{fra:discrete-physical-optics}{\beamerbutton{Back}}
 \end{frame}
 
 
 
+\begin{frame}
+    \frametitle{State of the art -- BEM adjoint optimization}
+    \small
+    Adjoint BEM formulation have been used for a while for electromagnetic optimization and sensitivity analysis
+    \begin{itemize}[label=\ding{227},leftmargin=5mm]
+        \item 1995 : Use of Lions' optimal control theory \footcite{Lions1968} to optimize RCS by controling the skin current distribution : \cite{Bardos1995}
+        \item 2001 : Formulation of a BEM adjoint for optimization : \cite{Paoli2001}
+        \item 2003 : Use of Paoli's formulation for stealth optimization : \cite{Roge2003}
+        \item 2011 : Adjoint formulation for a Discontinuous Galerkin method for sensitivities computation : \cite{Wang2011}
+        \item 2013 : Discrete adjoint formulation with Ravier-Thomas base functions, validated on sensitivity analysis for an antenna : \cite{Kataja2013}
+    \end{itemize}
+\end{frame}
+
 
 
 \subsection{Aerodynamics}
-\begin{frame}
-    \frametitle{RANS}
-\end{frame}
+% \begin{frame}
+%     \frametitle{RANS}
+% \end{frame}
 
-\begin{frame}
-    \frametitle{The aerodynamic adjoint}
-\end{frame}
+% \begin{frame}
+%     \frametitle{The aerodynamic adjoint}
+% \end{frame}
 
 \begin{frame}
 	\frametitle{Aerodynamic analysis of the baseline - symmetry plane}
@@ -114,7 +128,7 @@
 
 \begin{frame}
     \frametitle{Continuous adjoint formulation II}
-    Injecting the system \eqref{eq:djdx} into the expression \eqref{eq:dsigmadx}, yields :
+    Combining the system \eqref{eq:djdx} and the expression \eqref{eq:dsigmadx}, yields :
 
     \begin{equation}
         \boxed{
@@ -128,6 +142,44 @@
         \left(\derpart{\mathcal R}{\J}\right)^* \Psi = \left(\derpart{\zeta}{\J}\right)^*.
         \label{eq:adjoint-cont}
     \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \label{fra:smembre}
+    \frametitle{Computation of the right-hand side}
+
+    Let %\revised{us define an observable $\zeta$} 
+    \begin{equation}
+        \zeta = 2\sqrt{\pi}\left(\E^\infty\cdot\Einc\right),
+    \end{equation}
+
+    so that, the RCS can be written as $\sigma = 4\pi\frac{|\E^\infty|^2}{|\E\inc|^2} = |\zeta|^2$.
+
+    \pause
+    If $\uu_s$ is a unit vector and $\uu_s = \uu_i$, then
+    \begin{equation}
+        \E^\infty\cdot\Einc = \frac{kZ_0^2}{2\sqrt{\pi}}\bb.
+    \end{equation}
+
+    \pause
+    Therefore, the differential of $\zeta$ is :
+    \begin{equation}
+        \dd\zeta = \frac{kZ_0^2}{2\sqrt{\pi}}\dd\bb.
+    \end{equation}
+
+    \pause
+    Hence, the right-hand side of the discrete adjoint system can be written as :
+    \begin{equation}
+        \derpart{\zeta}{I} = \frac{kZ_0^2}{2\sqrt{\pi}}b.
+    \end{equation}
+
+    \pause
+    From this, there is no need to actually solve the adjoint system and $\Psi$ is :
+    \begin{equation}
+        \Psi^* = \frac{kZ_0^2}{2\sqrt{\pi}}I.
+    \end{equation}
+
 \end{frame}
 
 
@@ -259,15 +311,16 @@
 \begin{frame}[plain]%[label=fra:gamma]
     \label{fra:gamma}
     \frametitle{$\Gamma$ function}
-
+    % $$\Gamma_d(\theta) = 1-\frac12\sum_{i=0}^{4}\frac{6-i}{10}\exp\left({-\left(\frac{\theta-d}{10^i\tau}\right)^2}\right)$$
+    $ d = 30^\circ$ and $\tau = 0.5$
     \begin{figure}
     \centering
     \resizebox{!}{.7\textheight}{\subimport{resources/appendix/}{graph-gammad.tex}}
     \caption*{Plot of the $\Gamma$ function}
     \end{figure}
 
-    \hyperlink{eq:gamma-bidis}{\beamerbutton{Back to cost and constraints}}
-    \hyperlink{eq:gamma-bem}{\beamerbutton{Back to cost and constraints}}
+    \hyperlink{lk:gamma-bidis}{\beamerbutton{Back to cost and constraints}}
+    \hyperlink{lk:gamma-bem}{\beamerbutton{Back to cost and constraints}}
 
 \end{frame}
 

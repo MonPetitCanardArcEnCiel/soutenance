@@ -6,76 +6,72 @@
 
 \begin{document}
 \section{Conclusion and perspectives}
-\subsection{Communications}
-\begin{frame}
-    \frametitle{Communications}
-    \small
-    \begin{columns}
-    \begin{column}{.8\textwidth}
-        \onslide<1->
-        Preliminary results for the aero-stealth framework have been presented at CANUM 2022 and EUROGEN 2023.
 
-        \vspace{\baselineskip}
-        \onslide<2->
-        The aero-stealth framework has been described and results presented in a published article in \textit{Fluids} (MDPI) in 2024, which was chosen as cover for that month's issue :
-        \begin{itemize}[label=$\bullet$]
-            % \item THOULON, Charles, ROGE, Gilbert, et PIRONNEAU, Olivier. \textit{Gradient-based aero-stealth optimization of a simplified aircraft.} \textit{Fluids}, 2024, vol. 9, no 8, p. 174.
-            \item \fullcite{Thoulon2024}
-        \end{itemize}
-        \onslide<3->
-        The BEM framework has been described and its results presented in a published article in \textit{Eng} (MDPI) in 2025, which was chosen as cover for that month's issue :
-        \begin{itemize}[label=$\bullet$]
-            % \item THOULON, Charles, ROGE, Gilbert, et PIRONNEAU, Olivier. \textit{A BEM Adjoint-Based Differentiable Shape Optimization of a Stealth Aircraft.} \textit{Eng}, 2025, vol. 6, no 7, p. 147.
-            \item \fullcite{Thoulon2025}
-        \end{itemize}
-    \end{column}
-    \begin{column}{.2\textwidth}
-        \onslide<2->
-        \includegraphics[width=\textwidth]{chapters/images/concl/big_cover-fluids-v9-i8.png}
-        \vspace{\baselineskip}
-        \onslide<3->
-        \includegraphics[width=\textwidth]{chapters/images/concl/big_cover-eng-v6-i7.png}
-    \end{column}
-    \end{columns}
-\end{frame}
+
 \subsection{Conclusion}
-\begin{frame}[t]
-    \frametitle{Conclusion}
-
-    I have presented two frameworks for the shape optimization of fighter aircraft for aerodynamic performance and low observability.
+\begin{frame}
+    \frametitle{Contributions}
+    \small
     \begin{itemize}[label=\ding{227}]
-        \item<2-> A bidisciplinary gradient based optimization framework coupling a RANS solver and a low fidelity Physical Optics solver.
-        \only<3>{
+        \onslide<2->
+        \item A bidisciplinary gradient based optimization framework coupling a RANS solver and a low fidelity Physical Optics solver.
+        % \only<3>{
         \begin{itemize}[label=$\bullet$]
-            % \item The use of a CAD solver is relevant for an industrial framework.
-            \item I implemented and validated a PO+PTD solver for the RCS computation.
-            \item The PO+PTD solver is relevant for low fidelity RCS optimization at high frequencies.
-            \item The studies showcased show that the framework is able explore efficiently the parameter space and to identify relevant trade-offs between aerodynamic performance and RCS reduction.
+            \item The differentiated aero solver and the optimization driver already existed
+            \item Implementation and validation the PO+PTD solver for the RCS computation.
+            \begin{itemize}
+                \item (12 months)
+            \end{itemize}
+            \item Study to showcase the framework and postprocess of the results
+            \begin{itemize}
+                \item (6 months)
+            \end{itemize}
         \end{itemize}
-        }
-        \item<2-> A high fidelity gradient based optimization framework relying on an adjoint formulation of a high fidelity BEM solver.
-        \only<4>{
+        % }
+        \onslide<3->
+        \item A high fidelity gradient based optimization framework relying on an adjoint formulation of a high fidelity BEM solver.
         \begin{itemize}[label=$\bullet$]
-            \item I presented and implemented an adjoint formulation to the BEM solver to compute the gradient of the RCS.
-            \item The gradient is not accurate because of an omitted term in the adjoint due to limited time to implement it.
-            \item The studies showcased show that the framework is able to reduce significantly the RCS of a generic fighter aircraft at high frequencies in a time frame consistent with industrial constraints.
-            \item The comparison to finite differences and a lower fidelity solver show that the ommitted term in the gradient alone does not explain the inaccuracy of the solution.
-            \item Thus even with the incomplete adjoint, the framework is useful in an industrial framework.
+            \item The BEM solver for RCS already existed
+            \item Formulation of the discrete BEM adjoint
+            \begin{itemize}
+                \item (1 month)
+            \end{itemize}
+            \item Implementation and validation the BEM adjoint
+            \begin{itemize}
+                \item (12 months)
+            \end{itemize}
+            \item The stealth criterion that I presented is an originality of my work
+            \item Study to showcase the framework and postprocess of the results
+            \begin{itemize}
+                \item (6 months)
+            \end{itemize}
         \end{itemize}
-        }
     \end{itemize}
 \end{frame}
 
-\subsection{Contributions}
 \begin{frame}
-    \frametitle{Summary of my contributions}
-    \begin{itemize}[leftmargin=5mm,label=$\rightarrow$]
-        \item I implemented and differentiated the PO+PTD solver from scratch
-        \item The differentiated aerodynamic solver already existed
-        \item The CAD modeler already existed
-        \item The BEM solver already existed
-        \item I differentiated the BEM solver
-        \item I implemented the BEM adjoint formulation
+    \frametitle{Discussion}
+    \small
+    I have presented two frameworks for the shape optimization of fighter aircraft for aerodynamic performance and low observability.
+    \begin{itemize}[label=\ding{227}]
+        \onslide<2->
+        \item A bidisciplinary gradient based optimization framework coupling a RANS solver and a low fidelity Physical Optics solver.
+        \only<2>
+        {
+        \begin{itemize}[label=$\bullet$]
+            \item The PO+PTD solver is relevant for low fidelity RCS optimization at high frequencies.
+            \item The studies showcased show that the framework is able explore efficiently the parameter space and to identify relevant trade-offs between aerodynamic performance and RCS reduction.
+            \item The stealth criterion that I presented allows to produce shapes representative of real life stealth design.
+        \end{itemize}
+        }
+        \onslide<3->
+        \item A high fidelity gradient based optimization framework relying on an adjoint formulation of a high fidelity BEM solver.
+        \begin{itemize}[label=$\bullet$]
+            \item The gradient is not accurate because of an omitted term in the adjoint due to limited time to implement it.
+            \item The studies showcased show that the framework is able to reduce significantly the RCS of a generic fighter aircraft at high frequencies in a time frame consistent with industrial constraints.
+            \item The comparison to a lower fidelity solver show that the ommitted term in the gradient alone does not fully explain the inaccuracy of the solution.
+            \item Efforts should be carried on to finish the implementation of the adjoint.
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -86,18 +82,69 @@
     \begin{itemize}[leftmargin=5mm,label=$\bullet$]
         \item Complete the adjoint formulation to the BEM solver to have an accurate gradient of the RCS should be the first priority.
         \item Optimize and industrialize the BEM adjoint solver.
-        \item Use the BEM framework to perform a cavity optimization (simulate air intake)
-        \item Use the current bidisciplinary framework to perform an optimization for a more realistic mission
-        \begin{itemize}[label=\ding{227}]
-            \item Multifrequency RCS computation
-            \item Multi-point aerodynamic simulation
+        \begin{itemize}
+            \item ACA method\footcite{Bebendorf2000} or Fast Multipole Method \footcite{Greengard1988}
         \end{itemize}
+        % \item Use the BEM framework to perform a cavity optimization (simulate air intake)
+        % \item Use the current bidisciplinary framework to perform an optimization for a more realistic mission
+        % \begin{itemize}[label=\ding{227}]
+        %     \item Multifrequency RCS computation
+        %     \item Multi-point aerodynamic simulation
+        % \end{itemize}
         \item Use the high fidelity BEM framework in a bidisciplinary optimization framework coupling aerodynamics and electromagnetism.
         \item Explore multifidelity techniques to couple the low fidelity PO solver and the high fidelity BEM solver in a single optimization framework.
         \item Implement more efficient methods to identify the Pareto front.
     \end{itemize}
+\end{frame}
 
-    
+\subsection{Communications}
+\begin{frame}
+    \frametitle{Communications}
+    \small
+    \begin{columns}
+    \begin{column}{.35\textwidth}
+        \onslide<1->
+        2 presentations in conferences : 
+        
+        CANUM 2022 and EUROGEN 2023.
 
+        \vspace{\baselineskip}
+        \onslide<2->
+        2 publication in journal papers : 
+        
+        \textit{Fluids} (impact factor : 1.8) in 2024 
+
+        chosen as cover for 08/24 issue
+        
+        \onslide<3->
+        and
+        
+        \textit{Eng} (impact factor : 2.4) in 2025
+
+        chosen as cover for 07/25 issue
+        % The aero-stealth framework has been described and results presented in a published article in \textit{Fluids} (MDPI) in 2024, which was chosen as cover for that month's issue :
+        \vfill
+    \end{column}
+    \begin{column}{.65\textwidth}
+        \begin{figure}
+            \centering
+            \onslide<2->
+            \begin{subfigure}{.49\textwidth}
+                \centering
+                \includegraphics[width=\textwidth, height=.7\textheight,keepaspectratio]{chapters/images/concl/big_cover-fluids-v9-i8.png}
+            \end{subfigure}
+            \onslide<3->
+            \begin{subfigure}{.49\textwidth}
+                \centering
+                \includegraphics[width=\textwidth, height=.7\textheight,keepaspectratio]{chapters/images/concl/big_cover-eng-v6-i7.png}
+            \end{subfigure}
+        \end{figure}
+    \end{column}
+    \end{columns}
+    \scriptsize
+    \begin{itemize}[label=$\bullet$,leftmargin=5mm]
+        \item<2-> \fullcite{Thoulon2024}
+        \item<3-> \fullcite{Thoulon2025}
+    \end{itemize}
 \end{frame}
 \end{document}

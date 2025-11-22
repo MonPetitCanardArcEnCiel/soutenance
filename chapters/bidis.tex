@@ -29,16 +29,18 @@
     \end{block}
     \only<2>
     {
-        At high frequencies ($\sim1\unit{\giga\hertz}$ and more), this hypothesis is reasonable : for $f = 2\unit{\giga\hertz}$, $\lambda = 15\unit{\centi\meter}$ where a fighter aircraft's characteristic lenghts $\sim10\unit{meter}$.
+        At high frequencies ($\sim1\unit{\giga\hertz}$ and more), this hypothesis is sensible : for $f = 2\unit{\giga\hertz}$, $\lambda = 15\unit{\centi\meter}$ where a fighter aircraft's characteristic lenghts $\sim10\unit{meter}$.
     }
     % \pause
     \onslide<3->
-    The Physical Optics approximation, the current distribution $\J$ induced by a plane wave $\E\inc$ propagating along the direction $\uu_i$ is given by\footnote<2->{Chatzigeorgiadis, F.~, 2004, \textit{Development of Code for a Physical Optics RADAR Cross Section Prediction and Analysis Application}.} :
+    The Physical Optics approximation, the current distribution $\J$ induced by a plane wave $\E\inc$ propagating along the direction $\uu_i$ is given by\footcite{Laval2006}%\footnote<2->{Chatzigeorgiadis, F.~, 2004, \textit{Development of Code for a Physical Optics RADAR Cross Section Prediction and Analysis Application}.} :
     \begin{columns}
         \begin{column}{0.75\textwidth}
             \begin{equation}
                 \J(y) = \left\{\begin{array}{cr}
-                    \left(\dfrac2{Z_0}\mathbf n\times\mathbf \uu_i\times\E\inc\right)e^{jk\uu_i\cdot y}&\text{in the illumated zone,}\\
+                    \left(
+                        \dfrac2{Z_0}\mathbf n\times\mathbf \uu_i\times\E\inc
+                    \right)e^{jk\uu_i\cdot y}&\text{in the illumated zone,}\\
                     \mathbf 0&\text{in the shadow zone,}
                 \end{array}\right.
             \end{equation}
@@ -55,7 +57,7 @@
 
 \begin{frame}
     \frametitle{The Physical Optics Far Field}
-    Finally, the far field scattered electric field writes :
+    Finally, the expression of the far field now only depends on known values and the geometry details :
     \begin{equation}
         \E^\infty(\uu_s) = \frac{2k}{4\pi}\int_\Gamma\uu_s\times\left(\n\times \uu_i\times\E\inc\right)\times\uu_s e^{jk(\uu_i-\uu_s)\cdot y}\dd\Gamma(y)
     \end{equation}
@@ -65,51 +67,75 @@
 
 \begin{frame}
     \frametitle{Diffraction}
-    
-    \begin{figure}[htb]
+    \vspace*{-1ex}
+        \begin{figure}[htb]
 		\centering
 		\captionsetup[subfigure]{justification=centering}
 		\begin{subfigure}{.49\textwidth}
-			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PH.pdf}
-			\caption*{\tiny PO only simulation with horizontal polarization.}
+            \tikzmark{POPH}
+			\includegraphics[trim={5cm .5cm 5cm 2cm}, clip, width=1.\textwidth,height=.3\textheight,keepaspectratio, center]{images/gfa/PO-PH.pdf}
+            \vspace*{-4ex}
+			\caption*{\scriptsize PO only simulation with horizontal polarization.}
 			\label{fig:RCS-baseline-PO-PH}
 		\end{subfigure}
 		\begin{subfigure}{.49\textwidth}
-			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PV.pdf}
-			\caption*{\tiny PO only simulation with vertical polarization.}
+            \tikzmark{POPV}
+			\includegraphics[trim={5cm .5cm 5cm 2cm}, clip,width=1.\textwidth,height=.3\textheight,keepaspectratio,center]{images/gfa/PO-PV.pdf}
+            \vspace*{-4ex}
+			\caption*{\scriptsize PO only simulation with vertical polarization.}
 			\label{fig:RCS-baseline-PO-PV}
 		\end{subfigure}
 		
-		\onslide<2->
+		\onslide<3->
 		\begin{subfigure}{.49\textwidth}
-			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PH-PTD.pdf}
-			\caption*{\tiny PO+PTD  simulation with horizontal polarization.}
+            \tikzmark{PTDPH}
+            \includegraphics[trim={5cm .5cm 5cm 2cm}, clip,width=1.\textwidth,height=.3\textheight,keepaspectratio,center]{images/gfa/PO-PH-PTD.pdf}
+            \vspace*{-4ex}
+            \caption*{\scriptsize PO+PTD\footnotemark[1]  simulation with horizontal polarization.}
 			\label{fig:RCS-baseline-PTD-PV}
 		\end{subfigure}
 		\begin{subfigure}{.49\textwidth}
-			\includegraphics[width=1.\textwidth,height=.35\textheight,keepaspectratio,center]{images/gfa/PO-PV-PTD.pdf}
-			\caption*{\tiny PO+PTD simulation with vertical polarization.}
+            \tikzmark{PTDPV}
+			\includegraphics[trim={5cm .5cm 5cm 2cm}, clip,width=1.\textwidth,height=.3\textheight,keepaspectratio,center]{images/gfa/PO-PV-PTD.pdf}
+            \vspace*{-4ex}
+			\caption*{\scriptsize PO+PTD\footnotemark[1] simulation with vertical polarization.}
 			\label{fig:RCS-baseline-PTD-PH}
 		\end{subfigure}
 		\onslide<1->
-		\caption*{Profile of RCS with respect to the bearing angle on the GFA (elevation : $\phi = -20^\circ$).}
+        \vspace*{-1ex}
+		\caption*{\small Profile of RCS with respect to the bearing angle on the GFA (elevation : $-20^\circ$).}
 		\label{fig:RCS-baseline}
     \end{figure}
-
+    \vspace*{-4ex}
+    \onslide<3->{
+    \footnotetext[1]{\cite{Michaeli1986}}
+    }
+    \begin{tikzpicture}[remember picture,overlay]
+        \setlength{\myxshift}{.22\textwidth}
+        \setlength{\myyshift}{.075\textheight}
+        \setlength{\myxradius}{.9cm}
+        \setlength{\myyradius}{.25cm}
+        \coordinate (center) at (current page.center);
+        \coordinate (north) at (current page.north);
+        \coordinate (south) at (current page.south);
+        \onslide<2->
+        \draw[color=blue, line width=2pt] ($(pic cs:POPH) + (\myxshift, \myyshift)$) circle[x radius=\myxradius, y radius=\myyradius, rotate=15];
+        \draw[color=blue, line width=2pt] ($(pic cs:POPV) + (\myxshift, \myyshift)$) circle[x radius=\myxradius, y radius=\myyradius, rotate=15];
+        \node[align=center, color=blue] at (barycentric cs:center=1,north=0.9) {\textbf{\footnotesize Diffraction peak is to weak} \\ \textbf{\footnotesize It should not appear}\\\textbf{\footnotesize on horizontal polar}};
+        \onslide<4->
+        \draw[color=blue, line width=2pt] ($(pic cs:PTDPH) + (\myxshift, \myyshift)$) circle[x radius=\myxradius, y radius=\myyradius, rotate=15];
+        \draw[color=blue, line width=2pt] ($(pic cs:PTDPV) + (\myxshift, \myyshift)$) circle[x radius=\myxradius, y radius=\myyradius, rotate=15];
+        \node[align=center, color=blue] at (barycentric cs:center=1,south=0.1) {\textbf{\footnotesize Diffraction peak seems physical}};
+    \end{tikzpicture}
 \end{frame}
-
 \begin{frame}
-    \frametitle{COPOLA}
+    \frametitle{Differentiation}
 
-    \begin{itemize}[label=$\bullet$]
-        % \item<1-> PO does not take diffraction into account.
- 
-        % \item<2-> An extension, Physical Theory of Diffraction\footnote<2->{Michaeli, A.~, 1986, \textit{Elimination of infinities in equivalent edge currents, Part I : Fringe Current Components}.} (PTD), allows to take edge diffraction into account.
+    We used the Automatic Differentiation (AD) tool TAPENADE\footcite{Hascoet2013} from INRIA.
 
-        \item The OP+PTD solver has been differentiated with the help of TAPENADE\footcite{Hascoët2013}
-        % \item The OP+PTD solver has been differentiated with the help of TAPENADE\footnote{Hascoët, L.~et V.~Pascual, 2013, \textit{The TAPENADE Automatic Differentiation tool : Principles, Model and Specification}.}
-
-        % \item<4-> The solver has been implemented in a code called COPOLA.
+    \begin{itemize}
+        \item The PO+PTD solver was written in C, so no operator overload
+        \item Source code transformation is faster and less error-prone than computing by hand
     \end{itemize}
     
 \end{frame}
@@ -142,8 +168,9 @@
 
 \begin{frame}
     \frametitle{Comparison to BEM}
-    \captionsetup{justification=centering}
+    The height and width of peaks are well predicted. In the zones where the relative error is big, the RCS is very small anyway.
     \begin{figure}[htb]
+        \captionsetup{justification=centering}
 		\centering
 		\includegraphics[width=.75\textwidth]{images/bidis/comp_BEM_PO.png}
 		\caption*{Comparison of the RCS function of the bearing angle predicted by COPOLA and BEM code on a GFA geometry.}
@@ -214,8 +241,16 @@
         $F = wF_a + (1-w)F_e,$	with $0\leq w\leq1$.
     \end{center}
 
+    % \only<1>
+    % {
+    %     Successively minimizing weighted some is the simplest multi-objective algorithm.
+    %     It does not allow to capture none convex parts of the front.
+    %     It has the advantage of being trivial to implement and works well with bradient-based algorithms.
+    % }
+
     \begin{columns}
         \begin{column}<2->{.5\textwidth}
+            \small
             \begin{center}Stealth criterion\end{center}
             \begin{equation*}
                 F_e = \frac{\tilde\sigma}{{\tilde\sigma}^{ref}},
@@ -229,7 +264,12 @@
             \onslide<4->
             \begin{itemize}[label=$\bullet$]
                 \item $\delta_s$ : threshold function on RCS, to cut oscillations in low RCS zones.
-                \item \hyperlink<4->{fra:gamma}{$\Gamma_d$} : directivity function, to focus on critical directions.
+                \item \hyperlink<4->{fra:gamma}{$\Gamma_d$} : \hypertarget<4->{lk:gamma-bidis}{directivity function, to focus on critical directions.}
+            \end{itemize}
+            RCS Computation :
+            \begin{itemize}[label=$\bullet$]
+                \item RCS averaged over 21 frequencies
+                \item $f_{mean} = 2\unit{\giga\hertz}$
             \end{itemize}
         \end{column}
 
@@ -268,7 +308,7 @@
 
 \begin{frame}
     \frametitle{Pareto front}
-    
+    The framework was able to identify multiple trade-offs.
     \begin{figure}
         \centering
         % \resizebox{!}{.5\textheight}{
@@ -327,7 +367,7 @@
 
 \begin{frame}
     \frametitle{The stealth optimization - RCS analysis}
-
+    The peaks have converged to 30$^\circ$ which is what was expected.
     \begin{figure}[htb]
         \centering
         \captionsetup{justification=centering}
@@ -340,11 +380,11 @@
 
 \begin{frame}
     \frametitle{The stealth optimization - Aerodynamic analysis}
-    
+    The decrease in leading edge sweep angle causes the shock to become stonger.
     \begin{figure}[htp]
         \centering
         \captionsetup{justification=centering}
-        \includegraphics[width=0.75\textwidth,center]{images/bidis/Optim_PO/MALO_5_RCS.pdf}
+        \includegraphics[width=.9\textwidth,height=.7\textheight,keepaspectratio,center]{images/bidis/Optim_PO/MALO_5_RCS.pdf}
         \caption*{Comparison of the distributions of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the stealth-optimal shape (bottom).}
         \label{bidis-fig:optim-PO-MALO-5}
     \end{figure} 
@@ -354,7 +394,7 @@
 
 \begin{frame}
     \frametitle{The aerodynamic optimization - Shape}
-    
+    The sweep angles have maxed out.
     \begin{figure}[htb]
         \centering
         \includegraphics[trim=30mm 55mm 40mm 70mm,clip,width=\textwidth,center]{images/bidis/Optim_CFD/shape.pdf}
@@ -365,7 +405,7 @@
 
 \begin{frame}
     \frametitle{The aerodynamic optimization - RCS analysis}
-    
+    The RCS has been spread out which is detrimental.
     \begin{figure}[htb]
         \centering
         \captionsetup{justification=centering}
@@ -378,11 +418,11 @@
 
 \begin{frame}
     \frametitle{The aerodynamic optimization - Aerodynamic analysis}
-
+        The increase in leading edge sweep angle have caused the shock to become weaker.
         \begin{figure}[htp]
         \captionsetup{justification=centering}
         \centering
-        \includegraphics[width=0.75\textwidth,center]{images/bidis/Optim_CFD/MALO_5_aero.pdf}
+        \includegraphics[width=.9\textwidth,height=.7\textheight,keepaspectratio,center]{images/bidis/Optim_CFD/MALO_5_aero.pdf}
         \caption*{Comparison of the distributions of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the optimized aerodynamic shape (bottom).}
         \label{bidis-fig:optim-CFD-MALO-5}
     \end{figure}

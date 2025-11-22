@@ -5,7 +5,7 @@
 % \graphicspath{{\subfix{../chapters/}}}
 
 \begin{document}
-\section{From the maxwell equations to the RCS}
+\section{From the Maxwell equations to the RCS}
 
 \subsection{Fundamentals}
 \begin{frame}
@@ -21,17 +21,17 @@
 		\nabla \cdot \B = 0, \label{bem-eq:divB}
 	\end{equation}
 	\begin{equation}
-		\nabla \times \E = j\omega\B, \label{bem-eq:rotE}
+		\nabla \times \E = jkZ_0\Hh, \label{bem-eq:rotE}
 	\end{equation}
 	\begin{equation}
-		\nabla \times \Hh = \J -j\omega\D, \label{bem-eq:rotH}
+		\nabla \times \Hh = \J -j\frac{k}{Z_0}\E, \label{bem-eq:rotH}
 	\end{equation}
-        % \pause
-        along with the continuity equation : 
-        \begin{equation}
-            \label{eq:cont}
-            \nabla\cdot\J + \derpartt{\rho} = 0.
-        \end{equation}
+        % % \pause
+        % along with the continuity equation : 
+        % \begin{equation}
+        %     \label{eq:cont}
+        %     \nabla\cdot\J + \derpartt{\rho} = 0.
+        % \end{equation}
     \end{subequations}
     \onslide<1->
     \small
@@ -41,7 +41,7 @@
             \B\text{ : magnetic field}&\rho\text{ : charge density}\\
             \D = \varepsilon_0\E&\varepsilon_0\text{ : dielectric permitivity}\\
             \B = \mu_0\Hh&\mu_0\text{ : magnetic permeability}\\
-            k = \dfrac{2\pi f}{c}&Z_0 = \sqrt{\dfrac{\mu_0}{\varepsilon_0}}
+            k = \dfrac{\omega}{c}&Z_0 = \sqrt{\dfrac{\mu_0}{\varepsilon_0}}
         \end{array}
     \end{equation*}
 \end{frame}
@@ -49,25 +49,28 @@
 \begin{frame}
     \frametitle{The Vector Helmholtz Equation}
     \begin{equation}
-    -\left(\nabla^2+k^2\right)\E = \mathbf T    
+    -\left(\nabla^2+k^2\right)\E = \mathbf T(\J)    
     \label{bem-eq:Helmholtz}
 \end{equation}
 
 With : 
 \begin{equation}
-    \mathbf T = kZ_0\left(\frac1{k^2}\nabla\nabla\cdot+1\right)\J.
+    \mathbf T(\J) = kZ_0\left(\frac1{k^2}\nabla\nabla\cdot+1\right)\J.
 \end{equation}
 
 \pause
 The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as :
 
 \begin{equation}
-    \E(x) = \int_\Omega \mathbf T(y)G(x,y)\dd\Omega(y),\quad \forall x\notin\mathrm{supp}(\mathbf T),
+    \E(x) = \int_\Omega \mathbf T(\J(y))G(x,y)\dd\Omega(y),\quad \forall x\notin\mathrm{supp}(\mathbf T),
     \label{bem-eq:sol-helmholtz}
 \end{equation}
  
-
+\only<3>{
     where $$G(x,y) = \frac{e^{-jk|x-y|}}{|x-y|}$$ is the three-dimension homogeneous Green function.
+}
+\onslide<4->
+The scattered field is determined by the distribution of current density.
 \end{frame}
 
 
@@ -81,7 +84,7 @@ The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as :
     \begin{columns}
         \begin{column}{0.75\textwidth}
             \begin{block}<1->{Assumption}
-                Assume an ideal perfectly conducting obstacle occupying a bounded domain $\Omega^-$ with boundary $\Gamma$ in free space $\Omega$ and illuminated by an incident plane wave $\E\inc$ propagating along the direction $\uu_i$.
+                Assume an ideal perfectly conducting obstacle occupying a bounded domain $\Omega^-$ with boundary $\Gamma$ in free space $\Omega$ and illuminated by an incident plane wave $\E\inc$ propagating along the direction $\uu_i$ which induces a current distribution $\J$ on $\Gamma$.
             \end{block}
         \end{column}
         \begin{column}{0.25\textwidth}
@@ -98,12 +101,12 @@ The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as :
     \onslide<2->
     It can be shown that, in the absence of losses, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as :
     \begin{equation}
-        \E(x) = j\frac{e^{ik|x|}}{|x|}\left\{\E^\infty(\tfrac x{|x|}) + \mathcal{O}\left(\frac1{|x|}\right)\right\},
+        \E(x) = j\frac{e^{jk|x|}}{|x|}\left\{\E^\infty(\tfrac x{|x|}) + \mathcal{O}\left(\frac1{|x|}\right)\right\},
         \label{eq:helmholtz}
     \end{equation}
     %
     \onslide<2->
-    with
+    $E^\infty$ is called the far field and defined as :
     \begin{equation}
         \E^\infty(\tfrac\x{|\x|}) = \frac{kZ_0}{4\pi}\frac\x{|\x|}\times\left(\mathcal F(\J)(\tfrac{\x}{|\x|})\times\frac\x{|\x|}\right),
         \label{eq:champ-lointain}
@@ -115,9 +118,6 @@ The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as :
         \mathcal F(\J)(\x) = \left<\J_y,e^{-jkx\cdot y}\right>_{\varepsilon'(\mathbb R^3),\varepsilon(\mathbb R^3)}.
         \label{eq:cond-F}
     \end{equation}
-
-    \onslide<4->
-    The quantity $\E^\infty$ is called the far field.
 
 \end{frame}
 % \begin{frame}
@@ -154,7 +154,7 @@ From the development \eqref{eq:champ-lointain}, the limit in \eqref{bem-eq:RCSde
 
 \pause
 
-To compute $\sigma$, one needs to compute the current density $\J$ on the scatterer surface.
+To compute $\sigma$, one needs to compute the current density $\J$ on the target surface.
 
 \end{frame}
 \end{document}

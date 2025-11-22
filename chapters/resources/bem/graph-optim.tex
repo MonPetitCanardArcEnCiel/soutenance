@@ -26,10 +26,10 @@
     \node (cvg) [decision, below of=optim,yshift=-.5\nd]{convergence};
     \node (DV) [io,below of=cvg,yshift=-1\nd] {Design Variable};
     \node (cad) [process,below of=DV,yshift=-.5\nd] {CAD modeler};
-    \node (in2d) [io,left of=cad,xshift=-1.5\ndv]{Initial geometry\newline Initial 2D grid};
+    \node (in2d) [io,left of=cad,xshift=-1.5\ndv]{Initial geometry\newline Initial surface grid};
     \coordinate [below of=cad,yshift=.5\nd] (aux0);
 
-    \node (POgrid) [io,below of=cad] {2D grid};
+    \node (POgrid) [io,below of=cad] {surface grid};
     \node (SPECTRE) [process,below of=POgrid] {CEM solver};
     \node (RCS) [io,below left of=SPECTRE,yshift=-0.5\nd,xshift=-.5\ndv] {RCS};
     \node (dRCS) [io,below right of=SPECTRE,yshift=-0.5\nd,xshift=.5\ndv] {%
