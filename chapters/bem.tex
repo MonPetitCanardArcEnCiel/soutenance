@@ -63,11 +63,17 @@
 
 \begin{frame}
     \frametitle{Discretization}
-    This allows to express the EFIE problem \eqref{eq:efie} under the form of a linear system :
+    This allows to express the EFIE problem \eqref{eq:efie} under the form of a linear system of unknown $I$:
     \begin{equation}
-        AI = \bb.
+        {\color<2->{red}A}I = {\color<4->{blue}\bb}.
         \label{eq:syslin}
     \end{equation}
+    \begin{itemize}
+        \small
+        \item<2-> {\color{red} $A$ represents the interaction between the electric currents at each point in the grid with each other}
+        \item<3-> $I$ represents the unknown current density at each point in the grid
+        \item<4-> {\color{blue}$\bb$ represents the influence of $\E\inc$ on each point of the grid}
+    \end{itemize}
 \end{frame}
 
 \subsection{The BEM adjoint}
@@ -83,19 +89,20 @@
     \onslide<3->
     The derivative of $\zeta$ with respect to $\eta$ writes :
     \begin{equation}
-        \dd{\zeta} = \derpart{\zeta}{\X}\derpart{X}{\eta}\dd\eta - \Psi^*\left({\color<3->{lightgray}\derpart{A}\X I }- \derpart{b}\X\right)\derpart{\X}{\eta}\dd\eta
+        \dd{\zeta} = {\color<4->{blue}\derpart{\zeta}{\X}}{\color<5->{red}\derpart{X}{\eta}}\dd\eta - \Psi^*\left({\color<7->{lightgray}\derpart{A}\X I }- {\color<4->{blue}\derpart{b}\X}\right){\color<5->{red}\derpart{\X}{\eta}}\dd\eta
     \end{equation}
 
-    
-    \onslide<4->
-    where $\Psi$ is the solution of the adjoint system : :
-    \onslide<5->
-    \begin{equation}
-        \overline{A}\Psi = \left(\derpart{\zeta}{I}\right)^*
-    \end{equation}
-
-    \onslide<6>
-    Because of time constraints, we did not have the time to implement the computation (especially because of memory requirements and the handling of singular cases) of the term $\derpart{A}\X\J$, and so we omit it in the following.
+    \begin{itemize}
+        \item<4-> {\color{blue} The terms in blue} are the derivatives with respect to the mesh coordinates. They can be computed analytically (done with TAPENADE)
+        \item<5-> {\color{red} The terms in red} are the derivatives of the grid coordinates with respect to the optimization parameters. Assumed known (computed by the CAD modeler)
+        \item<6-> $\Psi$ is the solution of the adjoint system:
+        \only<6>{
+        \begin{equation}
+            \overline{A}\Psi = \left(\derpart{\zeta}{I}\right)^*
+        \end{equation}
+        }
+        \item<7-> Because of time constraints, we did not have the time to implement the computation (especially because of memory requirements and the handling of singular cases) of the term $\color{lightgray}\derpart{A}\X I$, and so we omit it in what follows.
+    \end{itemize}
 
 \end{frame}
 
