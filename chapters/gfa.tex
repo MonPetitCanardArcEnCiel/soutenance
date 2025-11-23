@@ -50,9 +50,26 @@
 	The RCS is mainly conscentrated in two directions : 48$^\circ$ (specular reflexion on the leading edge) and 15$^\circ$ (diffraction on the trailing edge). It is very small elsewhere.
 	\begin{figure}
 		\centering
-		\includegraphics[width=1\textwidth, height=.75\textheight, keepaspectratio]{images/gfa/RCS_RCS_baseline.pdf}
-		\caption*{RCS of the baseline GFA at $f = 2 \unit{\giga\hertz}$ (vertical polarization)}
-	\end{figure}
+		\captionsetup[subfigure]{justification=centering}
+		\begin{subfigure}{.49\textwidth}
+            \includegraphics[trim={5cm .5cm 5cm 2cm}, clip,width=.8\textwidth,height=0.8\textheight,keepaspectratio,center]{images/gfa/PO-PH-PTD.pdf}
+            \vspace*{-4ex}
+            \caption*{\scriptsize Horizontal polarization.}
+		\end{subfigure}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[trim={5cm .5cm 5cm 2cm}, clip,width=.8\textwidth,height=.8\textheight,keepaspectratio,center]{images/gfa/PO-PV-PTD.pdf}
+            \vspace*{-4ex}
+			\caption*{\scriptsize Vertical polarization.}
+		\end{subfigure}
+		\onslide<1->
+        \vspace*{-1ex}
+		\caption*{\small Profile of RCS with respect to the bearing angle on the GFA (elevation: $-20^\circ$, $f = 2\unit{\giga\hertz}$).}
+    \end{figure}
+	% \begin{figure}
+	% 	\centering
+	% 	\includegraphics[width=1\textwidth, height=.75\textheight, keepaspectratio]{images/gfa/RCS_RCS_baseline.pdf}
+	% 	\caption*{RCS of the baseline GFA at $f = 2 \unit{\giga\hertz}$ (vertical polarization)}
+	% \end{figure}
 \end{frame}
 
 \subsection{Aerodynamic analysis}
