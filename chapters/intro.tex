@@ -8,7 +8,7 @@
 %     \frametitle{To remove}
 %     \begin{itemize}[label=\ding{227}]
 %         \item Motivations (comparaison)%
-%         \item Trade-offs (Front de Pareto)%
+%         \item Tradeoffs (Front de Pareto)%
 %         \item Mission Specifications%
 %         \item Industrial design process%
 %         \item Fidelity%
@@ -24,10 +24,11 @@
 \begin{frame}[t]
     \frametitle{Motivations}
     \begin{itemize}[label=\ding{227}]
-        \item<1-> Modern fighter aircraft need aerodynamic performance and low observability.
+        \item<1-> Modern fighter aircraft need to balance aerodynamic performance and low radar visibility.
         \item<2-> These two aspects are generally antagonistic\footcite{Aliaga2022}.
     \end{itemize}
     \onslide<3->
+    \vspace*{-2ex}
     \begin{figure}
         \captionsetup{justification=centering}
         \centering
@@ -40,18 +41,106 @@
             \caption*{An aircraft designed with emphasis on low observability (F-117)}
         \end{subfigure}
     \end{figure}
+    \vspace*{-4ex}
+    \begin{itemize}[label=\ding{227}]
+        \item<4-> We need an efficient way to find "good" shapes on both aspects
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Trade-offs}
-    We need a way to efficiently explore tradeoffs.
-    \begin{figure}
-        \centering
-        \resizebox{!}{.8\textheight}{
-            \subimport{resources/intro/}{ex_pareto.tex}
-        }
-    \end{figure}
+    \frametitle{Optimization}
+
+    The problem:
+
+    For a given parameter space $\mathbb P$ (ex: wing sweep angles, chord length, span, camber...):
+    \begin{align*}
+        \underset{X\in\mathbb P}{\argmin} \left\{\begin{array}{l}
+            \text{aerodynamic criterion}(X)\\
+            \text{stealth criterion}(X)
+        \end{array}\right.\\
+        \text{s.~t.~}\quad\left\{\begin{array}{l}
+            \text{aerodynamic constraints}\\
+            \text{stealth constraints}\\
+            \text{geometric constraints}
+        \end{array}\right.
+    \end{align*}
+    with $X$ the vector of geometric parameters.
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Tradeoffs}
+    We need a way to efficiently explore Pareto-optimal tradeoffs.
+    \begin{columns}
+        \begin{column}{.7\textwidth}
+            \vspace*{-4ex}
+            \begin{figure}
+                \centering
+                \resizebox{!}{.8\textheight}{
+                    \subimport{resources/intro/}{ex_pareto.tex}
+                }
+            \end{figure}
+        \end{column}
+        \begin{column}{.3\textwidth}
+            \small
+            Pareto-optimal tradeoff:
+
+            A tradeoff that cannot be improved on an aspect without sacrificing another
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Optimization algorithms}
+    
+    \begin{columns}
+        \column{.5\textwidth}
+            \textbf{Gradient-free algorithms}
+            \begin{itemize}[label=\ding{227}]
+                \item<2-> Require a lot of function evaluations
+                \item<4-> Computation cost rises quickly with number of parameters.
+                \item<5-> No gradient
+                \item<6-> Tend to struggle with constraints\footnotemark
+                % \item<6-> Some algorithms are global
+            \end{itemize}
+        \column{.5\textwidth}
+            \textbf{Gradient-based algorithms}
+            \tikzmark{start}
+            \begin{itemize}[label=\ding{227}]
+                \item<2-> Require less function evaluations
+                \item<4-> Computation cost less dependant on number of parameters.
+                \item<5-> Require an efficient way to compute the gradient
+                % \item<6-> Local
+            \end{itemize}
+    \end{columns}
+    \footnotetext{\cite{Parr2010}}
+    \only<3>{
+        \begin{tikzpicture}[remember picture, overlay]
+            \node (pic) at (current page.center) {\includegraphics[width=.5\textwidth,height=.7\textheight, keepaspectratio]{chapters/images/intro/lyu2014.png}};
+            \node[yshift=-.5\baselineskip] at (pic.south) {\textit{Evolution of the number of function evaluations for various algorithms with the dimension\footcite{lyu2014}}};
+        \end{tikzpicture}
+    }
+    % \only<4->{
+    % \begin{tikzpicture}[remember picture, overlay]
+    %     \draw[color=red, line width=3pt] ($ (pic cs:start) - (1.9,3\baselineskip) $) circle [x radius=.3\linewidth, y radius=.19\linewidth];
+    % \end{tikzpicture}
+    % }
+
+
+    % \onslide<7->
+
+    \vspace{2\baselineskip}
+    
+    % Two gradient-based algorithms are widely used: BFGS and its variants for unconstrained problems and SLSQP for constrained problems.
+    
+    \onslide<6->
+    {
+    % \vspace{1\baselineskip}
+    For PDE systems, the adjoint state method allows the cost of the gradient computation to stay roughly linear with respect to the number of parameters\footcite{Mohammadi2009}
+    }
+\end{frame}
+
+
 
 \subsection{Mission Specifications}
 
@@ -97,7 +186,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Mission Specifications -- Low Obervability II}
+    \frametitle{Mission Specifications -- Low observability II}
     \begin{table}[!htb]
     \adjustbox{max width=\textwidth}{
         \centering
@@ -107,7 +196,7 @@
             \hline
             HF \& VHF & < 300 MHz  & > 1m    & Very long range,  transhorizon surveillance, telecom,\newline negligible attenuation  \\
             \hline
-            UHF & 300 - 1 000 MHz & 0.3 - 1 m    & Very long range detection, ground penetration, satelite tracking \\
+            UHF & 300 - 1 000 MHz & 0.3 - 1 m    & Very long range detection, ground penetration, satellite tracking \\
             \hline
             L   & 1 - 2 GHz       & 15 - 30 cm   & Long range detection ($ < 400\unit{\kilo\meter}$ ), air surveillance, meteo,\newline weak attenuation             \tikzmark{startms}\\
             \hline
@@ -132,26 +221,25 @@
 
     \onslide<2->
     \begin{itemize}[label=$\bullet$]
-        \item Target frequency : 2 GHz.
+        \item Target frequency: 2 GHz.
         \item Considered high frequencies $\implies$ geometry details have a great impact on RCS
         \item Relevant for long range detection
-        \item Atmospheric attenuation not considered (worst case scenario)
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Mission Specifications -- Low observability III}
     \begin{itemize}[label=\ding{227}]
-        \item<1-> Active stealth (jamming\dots) are out of scope
-        \item<2-> Won't take coating into account (assumed to be Perfectly Electric Conductor)
-        \item<3-> Cavity radiation is important too (air intakes) but out of scope (for now) 
+        \item<1-> Atmospheric attenuation not considered
+        \item<2-> Active stealth (jamming\dots) out of scope
+        \item<3-> Won't take coating into account (assumed to be Perfect Electric Conductor)
     \end{itemize}
     
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{Mission specification -- Aerodynamics}
+    \frametitle{Mission Specifications -- Aerodynamics}
     \begin{columns}
         \begin{column}{.6\textwidth}
             \small
@@ -162,7 +250,7 @@
                 \begin{itemize}[label=\ding{229}]
                     \item<3-> \textbf{Compressible flow}
                 \end{itemize}
-                \item<4-> No maneuvre, landing or take-off
+                \item<4-> No maneuver, landing or take-off
                 \begin{itemize}[label=\ding{229}]
                     \item<5-> Flow can be considered \textbf{stationary}
                 \end{itemize}
@@ -184,38 +272,38 @@
 \end{frame}
 
 \subsection{Method overview}
-\begin{frame}
-    \frametitle{The industrial process}
-    \begin{table}
-        \centering
-        \resizebox{\textwidth}{!}{
-        \begin{tabular}{m{.25\textwidth}m{.3\textwidth}m{.3\textwidth}m{.3\textwidth}}
-            Conceptual design&Identification of impact of different design concepts, technologies\dots&Simple geometries&Quick iterations. Low accuracy
-            \\
-            \onslide<2->{
-                \centering$\Downarrow\Uparrow$&&&
-            % \\
-            \\
-            Preliminary design&Exploration of a limited number of concepts&More detailed geometry, still simplified&Medium accuracy
-            \\
-            }
-            \onslide<3->{
-                \centering$\Downarrow$&&&
-            \\
-            Detailed design&Very detailed modelling of a chosen design.\newline Experiments.&Digital mock-up&Very high accuracy needed. The simulations are very costly.
-            }
-        \end{tabular}
-        }
-    \end{table}
-    \only<4->{
-    \begin{tikzpicture}[remember picture, overlay]
-        \draw[color=red, line width=3pt] ($ (current page.center) + (0.,-0.3) $) circle [x radius=.5\linewidth, y radius=4ex];
-    \end{tikzpicture}
-    }
-\end{frame}
+% \begin{frame}
+%     \frametitle{The industrial design process}
+%     \begin{table}
+%         \centering
+%         \resizebox{\textwidth}{!}{
+%         \begin{tabular}{m{.25\textwidth}m{.3\textwidth}m{.3\textwidth}m{.3\textwidth}}
+%             Conceptual design&Identification of impact of different design concepts, technologies\dots&Simple geometries&Quick iterations. Low accuracy
+%             \\
+%             \onslide<2->{
+%                 \centering$\Downarrow\Uparrow$&&&
+%             % \\
+%             \\
+%             Preliminary design&Exploration of a limited number of concepts&More detailed geometry, still simplified&Medium accuracy
+%             \\
+%             }
+%             \onslide<3->{
+%                 \centering$\Downarrow$&&&
+%             \\
+%             Detailed design&Very detailed modelling of a chosen design.\newline Experiments.&Digital mock-up&Very high accuracy needed. The simulations are very costly.
+%             }
+%         \end{tabular}
+%         }
+%     \end{table}
+%     \only<4->{
+%     \begin{tikzpicture}[remember picture, overlay]
+%         \draw[color=red, line width=3pt] ($ (current page.center) + (0.,-0.3) $) circle [x radius=.5\linewidth, y radius=4ex];
+%     \end{tikzpicture}
+%     }
+% \end{frame}
 
 \begin{frame}
-    \frametitle{The numerical methods in for Computational Fluid Dynamics (CFD)}
+    \frametitle{The methods in for Computational Fluid Dynamics (CFD)}
     \vspace{-2ex}
     \begin{table}
         \renewcommand{\arraystretch}{1.2}
@@ -223,7 +311,7 @@
         \small
         \resizebox{\textwidth}{!}{
             \begin{tabular}{ccccc}
-                Euler&&Inviscid&Unsteady&Very cheap.\\
+                Euler&&Inviscid&Unsteady&Very cheap\\
                 \onslide<2->
                 RANS\tikzmark{rans}&Reynolds-Averaged Navier Stokes&Viscid&Steady&Cheap\\
                 \onslide<2->
@@ -233,7 +321,7 @@
                 \onslide<3->
                 LES&Large Eddy Simulation&Viscid&Unsteady&Very Expensive\\
                 \onslide<4->
-                DNS&Direct Numerical Simulation&Viscid&Unsteady&Prohibitively expensive.
+                DNS&Direct Numerical Simulation&Viscid&Unsteady&Prohibitively expensive
             \end{tabular}
         }
     \end{table}
@@ -276,11 +364,11 @@
     \begin{minipage}[t][.5\textheight][c]{\textwidth}        
         \begin{itemize}[label=\ding{227}]
             \item Flow is considered stationary $\implies$ unsteadiness not required
-            \item Unsteady adjoint is very expensivse because of the need to compute backward in time
+            \item Unsteady adjoint is very expensive because of the need to compute backwards in time
             \item<6-> RANS and its adjoint have been widely used for aero performance optimization. For instance:
             \begin{itemize}[label=$\bullet$]
                 \small
-                \item<6-> Blended wing-body configuration : \cite{Lyu2014a} (2014)
+                \item<6-> Blended wing-body configuration: \cite{Lyu2014a} (2014)
                 \item<6-> NASA Common Research Wing: \cite{Lyu2015} (2015)
             \end{itemize}
         \end{itemize}
@@ -299,7 +387,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{The numerical methods for Computa ElectroMagnetism (CEM)}
+    \frametitle{The methods for Computational ElectroMagnetism (CEM)}
     \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
     \begin{table}
         \renewcommand{\arraystretch}{1.5}
@@ -307,11 +395,11 @@
         \small
         % \resizebox{\textwidth}{!}{
             \begin{tabular}{lll}
-                Geometrical Optics\newline (Ray tracing)&High frequency approximation.\\
-                Physical Optics&High frequency approximation.\\
-                Boundary Element Methods&Full wave method\footnotemark[1].\\
-                Finite Differences Time Domain&Full wave method\footnotemark[1].\\
-                Finite Element Method&Full wave method\footnotemark[1].\\
+                Geometrical Optics (Ray tracing)&High frequency approximation\\
+                Physical Optics (PO)&High frequency approximation\\
+                Boundary Element Method&Full wave method\footnotemark[1]\\
+                Finite Differences Time Domain&Full wave method\footnotemark[1]\\
+                Finite Element Method&Full wave method\footnotemark[1]\\
             \end{tabular}
         % }
     \end{table}
@@ -319,99 +407,49 @@
     {
     \vfill
     \begin{itemize}[label=\ding{227}]
-        \item Geometrical optics completely ignores wave physics
-        \item Geometrical optics is not differentiable
-        \item Physical is not able to handle multiple reflexions (though solutions exist) or cavity scattering
-        \item Boundary Element Method is the full wave method most adapted to scattering problem in homogeneous domain
+        \item<2-> Geometrical optics completely ignores wave physics
+        \item<2-> Geometrical optics is not differentiable
+        \item<3-> Physical optics is not able to handle multiple reflexions (though solutions exist)
+        \item<3-> Boundary Element Method is the full wave method most adapted to scattering problem in homogeneous domain
     \end{itemize}
     }
-    \footnotetext[1]{Methods that relie on numerically solving the Maxwell equations.}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Optimization}
-    
-    \begin{columns}
-        \column<1->{.5\textwidth}
-            \textbf{Gradient-free algorithms}
-            \begin{itemize}[label=\ding{227}]
-                \item Require a lot of function evaluations
-                \item Computation cost rises quickly with number of parameters.
-                \item No gradient
-                \item Some algorithms are global
-                \item Tend to struggle with constraints\footnotemark
-            \end{itemize}
-        \column<2->{.5\textwidth}
-            \textbf{Gradient-based algorithms}
-            \tikzmark{start}
-            \begin{itemize}[label=\ding{227}]
-                \item Require less function evaluations
-                \item Computation cost less dependant on number of parameters.
-                \item Require an efficient way to compute the gradient
-                \item Local
-            \end{itemize}
-    \end{columns}
-    \footnotetext{\cite{Parr2010}}
-    \only<3>{
-        \begin{tikzpicture}[remember picture, overlay]
-            \node (pic) at (current page.center) {\includegraphics[width=.5\textwidth,height=.7\textheight, keepaspectratio]{chapters/images/intro/lyu2014.png}};
-            \node[yshift=-.5\baselineskip] at (pic.south) {\textit{Evolution of the number of function iteration for various algorithm with the dimension\footcite{lyu2014}}};
-        \end{tikzpicture}
-    }
-    \only<4->{
-    \begin{tikzpicture}[remember picture, overlay]
-        \draw[color=red, line width=3pt] ($ (pic cs:start) - (1.9,3\baselineskip) $) circle [x radius=.3\linewidth, y radius=.19\linewidth];
-    \end{tikzpicture}
-    }
-
-
-    \onslide<5->
-
-    \vspace{2\baselineskip}
-    
-    Two algorithms are widely used : L-BFGS-B for unconstrained problems and SLSQP for constrained problems.
-    
-    \only<6->
-    {
-    \vspace{1\baselineskip}
-    For PDE systems, the ajoint formulation allows the cost of the gradient computation to stay roughly linear with respect to the number of parameters\footcite{Mohammadi2009}
-    }
+    \footnotetext[1]{Methods that rely on numerically solving the Maxwell equations.}
 \end{frame}
 
 \subsection{State of the art}
 \begin{frame}
-    \frametitle{State of the art -- aerostealth optimization I}
+    \frametitle{State of the art -- Aero-stealth optimization I}
     \small
-    Few studies have used integrated aero stealth optimization methods.
+    Few studies have used integrated aero-stealth optimization methods.
     \begin{itemize}[label=\ding{227},leftmargin=5mm]
         \item Until the late 2010's, most of them used gradient-free algorithms:
         \begin{itemize}[label=\ding{229}]
-            \item<2-> 2007: Evolutionary algorithm with a potential flow solver and PO for planform and wing section optimization (very low fidelity methods) : \cite{Lee2007}
+            \item<2-> 2007: Evolutionary algorithm with a potential flow solver and PO for planform and wing section optimization (very low fidelity methods): \cite{Lee2007}
             % \item 2014: Adaptative surrogate method with a BLISS formulation for structure, stealth and aerodynamic optimization of high aspect ratio wing \cite{Wu2014}
-            \item<3-> 2016: Surrogate-based optimization with RANS and Finite Volume Time Domain method for aerostealth optimization of a heliocpter rotor (2 parameters): \cite{Jiang2016}
-            % \item<4-> 2018: Multidisciplinary optimization of drones for radar signature, sensor performance and trajectory : \cite{Papageorgiou2018}
-            \item<4-> 2020: Multiobjective EGO\footcite{Guerra2016} to optimize the aero-stealth of a UCAV with RANS and Geometrical Optics (2 parameters) : \cite{Garnier2020}
-            % \item<8-> 2021: Hierarchic kriging for aerostealth optimization of flying wing :\pause \cite{Liu2021}
-            % \item<4-> 2023: Gaussian Process to optimize  aerostealth of a fighter aircraft : \cite{Taj2023}
+            \item<3-> 2016: Surrogate-based optimization with RANS and Finite Volume Time Domain method for aero-stealth optimization of a helicopter rotor (2 parameters): \cite{Jiang2016}
+            % \item<4-> 2018: Multidisciplinary optimization of drones for radar signature, sensor performance and trajectory: \cite{Papageorgiou2018}
+            \item<4-> 2020: Multi-objective EGO\footcite{Guerra2016} to optimize the aero-stealth of a UCAV with RANS and Geometrical Optics (2 parameters): \cite{Garnier2020}
+            % \item<8-> 2021: Hierarchic kriging for aero-stealth optimization of flying wing:\pause \cite{Liu2021}
+            % \item<4-> 2023: Gaussian Process to optimize  aero-stealth of a fighter aircraft: \cite{Taj2023}
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{State of the art -- aerostealth optimization II}
+    \frametitle{State of the art -- Aero-stealth optimization II}
     \small
-    Few studies have used integrated aero stealth optimization methods.
+    Few studies have used integrated aero-stealth optimization methods.
     \begin{itemize}[leftmargin=5mm]
         \item Since the late 2010's, some gradient-based frameworks emerge:
         \begin{itemize}[label=\ding{227}]
-            % \item 2017 : Gradient-based aerostealth optimization of a flying wing, with analytical gradient : \cite{Pan2017}
-            \item 2019 : Constrained gradient based aerostealth optimization of a UCAV : \cite{Li2019}
-            \item 2020 : Use of BEM adjoint and RANS for aerostealth high fidelity optimization of the wing profiles of a flying wing geometry. The adjoint terms are computed by finite differences. \cite{Zhou2020}
+            % \item 2017: Gradient-based aero-stealth optimization of a flying wing, with analytical gradient: \cite{Pan2017}
+            \item 2019: Constrained gradient-based aero-stealth optimization of a UCAV: \cite{Li2019}
+            \item 2020: Use of BEM adjoint and RANS for aero-stealth high fidelity optimization of the wing profiles of a flying wing geometry. The adjoint terms are computed by finite differences. \cite{Zhou2020}
         \onslide<3-> 
             \begin{itemize}[label=\ding{229}]
                 \item<2-> Academic use-case
-                \item<2-> CAD free deformation $\implies$ difficulty to impose geometrical constraints, difficulty to communicate
+                \item<2-> CAD free deformation $\implies$ difficult to include in an industrial framework
                 \item<2-> Simplistic stealth criterion (average RCS)
             \end{itemize}
         \end{itemize}
@@ -423,9 +461,9 @@
     \begin{itemize}[label=$\bullet$]
         % \item Catch up we what is done by chinese researchers
         \item Efficiently explore aero-stealth tradeoffs on a detailed aircraft shape
+        \item Integrated in an industrial framework
         \item High fidelity optimization with a lot of variables
         \item Gradient-based optimization
-        \item Integrated in an industrial framework
         \item More realistic stealth criterion
     \end{itemize}
 
@@ -433,15 +471,15 @@
     \vspace*{2\baselineskip}
     To that end, I present two optimization frameworks:
     \begin{itemize}[label=\ding{227}]
-        \item A bidisciplinary aerostealth framework
+        \item A bidisciplinary aero-stealth framework
         \begin{itemize}[label=\ding{229}]
-            \item CAD model for geometry
+            \item CAD model for geometry with 13 parameters
             \item RANS simulation for CFD
             \item PO method for RCS
         \end{itemize}
         \item A monodisciplinary high fidelity stealth optimization
         \begin{itemize}[label=\ding{229}]
-            \item CAD model for geometry
+            \item CAD model for geometry with 13 parameters
             \item BEM method for RCS
             \item Discrete adjoint formulation for the BEM gradient
         \end{itemize}

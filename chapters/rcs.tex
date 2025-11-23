@@ -12,7 +12,7 @@
     \frametitle{The Maxwell Equations}
 
 
-    Let us recall the Maxwell equations in the harmonic regime :
+    Let us recall the Maxwell equations in the harmonic regime:
     \begin{subequations}
 	\begin{equation}
 		\nabla \cdot{} \D = \varrho, \label{bem-eq:divD}
@@ -27,7 +27,7 @@
 		\nabla \times \Hh = \J -j\frac{k}{Z_0}\E, \label{bem-eq:rotH}
 	\end{equation}
         % % \pause
-        % along with the continuity equation : 
+        % along with the continuity equation: 
         % \begin{equation}
         %     \label{eq:cont}
         %     \nabla\cdot\J + \derpartt{\rho} = 0.
@@ -37,10 +37,10 @@
     \small
     \begin{equation*}
         \begin{array}{ccc}
-            \E\text{ : electric field}&\J\text{ : current density}\\
-            \B\text{ : magnetic field}&\rho\text{ : charge density}\\
-            \D = \varepsilon_0\E&\varepsilon_0\text{ : dielectric permitivity}\\
-            \B = \mu_0\Hh&\mu_0\text{ : magnetic permeability}\\
+            \E\text{: electric field}&\J\text{: current density}\\
+            \B\text{: magnetic field}&\rho\text{: charge density}\\
+            \D = \varepsilon_0\E&\varepsilon_0\text{: dielectric permitivity}\\
+            \B = \mu_0\Hh&\mu_0\text{: magnetic permeability}\\
             k = \dfrac{\omega}{c}&Z_0 = \sqrt{\dfrac{\mu_0}{\varepsilon_0}}
         \end{array}
     \end{equation*}
@@ -49,17 +49,17 @@
 \begin{frame}
     \frametitle{The Vector Helmholtz Equation}
     \begin{equation}
-    -\left(\nabla^2+k^2\right)\E = \mathbf T(\J)    
+    -\left(\nabla^2+k^2\right)\E = \mathbf T(\J),
     \label{bem-eq:Helmholtz}
 \end{equation}
 
-With : 
+with: 
 \begin{equation}
     \mathbf T(\J) = kZ_0\left(\frac1{k^2}\nabla\nabla\cdot+1\right)\J.
 \end{equation}
 
 \pause
-The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as :
+The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as:
 
 \begin{equation}
     \E(x) = \int_\Omega \mathbf T(\J(y))G(x,y)\dd\Omega(y),\quad \forall x\notin\mathrm{supp}(\mathbf T),
@@ -70,7 +70,7 @@ The solution to equation \eqref{bem-eq:Helmholtz} can be expressed as :
     where $$G(x,y) = \frac{e^{-jk|x-y|}}{|x-y|}$$ is the three-dimension homogeneous Green function.
 }
 \onslide<4->
-The scattered field is determined by the distribution of current density.
+The scattered field is determined by the distribution of current density $\J$.
 \end{frame}
 
 
@@ -99,20 +99,21 @@ The scattered field is determined by the distribution of current density.
     \end{columns}
 
     \onslide<2->
-    It can be shown that, in the absence of losses, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as :
+    It can be shown that, in the absence of losses, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as:
     \begin{equation}
         \E(x) = j\frac{e^{jk|x|}}{|x|}\left\{\E^\infty(\tfrac x{|x|}) + \mathcal{O}\left(\frac1{|x|}\right)\right\},
         \label{eq:helmholtz}
     \end{equation}
     %
     \onslide<2->
-    $E^\infty$ is called the far field and defined as :
+    $E^\infty$ is called the far field and defined as:
     \begin{equation}
         \E^\infty(\tfrac\x{|\x|}) = \frac{kZ_0}{4\pi}\frac\x{|\x|}\times\left(\mathcal F(\J)(\tfrac{\x}{|\x|})\times\frac\x{|\x|}\right),
         \label{eq:champ-lointain}
     \end{equation}
     %
-    \onslide<3->
+    % \onslide<3->
+    \small
     where
     \begin{equation}
         \mathcal F(\J)(\x) = \left<\J_y,e^{-jkx\cdot y}\right>_{\varepsilon'(\mathbb R^3),\varepsilon(\mathbb R^3)}.
@@ -122,7 +123,7 @@ The scattered field is determined by the distribution of current density.
 \end{frame}
 % \begin{frame}
 %     \frametitle{The Far Field}
-%     It can be shown that in the case where the support of $\mathbf T$ is compact, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as a Taylor's development as such :
+%     It can be shown that in the case where the support of $\mathbf T$ is compact, the solution \eqref{bem-eq:sol-helmholtz} can be expressed as a Taylor's development as such:
 % \begin{equation}
 %     \E(\x) = \frac{e^{jk\norm \x}}{\norm \x}\left\{\E^\infty\left(\frac{\x}{\norm \x}\right)+\mathcal O\left(\frac1{\norm \x}\right)\right\},
 %     \label{bem-eq:taylor}
@@ -137,7 +138,7 @@ The scattered field is determined by the distribution of current density.
 
 \begin{frame}
     \frametitle{The Radar Cross Section (RCS)}
-    The Radar Cross Section (RCS) of an object in the direction ($\uu_s$) is defined as :
+    The Radar Cross Section (RCS) of an object in the direction ($\uu_s$) is defined as:
     \begin{equation}
     \label{bem-eq:RCSdef}
     \sigma(\uu_s)= \lim\limits_{R\to\infty} R^2\frac{||\E(R\uu_s)||^2}{||\E_i||^2},
@@ -145,7 +146,7 @@ The scattered field is determined by the distribution of current density.
 %
 \pause
 
-From the development \eqref{eq:champ-lointain}, the limit in \eqref{bem-eq:RCSdef} is finite and the RCS is well defined and can be expressed as :
+From the development \eqref{eq:champ-lointain}, the limit in \eqref{bem-eq:RCSdef} is finite and the RCS is well defined and can be expressed as:
 
     
 \begin{equation}
@@ -156,5 +157,16 @@ From the development \eqref{eq:champ-lointain}, the limit in \eqref{bem-eq:RCSde
 
 To compute $\sigma$, one needs to compute the current density $\J$ on the target surface.
 
+\onslide<4->
+The interface conditions at $\Gamma$ give:
+\begin{equation}
+    \J(x) = n(x)\times\Hh(x),\quad\forall x\in\Gamma
+\end{equation}
+\only<4>{
+with $n$ the local normal to $\Gamma$.
+}
+
+\onslide<5->
+But $\Hh$ depends on $\J$ everywhere on $\Gamma$.
 \end{frame}
 \end{document}

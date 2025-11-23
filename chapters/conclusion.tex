@@ -14,22 +14,22 @@
     \small
     \begin{itemize}[label=\ding{227}]
         \onslide<2->
-        \item A bidisciplinary gradient based optimization framework coupling a RANS solver and a low fidelity Physical Optics solver.
+        \item A bidisciplinary gradient-based optimization framework coupling a RANS solver and a low fidelity Physical Optics solver.
         % \only<3>{
         \begin{itemize}[label=$\bullet$]
             \item The differentiated aero solver and the optimization driver already existed
-            \item Implementation and validation the PO+PTD solver for the RCS computation.
+            \item Implementation and validation the PO+PTD solver for the RCS computation
             \begin{itemize}
                 \item (12 months)
             \end{itemize}
-            \item Study to showcase the framework and postprocess of the results
+            \item Study to showcase the framework and postprocessing of the results
             \begin{itemize}
                 \item (6 months)
             \end{itemize}
         \end{itemize}
         % }
         \onslide<3->
-        \item A high fidelity gradient based optimization framework relying on an adjoint formulation of a high fidelity BEM solver.
+        \item A high fidelity gradient-based optimization framework relying on an adjoint formulation of a high fidelity BEM solver.
         \begin{itemize}[label=$\bullet$]
             \item The BEM solver for RCS already existed
             \item Formulation of the discrete BEM adjoint
@@ -40,36 +40,36 @@
             \begin{itemize}
                 \item (12 months)
             \end{itemize}
-            \item The stealth criterion that I presented is an originality of my work
-            \item Study to showcase the framework and postprocess of the results
+            \item Study to showcase the framework and postprocessing of the results
             \begin{itemize}
                 \item (6 months)
             \end{itemize}
         \end{itemize}
+        \item The stealth criterion that I presented is an originality of my work
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Discussion}
     \small
-    I have presented two frameworks for the shape optimization of fighter aircraft for aerodynamic performance and low observability.
+    I have presented two frameworks for the shape optimization of a fighter aircraft for aerodynamic performance and low observability.
     \begin{itemize}[label=\ding{227}]
         \onslide<2->
-        \item A bidisciplinary gradient based optimization framework coupling a RANS solver and a low fidelity Physical Optics solver.
+        \item A bidisciplinary gradient-based optimization framework coupling a RANS solver and a low fidelity Physical Optics solver.
         \only<2>
         {
         \begin{itemize}[label=$\bullet$]
             \item The PO+PTD solver is relevant for low fidelity RCS optimization at high frequencies.
-            \item The studies showcased show that the framework is able explore efficiently the parameter space and to identify relevant trade-offs between aerodynamic performance and RCS reduction.
+            \item The studies showcased show that the framework is able to explore efficiently the parameter space and to identify relevant tradeoffs between aerodynamic performance and RCS reduction.
             \item The stealth criterion that I presented allows to produce shapes representative of real life stealth design.
         \end{itemize}
         }
         \onslide<3->
-        \item A high fidelity gradient based optimization framework relying on an adjoint formulation of a high fidelity BEM solver.
+        \item A high fidelity gradient-based optimization framework relying on an adjoint formulation of a high fidelity BEM solver.
         \begin{itemize}[label=$\bullet$]
             \item The gradient is not accurate because of an omitted term in the adjoint due to limited time to implement it.
             \item The studies showcased show that the framework is able to reduce significantly the RCS of a generic fighter aircraft at high frequencies in a time frame consistent with industrial constraints.
-            \item The comparison to a lower fidelity solver show that the ommitted term in the gradient alone does not fully explain the inaccuracy of the solution.
+            \item The comparison to a lower fidelity solver shows that the omitted term in the gradient alone does not fully explain the inaccuracy of the solution.
             \item Efforts should be carried on to finish the implementation of the adjoint.
         \end{itemize}
     \end{itemize}
@@ -81,7 +81,7 @@
 
     \begin{itemize}[leftmargin=5mm,label=$\bullet$]
         \item Complete the adjoint formulation to the BEM solver to have an accurate gradient of the RCS should be the first priority.
-        \item Optimize and industrialize the BEM adjoint solver.
+        \item Optimize and accelerate the BEM adjoint solver.
         \begin{itemize}
             \item ACA method\footcite{Bebendorf2000} or Fast Multipole Method \footcite{Greengard1988}
         \end{itemize}
@@ -104,25 +104,25 @@
     \begin{columns}
     \begin{column}{.35\textwidth}
         \onslide<1->
-        2 presentations in conferences : 
+        2 presentations in conferences: 
         
         CANUM 2022 and EUROGEN 2023.
 
         \vspace{\baselineskip}
         \onslide<2->
-        2 publication in journal papers : 
+        2 publications in journal papers: 
         
-        \textit{Fluids} (impact factor : 1.8) in 2024 
+        \textit{Fluids} (impact factor: 1.8) in 2024 
 
-        chosen as cover for 08/24 issue
+        chosen as cover for the 08/24 issue
         
         \onslide<3->
         and
         
-        \textit{Eng} (impact factor : 2.4) in 2025
+        \textit{Eng} (impact factor: 2.4) in 2025
 
-        chosen as cover for 07/25 issue
-        % The aero-stealth framework has been described and results presented in a published article in \textit{Fluids} (MDPI) in 2024, which was chosen as cover for that month's issue :
+        chosen as cover for the 07/25 issue
+        % The aero-stealth framework has been described and results presented in a published article in \textit{Fluids} (MDPI) in 2024, which was chosen as cover for that month's issue:
         \vfill
     \end{column}
     \begin{column}{.65\textwidth}

@@ -4,18 +4,19 @@
 \usepackage{pgfplots}
 \usetikzlibrary{backgrounds,external,shapes.geometric, arrows,calc,positioning,decorations.pathmorphing, scopes}
 % \usetikzlibrary{patterns}
-\pgfplotsset{compat=1.18, width=10cm}
+\pgfplotsset{compat=1.18, width=8cm}
+\pgfplotsset{every tick label/.append style={font=\footnotesize, transform shape}}
 
 \begin{document}
 \begin{tikzpicture}[
     % scale=.5,
-    % every node/.style={transform shape}
+    every node/.style={transform shape, scale=0.8}
     ]
     \begin{axis}[
         axis lines = left,
         xlabel=Aerodynamic performance,
-        xlabel style={node={transform shape}},
         ylabel=Radar visibility,
+        label style={font=\scriptsize},
         xmin=-1.05, ymin=-0.05,
         xtick style={draw=none},
         xtick={-0.85, -0.1},
@@ -24,6 +25,7 @@
         ytick={0.1, 0.9},
         yticklabels={Less visible, More visible},
         y tick label style={rotate=90},
+        legend style={font=\scriptsize},
         compat=newest,
     ]
         \addplot[

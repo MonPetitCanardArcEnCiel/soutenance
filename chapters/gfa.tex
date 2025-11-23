@@ -8,7 +8,7 @@
 \section[Baseline]{Baseline geometry}
 \subsection{Geometry}
 \begin{frame}
-    \frametitle{Generic Fighter Aircraft (GFAs)}
+    \frametitle{Generic Fighter Aircraft (GFA)}
 	No air intake, canard or empenage.% Ledge at the front of the fuselage.
 
 
@@ -31,9 +31,13 @@
 	\end{figure}
 \end{frame}
 
+\subsection{RCS analysis}
 \begin{frame}
-	\frametitle{Angle definition}
-
+	\frametitle{RCS analysis -- Angle definition}
+	{
+		\small
+		The direction at which the aircraft is observed by the radar is represented by two angles.
+	}
 	\begin{figure}
 		\centering
 		\resizebox{!}{.5\textheight}{
@@ -44,11 +48,11 @@
 
 \end{frame}
 
-\subsection{RCS analysis}
 \begin{frame}
-    \frametitle{RCS Analysis}
-	The RCS is mainly conscentrated in two directions : 48$^\circ$ (specular reflexion on the leading edge) and 15$^\circ$ (diffraction on the trailing edge). It is very small elsewhere.
-	\begin{figure}
+    \frametitle{RCS analysis}
+	The RCS is mainly concentrated in two directions: 48$^\circ$ (specular reflexion on the leading edge) and 15$^\circ$ (diffraction on the trailing edge). It is very small elsewhere.
+	
+        \begin{figure}[htb]
 		\centering
 		\captionsetup[subfigure]{justification=centering}
 		\begin{subfigure}{.49\textwidth}
@@ -74,7 +78,7 @@
 
 \subsection{Aerodynamic analysis}
 \begin{frame}
-	\frametitle{Aerodynamic analysis - wing cross-section}
+	\frametitle{Aerodynamic analysis}
 	A weak shock develops around the wing leading edge.
 	\begin{figure}[htp]
 		\centering
@@ -86,19 +90,19 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Paramétrisation}
+    \frametitle{Parametrization}
     \begin{figure}[htb]
 		\centering
 		\includegraphics[trim=5mm 45mm 20mm 55mm,clip,width=\textwidth,height=.4\textheight,keepaspectratio]{images/gfa/control_sections-h.pdf}
 		% \frame{\includegraphics[trim=100mm 0 115mm 0mm,clip,width=.75\textwidth]{control_sections-v.pdf}}
-		% \caption*{The wing parametrized with the control sections and control points.}
+		% \caption*{The wing parameterized with the control sections and control points.}
 		\label{fig:parametrized-shape}
 	\end{figure}%
     \only<1>{%
 	The GFA wing is parameterized with 6 control sections, 15 control points along each section. The geometry is interpolated between the control sections using RBF.
     }%
     \onslide<2->
-	The geometry is parameterized with 13 global variables :
+	The geometry is parameterized with 13 global variables:
 	\begin{itemize}[label=\ding{227}]
 		\item<3-> leading edge sweep angle at sections 2 and 4,
 		\item<4-> chord length of sections 2, 4 and 6,

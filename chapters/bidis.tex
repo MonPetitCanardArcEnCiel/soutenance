@@ -10,14 +10,14 @@
 \subsection{The Physical Optics}
 \begin{frame}
     \frametitle{The Physical Optics}
-    Let us recall the far field expression \eqref{eq:champ-lointain} :
+    Let us recall the far field expression \eqref{eq:champ-lointain}:
     
     \begin{equation}
-        \E^\infty(\tfrac\x{|\x|}) = \frac{kZ_0}{4\pi}\frac\x{|\x|}\times\left(\mathcal F(\J)(\tfrac{\x}{|\x|})\times\frac\x{|\x|}\right).
+        \E^\infty(\tfrac\x{|\x|}) = \frac{kZ_0}{4\pi}\frac\x{|\x|}\times\left(\mathcal F(\J)(\tfrac{\x}{|\x|})\times\frac\x{|\x|}\right),
         \label{eq:champ-lointain-2}
     \end{equation}
     
-    where :
+    where:
     \begin{equation}
         \mathcal F(\J)(\x) = \int_\Gamma\J(y)e^{-jk\x\cdot y}\dd\Gamma(y).
     \end{equation}
@@ -29,19 +29,19 @@
     \end{block}
     \only<2>
     {
-        At high frequencies ($\sim1\unit{\giga\hertz}$ and more), this hypothesis is sensible : for $f = 2\unit{\giga\hertz}$, $\lambda = 15\unit{\centi\meter}$ where a fighter aircraft's characteristic lenghts $\sim10\unit{meter}$.
+        At high frequencies ($\sim1\unit{\giga\hertz}$ and more), this hypothesis is sensible: for $f = 2\unit{\giga\hertz}$, $\lambda = 15\unit{\centi\meter}$ where a fighter aircraft's characteristic lengths $\sim10\unit{\meter}$.
     }
     % \pause
     \onslide<3->
-    The Physical Optics approximation, the current distribution $\J$ induced by a plane wave $\E\inc$ propagating along the direction $\uu_i$ is given by\footcite{Laval2006}%\footnote<2->{Chatzigeorgiadis, F.~, 2004, \textit{Development of Code for a Physical Optics RADAR Cross Section Prediction and Analysis Application}.} :
+    Under the Physical Optics approximation, the current distribution $\J$ induced by a plane wave $\E\inc$ propagating along the direction $\uu_i$ is given by\footcite{Laval2006}%\footnote<2->{Chatzigeorgiadis, F.~, 2004, \textit{Development of Code for a Physical Optics RADAR Cross Section Prediction and Analysis Application}.}:
     \begin{columns}
         \begin{column}{0.75\textwidth}
             \begin{equation}
                 \J(y) = \left\{\begin{array}{cr}
                     \left(
                         \dfrac2{Z_0}\mathbf n\times\mathbf \uu_i\times\E\inc
-                    \right)e^{jk\uu_i\cdot y}&\text{in the illumated zone,}\\
-                    \mathbf 0&\text{in the shadow zone,}
+                    \right)e^{jk\uu_i\cdot y}&\text{in the illuminated zone,}\\
+                    \mathbf 0&\text{in the shadow zone.}
                 \end{array}\right.
             \end{equation}
         \end{column}
@@ -57,7 +57,7 @@
 
 \begin{frame}
     \frametitle{The Physical Optics Far Field}
-    Finally, the expression of the far field now only depends on known values and the geometry details :
+    Finally, the expression of the far field now only depends on known values and the geometry details:
     \begin{equation}
         \E^\infty(\uu_s) = \frac{2k}{4\pi}\int_\Gamma\uu_s\times\left(\n\times \uu_i\times\E\inc\right)\times\uu_s e^{jk(\uu_i-\uu_s)\cdot y}\dd\Gamma(y)
     \end{equation}
@@ -103,7 +103,7 @@
 		\end{subfigure}
 		\onslide<1->
         \vspace*{-1ex}
-		\caption*{\small Profile of RCS with respect to the bearing angle on the GFA (elevation : $-20^\circ$).}
+		\caption*{\small Profile of RCS with respect to the bearing angle on the GFA (elevation: $-20^\circ$).}
 		\label{fig:RCS-baseline}
     \end{figure}
     \vspace*{-4ex}
@@ -121,7 +121,7 @@
         \onslide<2->
         \draw[color=blue, line width=2pt] ($(pic cs:POPH) + (\myxshift, \myyshift)$) circle[x radius=\myxradius, y radius=\myyradius, rotate=15];
         \draw[color=blue, line width=2pt] ($(pic cs:POPV) + (\myxshift, \myyshift)$) circle[x radius=\myxradius, y radius=\myyradius, rotate=15];
-        \node[align=center, color=blue] at (barycentric cs:center=1,north=0.9) {\textbf{\footnotesize Diffraction peak is to weak} \\ \textbf{\footnotesize It should not appear}\\\textbf{\footnotesize on horizontal polar}};
+        \node[align=center, color=blue] at (barycentric cs:center=1,north=0.9) {\textbf{\footnotesize Diffraction peak is too weak} \\ \textbf{\footnotesize It should not appear}\\\textbf{\footnotesize on horizontal polarization}};
         \onslide<4->
         \draw[color=blue, line width=2pt] ($(pic cs:PTDPH) + (\myxshift, \myyshift)$) circle[x radius=\myxradius, y radius=\myyradius, rotate=15];
         \draw[color=blue, line width=2pt] ($(pic cs:PTDPV) + (\myxshift, \myyshift)$) circle[x radius=\myxradius, y radius=\myyradius, rotate=15];
@@ -145,14 +145,14 @@
 \subsection{Validation}
 
 \begin{frame}
-    \frametitle{Computation a cannonical case - RCS of a sphere}
+    \frametitle{Computation of a cannonical case - RCS of a sphere}
     Validated with less than $5\%$ of error.
     \begin{figure}[htb]
 		\centering
 		\captionsetup[subfigure]{justification=centering}
 		\begin{subfigure}[c]{0.49\textwidth}
 			\includegraphics[trim=0 0 0 2.5cm, clip, width=1.4\textwidth, height=.7\textheight,center, keepaspectratio]{images/bidis/RCS-sphere-bearing.pdf}
-			\caption*{RCS funtion of the bearing angle.\newline$f = 5\unit{\giga\hertz}$}
+			\caption*{RCS function of the bearing angle,\newline$f = 5\unit{\giga\hertz}.$}
 			\label{fig:RCS-sphere-bearing}
 		\end{subfigure}
 		\begin{subfigure}[c]{0.49\textwidth}
@@ -168,7 +168,7 @@
 
 \begin{frame}
     \frametitle{Comparison to BEM}
-    The height and width of peaks are well predicted. In the zones where the relative error is big, the RCS is very small anyway.
+    The height and width of the peaks are well predicted. In the zones where the relative error is big, the RCS is very small anyway.
     \begin{figure}[htb]
         \captionsetup{justification=centering}
 		\centering
@@ -184,7 +184,7 @@
 \begin{frame}
     \frametitle{Gradient validation}
     \only<1-2>{
-    Consider $f$, a real-valued function, at least 3 times differentiable and $f'$ its derivative. Let $h>0$. Then $\forall x$ :
+    Consider $f$, a real-valued function, at least 3 times differentiable and $f'$ its derivative. Let $h>0$. Then $\forall x$:
     \begin{align*}
         \frac{f(x+h)-f(x)}{h} = f'(x) +  \textcolor<2>{red}{o(h)}\quad\text{as }h\to0,\\
         \frac{f(x+h)-f(x-h)}{2h} = f'(x) +  \textcolor<2>{red}{o(h^2)}\quad\text{as }h\to0.
@@ -208,12 +208,12 @@
             \includegraphics[width=\textwidth, height=.75\textheight, keepaspectratio]{images/bidis/valid_grad_ex.png}
             % \caption*{Finite differences}
         \end{subfigure}
-        \caption*{Exemple of error between the exact gradient and the finite differences (Rosenbrock function)}
+        \caption*{Example of error between the exact gradient and the finite differences (Rosenbrock function)}
     \end{figure}
     }
 
     \begin{itemize}[label=\ding{227}]
-        \item The error between FD and the exact gradient should decrease until a critical $\epsilon$, where numerical errors become predominant.
+        \item The error between FD and the exact gradient should decrease until a critical $\epsilon$, where cancelation errors become predominant.
         \item The slope of the error log should be 1 for forward FD and 2 for centered FD (near the critical $\epsilon$).
     \end{itemize}
 
@@ -226,7 +226,7 @@
         \centering
         % \includegraphics[trim=20mm 0mm 40mm 25mm,clip,height=.75\textheight]{images/bidis/grad-13var.pdf}
         \includegraphics[width=\textwidth, height=.7\textheight, keepaspectratio]{images/bidis/valid_grad_po.png}
-        \caption*{Error between the exact gradient of the stealth cost function and the gradient computed by forward ({\color{blue} in blue}) and centered ({\color{red} in red}) finite difference function of the FD step size ($\epsilon$).}
+        \caption*{Error between the exact gradient of the stealth cost function and the gradient computed by forward ({\color{blue} in blue}) and centered ({\color{red} in red}) scheme function of the FD step size.}
         \label{fig:formag-po}
     \end{figure}
 \end{frame}
@@ -236,7 +236,7 @@
 \begin{frame}%[label=fra:cost-bidis]
     \label{fra:cost-bidis}
     \frametitle{Cost and constraints}
-    Cost :
+    Cost:
     \begin{center}
         $F = wF_a + (1-w)F_e,$	with $0\leq w\leq1$.
     \end{center}
@@ -263,23 +263,24 @@
             \end{equation*}
             \onslide<4->
             \begin{itemize}[label=$\bullet$]
-                \item $\delta_s$ : threshold function on RCS, to cut oscillations in low RCS zones.
-                \item \hyperlink<4->{fra:gamma}{$\Gamma_d$} : \hypertarget<4->{lk:gamma-bidis}{directivity function, to focus on critical directions.}
+                \item $\delta_s$: threshold function on RCS, to cut oscillations in low RCS zones.
+                \item \hyperlink<4->{fra:gamma}{$\Gamma_d$}: \hypertarget<4->{lk:gamma-bidis}{directivity function, to focus on critical directions.}
             \end{itemize}
-            RCS Computation :
+            \onslide<5->
+            RCS Computation:
             \begin{itemize}[label=$\bullet$]
-                \item RCS averaged over 21 frequencies
-                \item $f_{mean} = 2\unit{\giga\hertz}$
+                \item RCS averaged over several frequencies
+                \item Evenly spaced around a $f_{mean} = 2\unit{\giga\hertz}$
             \end{itemize}
         \end{column}
 
-        \begin{column}<5->{.5\textwidth}
+        \begin{column}<6->{.5\textwidth}
             \begin{center}Aerodynamic criterion\end{center}
                 \begin{equation*}
                     F_a = \frac{C_D}{{C_D}^{ref}}.
                     \label{eq:Fa}
                 \end{equation*}
-                \onslide<6->
+                \onslide<7->
                 \begin{center}Aerodynamic constraints\end{center}
             \begin{itemize}[label=$\bullet$]
                 \item \sref{} constant
@@ -291,24 +292,13 @@
     
 \end{frame}
 
-\begin{frame}
-    \frametitle{The process}
-
-    \begin{figure}
-        \centering
-        % \resizebox{\textwidth}{!}{\import{resources/bidis/}{Optim_CFD_PO_MDF_xdsm.tex}}
-        \resizebox{!}{.8\textheight}{\subimport{resources/bidis/}{graph-optim.tex}}
-        \caption*{The aero-stealth optimization process.}
-        \label{fig:optim-process}
-    \end{figure}
-\end{frame}
 
 \subsection{Results}
 
 
 \begin{frame}
     \frametitle{Pareto front}
-    The framework was able to identify multiple trade-offs.
+    The framework was able to identify multiple tradeoffs.
     \begin{figure}
         \centering
         % \resizebox{!}{.5\textheight}{
@@ -380,12 +370,12 @@
 
 \begin{frame}
     \frametitle{The stealth optimization - Aerodynamic analysis}
-    The decrease in leading edge sweep angle causes the shock to become stonger.
+    The decrease in leading edge sweep angle causes the shock to become stronger.
     \begin{figure}[htp]
         \centering
         \captionsetup{justification=centering}
         \includegraphics[width=.9\textwidth,height=.7\textheight,keepaspectratio,center]{images/bidis/Optim_PO/MALO_5_RCS.pdf}
-        \caption*{Comparison of the distributions of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the stealth-optimal shape (bottom).}
+        \caption*{Comparison of the distribution of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the stealth-optimal shape (bottom).}
         \label{bidis-fig:optim-PO-MALO-5}
     \end{figure} 
 \end{frame}
@@ -423,7 +413,7 @@
         \captionsetup{justification=centering}
         \centering
         \includegraphics[width=.9\textwidth,height=.7\textheight,keepaspectratio,center]{images/bidis/Optim_CFD/MALO_5_aero.pdf}
-        \caption*{Comparison of the distributions of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the optimized aerodynamic shape (bottom).}
+        \caption*{Comparison of the distribution of local Mach number around the cross-section of the wing profile at $Y/b = 0.8$ between the baseline (top) and the optimized aerodynamic shape (bottom).}
         \label{bidis-fig:optim-CFD-MALO-5}
     \end{figure}
 \end{frame}
