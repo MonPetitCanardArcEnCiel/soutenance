@@ -99,7 +99,32 @@
 
 \end{frame}
 
-    
+\subsection{Gradient validation}
+\begin{frame}
+    \frametitle{Gradient validation}
+
+    Since a term is missing in the adjoint, there is no sense in validating the derivative $\der{\zeta}{\eta}$.
+
+    The other terms can be validated.
+    \begin{figure}
+        \centering
+        \captionsetup[subfigure]{justification=centering}
+        \captionsetup{justification=centering}
+        \begin{subfigure}[c]{0.49\textwidth}
+            \includegraphics[width=1.\textwidth,center]{chapters/images/bem/dbdx_norm.pdf}
+            \caption*{$\derpart{b}{\X}$}
+            \label{bem-fig:BEM-b-grad}
+        \end{subfigure}
+        \begin{subfigure}[c]{0.49\textwidth}
+            \centering
+            \includegraphics[width=1.\textwidth,center]{chapters/images/bem/dchidx_norm.pdf}
+            \caption*{$\derpart{\zeta}{\X}$}
+            \label{bem-fig:BEM-chi-grad}
+        \end{subfigure}
+        \caption*{Comparison between the analytical derivative and the finite differences for two terms of the adjoint.}
+    \end{figure}
+
+\end{frame}
 
 \subsection{The optimization}
 % \subsection{Cost and constraints}
