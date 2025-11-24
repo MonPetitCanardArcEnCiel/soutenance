@@ -3,6 +3,8 @@
 % \usepackage{tikz}
 \usepackage{pgfplots}
 \usetikzlibrary{backgrounds,external,shapes.geometric, arrows,calc,positioning,decorations.pathmorphing, scopes}
+\usepgfplotslibrary{fillbetween}
+
 % \usetikzlibrary{patterns}
 \pgfplotsset{compat=1.18, width=8cm}
 \pgfplotsset{every tick label/.append style={font=\footnotesize, transform shape}}
@@ -29,11 +31,41 @@
         compat=newest,
     ]
         \addplot[
+            name path=f,
             domain=-1:0,
             samples=500,
             color=blue
         ]{-1*sqrt(1 - x*x)+1};
-        \addlegendentry{Pareto front}
+        
+        \path[name path=xaxis-minus] (axis cs:-1.5,-0.1) -- (axis cs:0.0,-0.1);
+        \path[name path=xaxis-plus] (axis cs:-1.5,1.1) -- (axis cs:0.0,1.1);
+
+        \addplot [
+            thick,
+            color=blue,
+            fill=red, 
+            fill opacity=0.05
+            ]
+            fill between[
+                of=f and xaxis-minus,
+                soft clip={domain=-1.5:0},
+            ];
+        \addplot [
+            thick,
+            color=blue,
+            fill=blue, 
+            fill opacity=0.05
+            ]
+            fill between[
+                of=f and xaxis-plus,
+                soft clip={domain=-1:0},
+            ];
+            
+
+        \node[color=red,style=transform shape] at (axis cs: -0.8,0.1) {\small Non-feasible shapes};
+        \node[color=blue, ,style=transform shape] at (axis cs: -0.4,0.6) {\small Non-optimal shapes};
+        \node[style=transform shape, rotate=-40, anchor=south] at (axis cs: -0.7,0.29) {Pareto front};
+
         \node[below right, anchor=north west] at (-1.,1) {\includegraphics[scale=0.01]{images/intro/Lockheed_SR-71_Blackbird_detoure.png}};
         \node[above left, anchor=south east] at (-0.2,0.07) {\includegraphics[scale=0.01]{images/intro/F-117_Nighthawk_Front_detoure.png}};
     \end{axis}
