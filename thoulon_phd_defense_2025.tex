@@ -13,8 +13,8 @@
 \frame{
     \titlepage
     \begin{tikzpicture}[remember picture, overlay]
-        \node[anchor=south west, yshift=2ex] at (current page.south west) {\includegraphics[width=.3\textwidth]{images/ljll_logo_550x310.png}};
-        \node[anchor=south east, yshift=2ex] at (current page.south east) {\includegraphics[width=.3\textwidth]{images/DA.png}};
+        \node[anchor=south west, yshift=2ex] at (current page.south west) {\hyperlink{fra:toc}{\includegraphics[width=.3\textwidth]{images/ljll_logo_550x310.png}}};
+        \node[anchor=south east, yshift=2ex] at (current page.south east) {\hyperlink{sec:annexe}{\includegraphics[width=.3\textwidth]{images/DA.png}}};
     \end{tikzpicture}
 }
 
@@ -23,6 +23,7 @@
 
 \begin{frame}
     \frametitle{Table of contents}
+    \label{fra:toc}
     \tableofcontents[
         % sectionstyle=show/shaded/hide,
         subsectionstyle=hide
