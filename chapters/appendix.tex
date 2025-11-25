@@ -173,19 +173,17 @@
     \frametitle{Continuous adjoint formulation}
     Let us rewrite the linear system of unknowns $\J$ defined by equation \eqref{eq:syslin} under the following form:
     \begin{equation}
-        \mathcal R(\X(\eta),\J(\eta)) = 0,
+        \mathcal R(\eta,\J(\eta)) = 0,
         \label{eq:system-cont}
     \end{equation}
-    and consider the observation function $\zeta(\X(\eta),\J(\eta))$.
+    and consider the observation function $\zeta(\eta,\J(\eta))$.
     The right derivative of $\zeta$ with respect to $\eta$ writes:
     \begin{equation}
-        \dd{\zeta} = \left(\derpart{\zeta}{\X}\derpart{\X}{\eta} + \derpart{\zeta}{\J}\derpart{\J}{\eta}\right)\dd \eta.
+        \dd{\zeta} = \left(\derpart{\zeta}{\eta} + \derpart{\zeta}{\J}\derpart{\J}{\eta}\right)\dd \eta.
         \label{eq:dsigmadx}
     \end{equation}
 
     \only<1>{
-        $\X$: mesh coordinates
-
         $\eta$: optimization parameters
         }
 
@@ -193,12 +191,12 @@
     The term $\derpart{\J}{\eta}$ is very costly to compute. However, it can be expressed in a more clever way since $\dd\RR = 0$:
 
     \begin{equation}
-        \dd\RR = \left(\derpart\RR\X\derpart\X \eta + \derpart\RR\J\derpart\J \eta\right)\dd \eta = 0.
+        \dd\RR = \left(\derpart\RR\eta + \derpart\RR\J\derpart\J \eta\right)\dd \eta = 0.
     \end{equation}
     \onslide<3->
     Then:
     \begin{equation}
-        \derpart\J \eta = \left(\derpart\RR\J\right)^{-1}\derpart\RR\X\derpart\X \eta.
+        \derpart\J \eta = \left(\derpart\RR\J\right)^{-1}\derpart\RR\eta.
         \label{eq:djdx}
     \end{equation}
 \end{frame}
@@ -209,7 +207,7 @@
 
     \begin{equation}
         \boxed{
-        \dd{\zeta} = \left(\derpart{\zeta}{\X}\derpart{\X}{\eta} - \Psi^*\derpart{\mathcal R}{\X}\derpart{\X}{\eta}\right)\dd\eta.
+        \dd{\zeta} = \left(\derpart{\zeta}{\eta} - \Psi^*\derpart{\mathcal R}{\eta}\right)\dd\eta.
         }
         \label{eq:dsigmadx-adj}
     \end{equation}
