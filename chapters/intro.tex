@@ -48,27 +48,6 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Optimization}
-
-    The problem:
-
-    For a given parameter space $\mathbb P$ (ex: wing sweep angles, chord length, span, camber...):
-    \begin{align*}
-        \underset{X\in\mathbb P}{\argmin} \left\{\begin{array}{l}
-            \text{aerodynamic criterion}(X)\\
-            \text{stealth criterion}(X)
-        \end{array}\right.\\
-        \text{s.~t.~}\quad\left\{\begin{array}{l}
-            \text{aerodynamic constraints}\\
-            \text{stealth constraints}\\
-            \text{geometric constraints}
-        \end{array}\right.
-    \end{align*}
-    with $X$ the vector of geometric parameters.
-\end{frame}
-
-
-\begin{frame}
     \frametitle{Tradeoffs}
     We need a way to efficiently explore Pareto-optimal tradeoffs$^*$.
     \begin{columns}
@@ -89,6 +68,26 @@
         \end{column}
     \end{columns}
 \end{frame}
+\begin{frame}
+    \frametitle{Optimization}
+
+    The problem:
+
+    For a given parameter space $\mathbb P$ (ex: wing sweep angles, chord length, span, camber...):
+    \begin{align*}
+        \underset{X\in\mathbb P}{\mathrm{miminize}}\ f_{\mathrm{cost}}\left(\begin{array}{c}
+            \text{aerodynamic criterion}(X)\\
+            \text{stealth criterion}(X)
+        \end{array}\right)\\
+        \text{s.~t.~}\quad\left\{\begin{array}{l}
+            \text{aerodynamic constraints}\\
+            \text{stealth constraints}\\
+            \text{geometric constraints}
+        \end{array}\right.
+    \end{align*}
+    with $X$ the vector of geometric parameters.
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Optimization algorithms}
